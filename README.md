@@ -1,3 +1,9 @@
+## Demo development server CloudFixum
+
+https://cloud-fixum-project.herokuapp.com/
+
+## Locally
+
 ## Install nodejs v14.3.0
 
 ## Clone repository
