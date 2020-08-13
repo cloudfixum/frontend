@@ -9,21 +9,22 @@
     outline: none;
 }
 
-.App {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #424040;
+$color-primary: #049ee4;
+
+button {
+    border-radius: 5px;
+    min-width: 100px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.button-primary {
+    background-color: $color-primary;
     color: white;
+}
 
-    h1 {
-        font-family: 'Anton', sans-serif;
-    }
-
-    p {
-        font-family: 'Roboto', sans-serif;
-    }
+.button-accent {
+    background-color: transparent;
+    color: $color-primary;
+    border: 1px solid $color-primary;
 }
