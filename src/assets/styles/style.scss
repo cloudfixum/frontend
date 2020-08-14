@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import './colors';
 
 * {
     margin: 0;
@@ -9,7 +11,21 @@
     outline: none;
 }
 
-$color-primary: #049ee4;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Anton', sans-serif;
+    font-weight: lighter;
+}
+
+p,
+spam,
+li {
+    font-family: 'Roboto', sans-serif;
+}
 
 button {
     border-radius: 5px;
