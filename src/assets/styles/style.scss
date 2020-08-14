@@ -11,6 +11,15 @@
     outline: none;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Anton', sans-serif;
+    font-weight: lighter;
+}
+
+p, spam, li {
+    font-family: 'Roboto', sans-serif;
+}
+
 button {
     border-radius: 5px;
     min-width: 100px;
