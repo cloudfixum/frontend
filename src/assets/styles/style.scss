@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import './colors';
 
 * {
     margin: 0;
@@ -8,8 +10,6 @@
     border: none;
     outline: none;
 }
-
-$color-primary: #049ee4;
 
 button {
     border-radius: 5px;
