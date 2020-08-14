@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
 
 export default function useData(fetch) {
-    const [data, setData] = useState([])
-    const [error, setError] = useState([])
+    const [data, setData] = useState([]);
+    const [error, setError] = useState([]);
 
-    useEffect( () => {
+    useEffect(() => {
         fetch()
-            .then(res => {
-                setData(res)
+            .then((res) => {
+                setData(res);
             })
-            .catch(error => {
-                setError(error)
-            })
-    }, [])
+            .catch((error) => {
+                setError(error);
+            });
+    }, []);
 
-    return {data, error};
+    return { data, error };
 }
