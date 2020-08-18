@@ -12,7 +12,7 @@ export default function useData(fetch) {
             .catch((error) => {
                 setError(error);
             });
-    }, []);
+    }, [fetch]);
 
     return { data, error };
 }
