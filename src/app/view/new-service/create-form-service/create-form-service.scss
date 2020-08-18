@@ -1,0 +1,16 @@
+@import '../../../../assets/styles/colors';
+
+.container-form-create-service {
+    position: relative;
+    width: 45%;
+    margin-left: 2%;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+    font-size: 50px;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.create-service-button {
+    margin-left: 86.7%;
+}
