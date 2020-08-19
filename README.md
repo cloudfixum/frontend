@@ -1,12 +1,12 @@
-## Production
+# Production
 
 https://cloudfixum.herokuapp.com
 
-## Demo development server CloudFixum
+# Demo development server CloudFixum
 
 https://cloudfixum-develop.herokuapp.com
 
-## Locally
+# Locally
 
 ## Install nodejs v14.3.0
 
@@ -26,29 +26,29 @@ npm start
 
 npm run prettier
 
-## Deploy on heroku
+# Deploy on heroku
 
-# Install Heroku cli
+## Install Heroku cli
 
 npm install -g heroku
 
-# Login on Heroku
+## Login on Heroku
 
 heroku login (ask for login details from smoked matias)
 
-# Create app of heroku
+## Create app of heroku
 
 heroku create cloudfixum-develop --remote heroku-staging --buildpack mars/create-react-app
 
-# Add remote repository of heroku
+## Add remote repository of heroku
 
 heroku git:remote -a https://git.heroku.com/cloudfixum-develop.git
 
-# Renaming remotes
+## Renaming remotes
 
 git remote rename heroku heroku-staging
 
-# Deploy
+## Deploy
 
 - If we are going to deploy in staging
 
@@ -58,6 +58,6 @@ git push heroku-staging develop:master
 
 git push heroku master
 
-## Heroku documentation
+# Heroku documentation
 
 https://devcenter.heroku.com/articles/git
