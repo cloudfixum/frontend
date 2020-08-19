@@ -51,7 +51,7 @@ export default (props) => {
                         </div>
                     </div>
 
-                    <div className="field">
+                    <div className="field container-button-submit">
                         <label className="label" for="submit"></label>
                         <div className="control">
                             <button id="submit" name="submit" className="button-primary create-service-button">Submit</button>
