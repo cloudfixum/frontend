@@ -5,25 +5,40 @@ import 'react-bulma-components/dist/react-bulma-components.min.css';
 import { serviceCategories } from '../../../shared/utils/constant/service-categories'
 import './create-form-service.scss'
 
+
 export default (props) => {
+
+    const handleOnChange = (e) => {
+        e.preventDefault()
+        props.setValuesForm({...props.valuesForm, [e.target.name] : e.target.value})
+    }
+
+    const handleOnSubmit = (e) => {
+        e.preventDefault()
+        props.createService()
+        setTimeout( () => {
+            window.location = '/'
+        }, 1)
+    }
+
     return (
         <div className="container-form-create-service">
-            <form className="form-horizontal" enctype="multipart/form-data">
+            <form className="form-horizontal" onSubmit={handleOnSubmit}>
                 <fieldset>
 
                     <h1>New Service</h1>
                     <div className="field">
-                        <label className="label" for="serviceProviderName">Name</label>
+                        <label className="label">Name</label>
                         <div className="control">
-                            <input id="serviceProviderName" name="serviceProviderName" type="text" placeholder="Insert your service name"v className="input " required minLength="5" maxLength="50" />
+                            <input onChange={handleOnChange} id="title" name="title" type="text" placeholder="Insert your service name"v className="input " required minLength="5" maxLength="50" />
                         </div>
                     </div>
 
                     <div className="field">
-                        <label className="label" for="service">Service / Job Category</label>
+                        <label className="label">Service / Job Category</label>
                         <div className="control">
                             <div className="select">
-                                <select id="service" name="service" className="option-category" required>
+                                <select onChange={handleOnChange} id="category" name="category" className="option-category" required>
                                     <option value="">Select category</option>
                                     {
                                         Object.keys(serviceCategories).map((key) => {
@@ -36,25 +51,25 @@ export default (props) => {
                         </div>
                     </div>
                     <div className="field">
-                        <label className="label" for="description">Description</label>
+                        <label className="label">Description</label>
                         <div className="control">
-                            <textarea className="textarea" id="description" name="description" placeholder="Description of the service you provide" required maxLength="256"></textarea>
-                            <p className="help">Ingrese su nombre, metodo de contacto</p>
+                            <textarea onChange={handleOnChange} className="textarea" id="description" name="description" placeholder="Description of the service you provide" required maxLength="256"></textarea>
+                            <p className="help">Insert your name, method contact.</p>
                         </div>
                     </div>
 
                     <div className="field">
-                        <label className="label" for="precioMinimo">Precio Minimo</label>
+                        <label className="label">Price Min.</label>
                         <div className="control">
-                            <input id="precioMinimo" name="precioMinimo" type="text" placeholder="$000" className="input" pattern="\d*" required />
-                            <p className="help">Ingrese un precio minimo por sus servicios</p>
+                            <input onChange={handleOnChange} id="base_price" name="base_price" type="text" placeholder="$000" className="input" pattern="\d*" required />
+                            <p className="help">Insert a base price.</p>
                         </div>
                     </div>
 
                     <div className="field container-button-submit">
-                        <label className="label" for="submit"></label>
+                        <label className="label"></label>
                         <div className="control">
-                            <button id="submit" name="submit" className="button-primary create-service-button">Submit</button>
+                            <button id="submitForm" name="submitForm" className="button-primary create-service-button">Submit</button>
                         </div>
                     </div>
                 </fieldset>
