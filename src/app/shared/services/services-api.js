@@ -9,13 +9,12 @@ class ServicesApi {
     }
 
     async addService(service) {
-        const productJson = JSON.stringify(service);
-        const query = await axios.post(`${BASE}product`, productJson, {
+        const serviceJson = JSON.stringify(service);
+        const query = await axios.post(`${BASE}service`, serviceJson, {
             headers: {
                 'Content-Type': 'application/json',
             },
         });
-        console.log('Product success!');
         const data = query.data;
         return data;
     }
