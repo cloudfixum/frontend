@@ -7,8 +7,10 @@ export default (props) => {
     return (
         <div className="container-layout-card-services">
             {
-                props.data.map((service) => (
-                    <CardServices service={service} />
+                props.data.map((service, i) => (
+                    <div key={i} className="flex-row-center-center container-layout-card">
+                        <CardServices service={service} />
+                    </div>
                 ))
             }
         </div>

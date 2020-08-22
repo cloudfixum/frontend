@@ -17,8 +17,8 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Anton', sans-serif;
-    font-weight: lighter;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
 }
 
 p,
@@ -43,4 +43,21 @@ button {
     background-color: transparent;
     color: $color-primary;
     border: 1px solid $color-primary;
+}
+
+// Class globals
+
+@mixin flex-properties($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-column-center-center {
+    @include flex-properties(column);
+}
+
+.flex-row-center-center {
+    @include flex-properties(row);
 }

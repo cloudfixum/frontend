@@ -17,7 +17,7 @@ export default function CreateFormServices() {
         new ServicesApi()
             .addService(valuesForm)
             .then((res) => {
-                console.log(res);
+                window.location = '/';
             })
             .catch((e) => {
                 console.log(e);
