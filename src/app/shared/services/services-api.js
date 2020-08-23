@@ -3,7 +3,8 @@ const BASE = 'https://cloudfixum-api-dev.herokuapp.com/api/';
 
 class ServicesApi {
     async getServices() {
-        const query = await axios.get(`${BASE}service`);
+        const query = await axios.get(`${BASE}service?page=1`);
+        console.log(query.headers)
         const data = query.data;
         return data;
     }

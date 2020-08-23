@@ -18,9 +18,27 @@ export default (props) => {
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route exact path="/new-service" component={NewService} />
+                    <Route exact path="/material" component={PruebaMaterial} />
                     <Route path ="/*" component={NotFound} />
                 </Switch>
             </BrowserRouter>
+        </div>
+    )
+}
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      '& > *': {
+        marginTop: theme.spacing(2),
+      },
+    },
+  }));
+
+const PruebaMaterial = () => {
+    const classes = useStyles();
+    return (
+        <div className={classes.root}>
+            <Pagination count={10} variant="outlined" shape="rounded" />
         </div>
     )
 }
