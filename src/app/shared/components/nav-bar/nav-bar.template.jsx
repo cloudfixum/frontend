@@ -8,12 +8,8 @@ const handleStateMenu = () => {
         return;
     }
     let element = document.querySelector('.container-items-nav-bar');
-    console.log(element.style.display)
-
     if (element.style.display === 'none' || !element.style.display) {
         element.style.display = 'flex';
-    console.log(element.style.display)
-
     } else {
         element.style.display = 'none';
     }

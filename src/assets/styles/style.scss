@@ -47,17 +47,21 @@ button {
 
 // Class globals
 
-@mixin flex-properties($direction) {
+@mixin flex-properties($direction, $justify, $align) {
     display: flex;
     flex-direction: $direction;
-    justify-content: center;
-    align-items: center;
+    justify-content: $justify;
+    align-items: $align;
 }
 
 .flex-column-center-center {
-    @include flex-properties(column);
+    @include flex-properties(column, center, center);
 }
 
 .flex-row-center-center {
-    @include flex-properties(row);
+    @include flex-properties(row, center, center);
+}
+
+.flex-column-center-start {
+    @include flex-properties(column, center, flex-start)
 }

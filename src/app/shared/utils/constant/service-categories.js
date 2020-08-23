@@ -34,7 +34,6 @@ export class ServiceCategories {
                 categories_ordered[index]
             ];
         });
-
         return serviceCategories;
     }
 }
