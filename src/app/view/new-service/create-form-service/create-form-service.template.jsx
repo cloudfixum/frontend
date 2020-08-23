@@ -2,35 +2,31 @@ import React from 'react';
 
 import 'react-bulma-components/dist/react-bulma-components.min.css';
 
-import { serviceCategories } from '../../../shared/utils/constant/service-categories'
+import { ServiceCategories } from '../../../shared/utils/constant/service-categories'
 import './create-form-service.scss'
 
 
 export default (props) => {
-
+    const serviceCategories = new ServiceCategories().getCategoriesOrdered();
     const handleOnChange = (e) => {
-        e.preventDefault()
-        props.setValuesForm({...props.valuesForm, [e.target.name] : e.target.value})
+        e.preventDefault();
+        props.setValuesForm({...props.valuesForm, [e.target.name] : e.target.value});
     }
 
     const handleOnSubmit = (e) => {
-        e.preventDefault()
-        props.createService()
-        setTimeout( () => {
-            window.location = '/'
-        }, 1)
+        e.preventDefault();
+        props.createService();
     }
 
     return (
         <div className="container-form-create-service">
             <form className="form-horizontal" onSubmit={handleOnSubmit}>
                 <fieldset>
-
                     <h1>New Service</h1>
                     <div className="field">
                         <label className="label">Name</label>
                         <div className="control">
-                            <input onChange={handleOnChange} id="title" name="title" type="text" placeholder="Insert your service name"v className="input " required minLength="5" maxLength="50" />
+                            <input onChange={handleOnChange} id="title" name="title" type="text" placeholder="Insert your service name" className="input " required minLength="5" maxLength="50" />
                         </div>
                     </div>
 
@@ -41,15 +37,16 @@ export default (props) => {
                                 <select onChange={handleOnChange} id="category" name="category" className="option-category" required>
                                     <option value="">Select category</option>
                                     {
-                                        Object.keys(serviceCategories).map((key) => {
+                                        Object.keys(serviceCategories).map((key, i) => {
                                             let value = serviceCategories[key]
-                                            return (<option value={key}>{value}</option>)
+                                            return (<option key={i} value={key}>{value}</option>)
                                         })
                                     }
                                 </select>
                             </div>
                         </div>
                     </div>
+                    
                     <div className="field">
                         <label className="label">Description</label>
                         <div className="control">
