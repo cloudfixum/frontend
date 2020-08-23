@@ -3,7 +3,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './app/view/home-page/home-page';
 import NewService from './app/view/new-service/new-service';
 import NavBar from './app/shared/components/nav-bar/nav-bar';
-
+import Pagination from '@material-ui/lab/Pagination';
+import { makeStyles } from '@material-ui/core/styles';
 
 import '../src/assets/styles/style.scss';
 import './App.scss'
