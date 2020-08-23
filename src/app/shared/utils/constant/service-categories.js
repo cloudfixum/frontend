@@ -21,18 +21,20 @@ export class ServiceCategories {
         AIRCON_TECH: 'Air Conditioning Technician',
         PAINTER: 'Painter',
         LOCKSMITH: 'Locksmith',
-        OTHER: 'Other'
-    }
+        OTHER: 'Other',
+        GARDENER: 'Gardener',
+    };
 
-    getCategories() {
+    getCategoriesOrdered() {
         let categories_ordered = Object.keys(this.categories).sort();
         let serviceCategories = {};
 
         Object.keys(this.categories).forEach((key, index) => {
-            serviceCategories[categories_ordered[index]] = this.categories[categories_ordered[index]]
-        })
+            serviceCategories[categories_ordered[index]] = this.categories[
+                categories_ordered[index]
+            ];
+        });
 
         return serviceCategories;
     }
 }
-

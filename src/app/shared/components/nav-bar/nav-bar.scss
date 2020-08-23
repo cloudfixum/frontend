@@ -29,10 +29,10 @@
 }
 
 @keyframes animation-logo {
-    0%{
+    0% {
         margin-left: -200px;
     }
-    100%{
+    100% {
         margin-left: 15px;
     }
 }
@@ -63,6 +63,7 @@
     top: 50px;
     right: 0px;
     z-index: 10;
+    box-shadow: 0 10px 4px -1px rgba(0, 0, 0, 0.2);
     @media (min-width: 599px) {
         position: relative;
         display: flex !important;
@@ -72,8 +73,8 @@
         width: 100%;
         background-color: transparent;
         top: 0;
+        box-shadow: 0 0 0;
     }
-    
 }
 
 .container-items-nav-bar .divider-items {
@@ -90,10 +91,10 @@
 }
 
 @keyframes animation-divider {
-    0%{
+    0% {
         width: 0;
     }
-    100%{
+    100% {
         width: 100%;
     }
 }

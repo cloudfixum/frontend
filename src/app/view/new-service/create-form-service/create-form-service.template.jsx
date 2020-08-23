@@ -7,7 +7,7 @@ import './create-form-service.scss'
 
 
 export default (props) => {
-    const serviceCategories = new ServiceCategories().getCategories();
+    const serviceCategories = new ServiceCategories().getCategoriesOrdered();
     const handleOnChange = (e) => {
         e.preventDefault();
         props.setValuesForm({...props.valuesForm, [e.target.name] : e.target.value});
