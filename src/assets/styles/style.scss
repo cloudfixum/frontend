@@ -63,5 +63,5 @@ button {
 }
 
 .flex-column-center-start {
-    @include flex-properties(column, center, flex-start)
+    @include flex-properties(column, center, flex-start);
 }

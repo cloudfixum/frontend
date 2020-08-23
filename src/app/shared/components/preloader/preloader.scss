@@ -1,4 +1,4 @@
-@import 'src/assets/styles/style.scss';
+@import '../../../../assets/styles/colors';
 
 .preloader {
     position: relative;
@@ -14,7 +14,7 @@
     animation-timing-function: linear;
 }
 
-@keyframes turn{
+@keyframes turn {
     from {
         transform: rotate(0deg);
     }
