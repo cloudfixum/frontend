@@ -5,6 +5,9 @@ import './layout-card-services.scss';
 import { Preloader } from '../../../shared/components/preloader/preloader';
 import Pagination from '@material-ui/lab/Pagination';
 
+const scrollUp = (e) => {
+    window.scroll(0,0)
+}
 
 export default (props) => {
     let total_pages
@@ -29,7 +32,7 @@ export default (props) => {
                     </div>
             }
             <div className="container-pagination flex-column-center-center">
-                <Pagination count={Number(total_pages)} onChange={props.newPage} variant="outlined" shape="rounded" color="primary"/>
+                <Pagination count={Number(total_pages)} onChange={(e, value) => {props.newPage(e, value) ; scrollUp(e)}} variant="outlined" shape="rounded" color="primary"/>
             </div>
         </div>
     )
