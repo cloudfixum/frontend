@@ -18,5 +18,9 @@ class ServicesApi {
         const data = query.data;
         return data;
     }
+
+    async getServiceForPagination(page) {
+        return await axios.get(`${BASE}service?page=${page}`);
+    }
 }
 export default ServicesApi;

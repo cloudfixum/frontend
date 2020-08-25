@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
-export default function useData(fetch) {
+export default function usePaginationService(fetch) {
     const [data, setData] = useState([]);
     const [error, setError] = useState([]);
 
     useEffect(() => {
-        fetch()
+        fetch(0)
             .then((res) => {
                 setData(res);
             })
@@ -14,5 +14,15 @@ export default function useData(fetch) {
             });
     }, [fetch]);
 
-    return { data, error, setData };
+    const newPage = (e, value) => {
+        fetch(value - 1)
+            .then((res) => {
+                setData(res);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    };
+
+    return { data, error, newPage };
 }
