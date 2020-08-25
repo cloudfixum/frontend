@@ -1,0 +1,24 @@
+@import '../../../../assets/styles/colors';
+
+.preloader {
+    position: relative;
+    margin: auto;
+    width: 70px;
+    height: 70px;
+    border: 10px solid $color-primary;
+    border-top: 10px solid #666;
+    border-radius: 50%;
+    animation-name: turn;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes turn {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}

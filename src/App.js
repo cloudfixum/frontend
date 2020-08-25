@@ -1,13 +1,7 @@
-import React from 'react';
-import '../src/assets/styles/style.scss'
+import template from './App.template';
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Proximamente CloudFixum</h1>
-      <p>Proyecto de Programacion II</p>
-    </div>
-  );
+    return template();
 }
 
 export default App;
