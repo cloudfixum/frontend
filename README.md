@@ -51,45 +51,6 @@ git remote rename heroku heroku-staging
 
 ## Deploy
 
-<<<<<<< HEAD
-npm run prettier
-
-## Deploy on heroku
-
-# Install Heroku cli
-
-npm install -g heroku
-
-# Login on Heroku
-
-heroku login (ask for login details from smoked matias)
-
-# Create app of heroku
-
-heroku create cloudfixum-develop --remote heroku-staging --buildpack mars/create-react-app
-
-# Add remote repository of heroku
-
-heroku git:remote -a https://git.heroku.com/cloudfixum-develop.git
-
-# Renaming remotes
-
-git remote rename heroku heroku-staging
-
-# Deploy
-
-- If we are going to deploy in staging
-
-git push heroku-staging develop:master
-
-- If we are going to deploy to production
-
-git push heroku master
-
-## Heroku documentation
-
-https://devcenter.heroku.com/articles/git
-=======
 - If we are going to deploy in staging
 ```bash
 git push heroku-staging develop:master
@@ -104,4 +65,3 @@ https://devcenter.heroku.com/articles/git
 
 # Pagination documentation
 https://material-ui.com/es/api/pagination/
->>>>>>> 490c4aba0ff0cb56048241f869fab9db587ad4c1
