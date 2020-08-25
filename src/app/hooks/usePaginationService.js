@@ -15,14 +15,14 @@ export default function usePaginationService(fetch) {
     }, [fetch]);
 
     const newPage = (e, value) => {
-        fetch(value-1)
-            .then( (res) => {
-                setData(res)
-            } )
-            .catch( (e) => {
-                console.log(e)
+        fetch(value - 1)
+            .then((res) => {
+                setData(res);
             })
-    }
+            .catch((e) => {
+                console.log(e);
+            });
+    };
 
     return { data, error, newPage };
 }
