@@ -14,8 +14,8 @@ export default (props) => {
     }
     return (
         <div>
-            <div className="flex-column-center-center">
-                <Pagination count={total_pages} onChange={props.newPage}/>
+            <div className="container-pagination flex-column-center-center">
+                <Pagination count={total_pages} onChange={props.newPage} variant="outlined" shape="rounded" color="primary"/>
             </div>
             {
                props.data.data === undefined
