@@ -3,7 +3,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './app/view/home-page/home-page';
 import NewService from './app/view/new-service/new-service';
 import NavBar from './app/shared/components/nav-bar/nav-bar';
-import Pagination from '@material-ui/lab/Pagination';
+import PaginationTest from './app/view/home-page/layout-card-services/layout-card-services.template'
+
 import { makeStyles } from '@material-ui/core/styles';
 
 import '../src/assets/styles/style.scss';
@@ -18,9 +19,12 @@ export default (props) => {
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route exact path="/new-service" component={NewService} />
+                    <Route exact path="/pagination" component={PaginationTest} />
                     <Route path ="/*" component={NotFound} />
                 </Switch>
             </BrowserRouter>
         </div>
     )
 }
+
+
