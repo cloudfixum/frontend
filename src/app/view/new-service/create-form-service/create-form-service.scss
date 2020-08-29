@@ -4,14 +4,15 @@
     position: relative;
     width: 90%;
     margin: 40px;
+    box-sizing: border-box;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: white;
     border-radius: 4px;
     font-size: 50px;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
         0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
     @media (min-width: 400px) {
-        padding: 40px;
+        padding: 40px 60px;
     }
     @media (min-width: 767px) {
         width: 65%;
@@ -23,9 +24,24 @@
         font-size: 30px;
     }
 }
-.container-button-submit {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+
+.container-form-create-service h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.items-min-width {
+    min-width: 100% !important;
+}
+
+.form-items {
+    margin-bottom: 20px !important;
+}
+
+.buttons-create-service {
+    margin-top: 20px;
+}
+
+.buttons-create-service button {
+    margin-left: 10px;
 }

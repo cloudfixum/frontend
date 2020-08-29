@@ -1,14 +1,17 @@
 import React from 'react';
-
-import 'react-bulma-components/dist/react-bulma-components.min.css';
+import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 
 import { ServiceCategories } from '../../../shared/utils/constant/service-categories'
+
 import './create-form-service.scss'
+import { FormControl, TextareaAutosize, MenuItem } from '@material-ui/core';
 
 
 export default (props) => {
     const serviceCategories = new ServiceCategories().getCategoriesOrdered();
-    const handleOnChange = (e) => {
+    const handleChange = (e) => {
         e.preventDefault();
         props.setValuesForm({...props.valuesForm, [e.target.name] : e.target.value});
     }
@@ -20,56 +23,39 @@ export default (props) => {
 
     return (
         <div className="container-form-create-service">
-            <form className="form-horizontal" onSubmit={handleOnSubmit}>
-                <fieldset>
-                    <h1>New Service</h1>
-                    <div className="field">
-                        <label className="label">Name</label>
-                        <div className="control">
-                            <input onChange={handleOnChange} id="title" name="title" type="text" placeholder="Insert your service name" className="input " required minLength="5" maxLength="50" />
-                        </div>
-                    </div>
-
-                    <div className="field">
-                        <label className="label">Service / Job Category</label>
-                        <div className="control">
-                            <div className="select">
-                                <select onChange={handleOnChange} id="category" name="category" className="option-category" required>
-                                    <option value="">Select category</option>
-                                    {
-                                        Object.keys(serviceCategories).map((key, i) => {
-                                            let value = serviceCategories[key]
-                                            return (<option key={i} value={key}>{value}</option>)
-                                        })
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div className="field">
-                        <label className="label">Description</label>
-                        <div className="control">
-                            <textarea onChange={handleOnChange} className="textarea" id="description" name="description" placeholder="Description of the service you provide" required maxLength="256"></textarea>
-                            <p className="help">Insert your name, method contact.</p>
-                        </div>
-                    </div>
-
-                    <div className="field">
-                        <label className="label">Price Min.</label>
-                        <div className="control">
-                            <input onChange={handleOnChange} id="base_price" name="base_price" type="text" placeholder="$000" className="input" pattern="\d*" required />
-                            <p className="help">Insert a base price.</p>
-                        </div>
-                    </div>
-
-                    <div className="field container-button-submit">
-                        <label className="label"></label>
-                        <div className="control">
-                            <button id="submitForm" name="submitForm" className="button-primary create-service-button">Submit</button>
-                        </div>
-                    </div>
-                </fieldset>
+            <h1>Create new service</h1>
+            <form className="flex-column-center-center" onSubmit={handleOnSubmit}>
+                <TextField className="form-items" fullWidth={true} id="title" label="Service name" variant="outlined" required/>
+                <FormControl className="items-min-width form-items" variant="outlined">
+                    <InputLabel id="category">Select category *</InputLabel>
+                    <Select
+                    onChange={handleChange}
+                    labelId="category"
+                    label="Select category"
+                    required>
+                        <MenuItem value="">None</MenuItem>
+                        {
+                            Object.keys(serviceCategories).map((key, i) => {
+                                let value = serviceCategories[key]
+                                return (<MenuItem key={i} value={key}>{value}</MenuItem>)
+                            })
+                        }
+                    </Select>
+                </FormControl>
+                <TextField
+                    id="description"
+                    label="Description"
+                    fullWidth={true}
+                    multiline
+                    rows={10}
+                    className="form-items"
+                    variant="outlined"
+                    required/>
+                <TextField className="form-items" fullWidth={true} id="base_price" label="Minimum price" variant="outlined" required/>
+                <div className="items-min-width flex-row-flexend-center buttons-create-service">
+                    <button className="button-accent">Cancelar</button>
+                    <button className="button-primary">Create Service</button>
+                </div>
             </form>
         </div>
     );
