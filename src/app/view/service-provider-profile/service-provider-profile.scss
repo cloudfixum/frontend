@@ -1,0 +1,33 @@
+@import '../../../assets/styles/colors';
+
+.provider-profile{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url('../../../assets/images/provider-profile.jpg');
+  background-size: cover;
+}
+
+.title-background{
+  margin-top: 0px;
+  background-color: rgba(27, 70, 106, 0.3);
+  padding: 4px;
+}
+.profile-title{
+  display: flex;
+  justify-content: center;
+  color: #ffffff;
+  margin: 2px;
+  opacity: 1.0;
+}
+.table-profile{
+  
+  margin-left: 70px;
+  margin-right: 70px;
+  margin-top: 16px;
+}
+
+.button-edit{
+  color: $color-primary;
+}
