@@ -22,5 +22,16 @@ class ServicesApi {
     async getServiceForPagination(page) {
         return await axios.get(`${BASE}service?page=${page}`);
     }
+
+    async addUserServiceProvider(user) {
+        const userJson = JSON.stringify(user)
+        const query = await axios.post(`${BASE}user`, userJson, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        const data = query.data
+        return data;
+    }
 }
 export default ServicesApi;
