@@ -20,7 +20,11 @@
   display: flex;
   justify-content: center;
   color: #ffffff;
-  margin: 2px;
+  margin: 1px;
+  font-size: 30px;
+  font-family: 'Anton', sans-serif;
+  color: white;
+  z-index: 5;
   animation: animation-background-user 1.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -35,12 +39,17 @@
 }
 
 @keyframes animation-background-user {
-  from {
+  0% {
     margin-left: 100%;
-    width: 300%
+    width: 300%;
+    font-size: 90%;
   }
 
-  to {
+  75% {
+    font-size: 100%;
+  }
+
+  100% {
     margin-left: 0%;
     width: 100%;
   }
