@@ -33,6 +33,9 @@ export default (props) => {
                     <Link onClick={handleStateMenu} to="/new-service">
                         <li><span className="material-icons">add</span>New Service</li>
                     </Link>
+                    <Link onClick={handleStateMenu} to="/service-provider">
+                        <li><span className="material-icons">person</span>Profile</li>
+                    </Link>
                 </div>
             </nav>
         </div>

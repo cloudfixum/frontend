@@ -39,7 +39,7 @@ export default (props) => {
                             <td>Location: </td> <td>props.location</td>
                         </tr>
                     </tbody>
-                    <tfoot> <button id='edit' name='edit' className='button-primary button-edit'>Edit Profile</button> </tfoot>
+                    <tfoot> <button id='edit' name='edit' className='button-primary'>Edit Profile</button> </tfoot>
                 </table>
             </div>
         </div>

@@ -1,4 +1,5 @@
 @import '../../../assets/styles/colors';
+@import '../../../assets/styles/style';
 
 .provider-profile{
   display: flex;
@@ -11,18 +12,19 @@
 
 .title-background{
   margin-top: 0px;
-  background-color: rgba(27, 70, 106, 0.3);
+  background-color: $color-primary;
   padding: 4px;
 }
+
 .profile-title{
   display: flex;
   justify-content: center;
   color: #ffffff;
   margin: 2px;
-  opacity: 1.0;
+  animation: animation-background-user 1.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .table-profile{
-  
   margin-left: 70px;
   margin-right: 70px;
   margin-top: 16px;
@@ -30,4 +32,16 @@
 
 .button-edit{
   color: $color-primary;
+}
+
+@keyframes animation-background-user {
+  from {
+    margin-left: 100%;
+    width: 300%
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
