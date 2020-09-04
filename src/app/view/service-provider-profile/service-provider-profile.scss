@@ -54,3 +54,16 @@
     width: 100%;
   }
 }
+
+@keyframes animation-background-title {
+  0% {
+    margin: 50%;
+    width: 0%;
+  }
+
+  100% {
+    margin: 100%;
+    width: 100%;
+  }
+
+}
