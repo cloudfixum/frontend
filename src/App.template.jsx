@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './app/view/home-page/home-page';
 import NewService from './app/view/new-service/new-service';
+import NewUserProvider from './app/view/register-service-user-provider/register-service-user-provides';
 import NavBar from './app/shared/components/nav-bar/nav-bar';
 
 import '../src/assets/styles/style.scss';
@@ -16,6 +17,7 @@ export default (props) => {
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route exact path="/new-service" component={NewService} />
+                    <Route excat path="/signup" component={NewUserProvider} />
                     <Route path="/*" component={NotFound} />
                 </Switch>
             </BrowserRouter>
