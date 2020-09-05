@@ -1,67 +1,85 @@
-import React, { useState } from 'react';
-import { Select, TextField, InputLabel, FormControl } from '@material-ui/core';
+import React, { useEffect } from 'react';
+import { Select, InputLabel, FormControl } from '@material-ui/core';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 import { ServiceCategories } from '../../../shared/utils/constant/service-categories';
+import {
+    title_error_message,
+    description_error_message,
+    price_error_message,
+} from '../error-message/error-message';
+import {
+    title_validators_name,
+    description_validators_name,
+    price_validators_name,
+} from '../validators-name/validators-name';
 
 import './create-form-service.scss';
 
-const useForm = (callback, validate) => {
-    const [values, setValues] = useState({});
-    const [errors, setErrors] = useState({});
-
-    const handleSubmit = (event) => {
-        event.prevenDefault();
-        if (Object.keys(errors).length === 0) {
-            callback();
-        }
-    };
-
-    const handleChange = (event) => {
-        event.preventDefault();
-        setErrors(validate({ [event.target.name]: event.target.value }));
-        setValues({ ...values, [event.target.name]: event.target.value });
-    };
-
-    return {
-        handleChange,
-        handleSubmit,
-        errors,
-    };
-};
-
-const titleFieldValidation = (values) => {
-    let errors = {};
-    if (values.title === '') {
-        errors.title = 'Name required';
-    } else if (values.title.length < 5 || values.title.length > 50) {
-        errors.title = 'Title must be between 5 and 50 characters long';
-    } else {
-        errors = {};
-    }
-    return errors;
-};
-
 export default (props) => {
     const serviceCategories = new ServiceCategories().getCategoriesOrdered();
-    const { errors, handleChange, handleSubmit } = useForm(
-        props.createService,
-        titleFieldValidation
-    );
+    const handleChange = (e) => {
+        props.setValuesForm({
+            ...props.valuesForm,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        props.createService();
+    };
+
+    useEffect(() => {
+        ValidatorForm.addValidationRule('isRequired', (value) => {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        });
+
+        ValidatorForm.addValidationRule('lengthValue', (value) => {
+            if (value.length < 5 || value.length > 50) {
+                return false;
+            }
+
+            return true;
+        });
+
+        ValidatorForm.addValidationRule('maxLengthDescription', (value) => {
+            if (value.length > 256) {
+                return false;
+            }
+
+            return true;
+        });
+
+        return () => {
+            ValidatorForm.removeValidationRule('isRequired');
+            ValidatorForm.removeValidationRule('lengthValue');
+            ValidatorForm.removeValidationRule('maxLengthDescription');
+        };
+    }, []);
 
     return (
         <div className="container-form-create-service">
             <h1>Create new service</h1>
-            <form className="flex-column-center-center" onSubmit={handleSubmit}>
+            <ValidatorForm
+                className="flex-column-center-center"
+                onSubmit={handleSubmit}
+                onError={(errors) => console.log(errors)}>
                 <FormControl className="items-min-width form-items">
-                    <TextField
+                    <TextValidator
                         label="Service name"
                         type="text"
                         id="title"
                         name="title"
-                        onChange={handleChange}
-                        error={errors.title !== undefined}
-                        helperText={errors.title}
                         variant="outlined"
+                        fullWidth={true}
+                        onChange={handleChange}
+                        value={props.valuesForm.title}
+                        validators={title_validators_name}
+                        errorMessages={title_error_message}
                         required
                     />
                 </FormControl>
@@ -89,30 +107,38 @@ export default (props) => {
                         })}
                     </Select>
                 </FormControl>
-                <TextField
-                    type="text"
-                    name="description"
-                    onChange={handleChange}
-                    id="description"
-                    label="Description"
-                    fullWidth={true}
-                    multiline
-                    rows={10}
-                    className="form-items"
-                    variant="outlined"
-                    required
-                />
-                <TextField
-                    type="number"
-                    name="base_price"
-                    onChange={handleChange}
-                    className="form-items"
-                    fullWidth={true}
-                    id="base_price"
-                    label="Minimum price"
-                    variant="outlined"
-                    required
-                />
+                <FormControl className="items-min-width form-items">
+                    <TextValidator
+                        label="Description"
+                        type="text"
+                        id="description"
+                        name="description"
+                        multiline
+                        rows={6}
+                        variant="outlined"
+                        fullWidth={true}
+                        onChange={handleChange}
+                        value={props.valuesForm.description}
+                        validators={description_validators_name}
+                        errorMessages={description_error_message}
+                        required
+                    />
+                </FormControl>
+                <FormControl className="items-min-width form-items">
+                    <TextValidator
+                        label="Minimum price"
+                        type="number"
+                        id="base_price"
+                        name="base_price"
+                        variant="outlined"
+                        fullWidth={true}
+                        onChange={handleChange}
+                        value={props.valuesForm.base_price}
+                        validators={price_validators_name}
+                        errorMessages={price_error_message}
+                        required
+                    />
+                </FormControl>
                 <p>*required field</p>
                 <div className="items-min-width flex-row-flexend-center buttons-create-service">
                     <button type="button" className="button-accent">
@@ -122,7 +148,7 @@ export default (props) => {
                         Create Service
                     </button>
                 </div>
-            </form>
+            </ValidatorForm>
         </div>
     );
 };
