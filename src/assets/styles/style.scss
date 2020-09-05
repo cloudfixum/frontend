@@ -22,7 +22,7 @@ h6 {
 }
 
 p,
-spam,
+span,
 li {
     font-family: 'Roboto', sans-serif;
 }
@@ -64,4 +64,8 @@ button {
 
 .flex-column-center-start {
     @include flex-properties(column, center, flex-start);
+}
+
+.flex-row-flexend-center {
+    @include flex-properties(row, flex-end, center);
 }

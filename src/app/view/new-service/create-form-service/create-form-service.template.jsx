@@ -1,77 +1,154 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Select, InputLabel, FormControl } from '@material-ui/core';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
-import 'react-bulma-components/dist/react-bulma-components.min.css';
+import { ServiceCategories } from '../../../shared/utils/constant/service-categories';
+import {
+    title_error_message,
+    description_error_message,
+    price_error_message,
+} from '../error-message/error-message';
+import {
+    title_validators_name,
+    description_validators_name,
+    price_validators_name,
+} from '../validators-name/validators-name';
 
-import { ServiceCategories } from '../../../shared/utils/constant/service-categories'
-import './create-form-service.scss'
-
+import './create-form-service.scss';
 
 export default (props) => {
     const serviceCategories = new ServiceCategories().getCategoriesOrdered();
-    const handleOnChange = (e) => {
-        e.preventDefault();
-        props.setValuesForm({...props.valuesForm, [e.target.name] : e.target.value});
-    }
+    const handleChange = (e) => {
+        props.setValuesForm({
+            ...props.valuesForm,
+            [e.target.name]: e.target.value,
+        });
+    };
 
-    const handleOnSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         props.createService();
-    }
+    };
+
+    useEffect(() => {
+        ValidatorForm.addValidationRule('isRequired', (value) => {
+            if (value === '') {
+                return false;
+            }
+            return true;
+        });
+
+        ValidatorForm.addValidationRule('lengthValue', (value) => {
+            if (value.length < 5 || value.length > 50) {
+                return false;
+            }
+
+            return true;
+        });
+
+        ValidatorForm.addValidationRule('maxLengthDescription', (value) => {
+            if (value.length > 256) {
+                return false;
+            }
+
+            return true;
+        });
+
+        return () => {
+            ValidatorForm.removeValidationRule('isRequired');
+            ValidatorForm.removeValidationRule('lengthValue');
+            ValidatorForm.removeValidationRule('maxLengthDescription');
+        };
+    }, []);
 
     return (
         <div className="container-form-create-service">
-            <form className="form-horizontal" onSubmit={handleOnSubmit}>
-                <fieldset>
-                    <h1>New Service</h1>
-                    <div className="field">
-                        <label className="label">Name</label>
-                        <div className="control">
-                            <input onChange={handleOnChange} id="title" name="title" type="text" placeholder="Insert your service name" className="input " required minLength="5" maxLength="50" />
-                        </div>
-                    </div>
-
-                    <div className="field">
-                        <label className="label">Service / Job Category</label>
-                        <div className="control">
-                            <div className="select">
-                                <select onChange={handleOnChange} id="category" name="category" className="option-category" required>
-                                    <option value="">Select category</option>
-                                    {
-                                        Object.keys(serviceCategories).map((key, i) => {
-                                            let value = serviceCategories[key]
-                                            return (<option key={i} value={key}>{value}</option>)
-                                        })
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div className="field">
-                        <label className="label">Description</label>
-                        <div className="control">
-                            <textarea onChange={handleOnChange} className="textarea" id="description" name="description" placeholder="Description of the service you provide" required maxLength="256"></textarea>
-                            <p className="help">Insert your name, method contact.</p>
-                        </div>
-                    </div>
-
-                    <div className="field">
-                        <label className="label">Price Min.</label>
-                        <div className="control">
-                            <input onChange={handleOnChange} id="base_price" name="base_price" type="text" placeholder="$000" className="input" pattern="\d*" required />
-                            <p className="help">Insert a base price.</p>
-                        </div>
-                    </div>
-
-                    <div className="field container-button-submit">
-                        <label className="label"></label>
-                        <div className="control">
-                            <button id="submitForm" name="submitForm" className="button-primary create-service-button">Submit</button>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
+            <h1>Create new service</h1>
+            <ValidatorForm
+                className="flex-column-center-center"
+                onSubmit={handleSubmit}
+                onError={(errors) => console.log(errors)}>
+                <FormControl className="items-min-width form-items">
+                    <TextValidator
+                        label="Service name"
+                        type="text"
+                        id="title"
+                        name="title"
+                        variant="outlined"
+                        fullWidth={true}
+                        onChange={handleChange}
+                        value={props.valuesForm.title}
+                        validators={title_validators_name}
+                        errorMessages={title_error_message}
+                        required
+                    />
+                </FormControl>
+                <FormControl
+                    className="items-min-width form-items"
+                    variant="outlined">
+                    <InputLabel id="category">Select category *</InputLabel>
+                    <Select
+                        native
+                        name="category"
+                        onChange={handleChange}
+                        label="Select category"
+                        inputProps={{
+                            id: 'category',
+                        }}
+                        required>
+                        <option aria-label="None" value="" />
+                        {Object.keys(serviceCategories).map((key, i) => {
+                            let value = serviceCategories[key];
+                            return (
+                                <option key={i} value={key}>
+                                    {value}
+                                </option>
+                            );
+                        })}
+                    </Select>
+                </FormControl>
+                <FormControl className="items-min-width form-items">
+                    <TextValidator
+                        label="Description"
+                        type="text"
+                        id="description"
+                        name="description"
+                        multiline
+                        rows={6}
+                        variant="outlined"
+                        fullWidth={true}
+                        onChange={handleChange}
+                        value={props.valuesForm.description}
+                        validators={description_validators_name}
+                        errorMessages={description_error_message}
+                        required
+                    />
+                </FormControl>
+                <FormControl className="items-min-width form-items">
+                    <TextValidator
+                        label="Minimum price"
+                        type="number"
+                        id="base_price"
+                        name="base_price"
+                        variant="outlined"
+                        fullWidth={true}
+                        onChange={handleChange}
+                        value={props.valuesForm.base_price}
+                        validators={price_validators_name}
+                        errorMessages={price_error_message}
+                        required
+                    />
+                </FormControl>
+                <p>*required field</p>
+                <div className="items-min-width flex-row-flexend-center buttons-create-service">
+                    <button type="button" className="button-accent">
+                        Cancelar
+                    </button>
+                    <button type="submit" className="button-primary">
+                        Create Service
+                    </button>
+                </div>
+            </ValidatorForm>
         </div>
     );
-
-}
+};
