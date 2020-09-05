@@ -3,6 +3,7 @@ import React from 'react';
 import 'react-bulma-components/dist/react-bulma-components.min.css';
 
 import { ServiceCategories } from '../../../shared/utils/constant/service-categories'
+import { ValidatorContent } from "../../../shared/utils/improped-validator/improped-validator";
 import './create-form-service.scss'
 
 
@@ -50,7 +51,7 @@ export default (props) => {
                     <div className="field">
                         <label className="label">Description</label>
                         <div className="control">
-                            <textarea onChange={handleOnChange} className="textarea" id="description" name="description" placeholder="Description of the service you provide" required maxLength="256"></textarea>
+                            <textarea onChange={handleOnChange} onSubmit={ValidatorContent()} className="textarea" id="description" name="description" placeholder="Description of the service you provide" required maxLength="256"></textarea>
                             <p className="help">Insert your name, method contact.</p>
                         </div>
                     </div>
