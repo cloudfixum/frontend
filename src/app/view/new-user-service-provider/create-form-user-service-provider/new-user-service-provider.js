@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import ServicesApi from "../../../shared/services/services-api";
 
@@ -35,4 +34,5 @@ export default function CreateFormUserServiceProvider() {
         createUser
     }
 
+    return template(props);
 }
