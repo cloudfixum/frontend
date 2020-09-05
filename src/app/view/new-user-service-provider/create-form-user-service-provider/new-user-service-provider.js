@@ -1,5 +1,4 @@
 
-
 import { useState } from 'react'
 import ServicesApi from "../../../shared/services/services-api";
 
@@ -10,6 +9,8 @@ export default function CreateFormUserServiceProvider() {
         address: '',
         birth_date : '',
         email: '',
+        dni: '',
+        password: '',
         phone_number: '',
         profession: '',
         location: ''

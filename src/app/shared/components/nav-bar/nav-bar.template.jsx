@@ -13,7 +13,7 @@ const handleStateMenu = () => {
     } else {
         element.style.display = 'none';
     }
-}
+};
 
 export default (props) => {
     return (
@@ -22,19 +22,26 @@ export default (props) => {
                 <div className="container-logo flex-column-center-center">
                     <p>CloudFixum</p>
                 </div>
-                <div onClick={handleStateMenu} className="button-menu flex-column-center-center">
+                <div
+                    onClick={handleStateMenu}
+                    className="button-menu flex-column-center-center">
                     <span className="material-icons">dehaze</span>
                 </div>
                 <div className="container-items-nav-bar">
                     <Link onClick={handleStateMenu} to="/">
-                        <li><span className="material-icons">house</span>Home</li>
+                        <li>
+                            <span className="material-icons">house</span>Home
+                        </li>
                     </Link>
                     <div className="divider-items"></div>
                     <Link onClick={handleStateMenu} to="/new-service">
-                        <li><span className="material-icons">add</span>New Service</li>
+                        <li>
+                            <span className="material-icons">add</span>New
+                            Service
+                        </li>
                     </Link>
                 </div>
             </nav>
         </div>
-    )
-}
+    );
+};
