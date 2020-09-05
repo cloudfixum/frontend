@@ -10,5 +10,5 @@ export default (props) => {
                 <p>The best service provider site</p>
             </div>
         </div>
-    )
-}
+    );
+};

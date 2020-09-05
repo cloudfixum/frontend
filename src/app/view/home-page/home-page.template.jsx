@@ -10,5 +10,5 @@ export default () => {
             <Header />
             <LayoutCardServices />
         </div>
-    )
-}
+    );
+};
