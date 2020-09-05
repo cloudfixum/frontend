@@ -17,12 +17,8 @@ export default (props) => {
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route exact path="/new-service" component={NewService} />
-<<<<<<< HEAD
                     <Route excat path ="/signup" component={NewUserProvider} />
                     <Route path ="/*" component={NotFound} />
-=======
-                    <Route path="/*" component={NotFound} />
->>>>>>> e5c87e28d197ebd2789b7916c0de0a98936bd523
                 </Switch>
             </BrowserRouter>
         </div>
