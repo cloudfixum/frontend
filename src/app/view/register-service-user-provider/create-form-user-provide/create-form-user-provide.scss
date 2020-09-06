@@ -1,0 +1,50 @@
+.container-form-user-provide {
+    position: relative;
+    width: 90%;
+    margin: 40px;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    font-size: 50px;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+    @media (min-width: 400px) {
+        padding: 40px;
+    }
+    @media (min-width: 767px) {
+        width: 65%;
+    }
+    @media (min-width: 1280px) {
+        width: 45%;
+    }
+    h1 {
+        font-size: 30px;
+    }
+}
+
+.form-items {
+    margin-bottom: 20px !important;
+}
+
+.container-form-user-provide .container-form-double {
+    min-width: 49%;
+    box-sizing: border-box;
+    &:nth-child(1){
+        margin-right: 1%;
+    }
+    &:nth-child(2){
+        margin-left: 1%;
+    }
+}
+
+.buttons-create-service {
+    margin-top: 20px;
+}
+
+.buttons-create-service button {
+    margin-left: 10px;
+}
+
+.items-min-width {
+    min-width: 100% !important;
+}
