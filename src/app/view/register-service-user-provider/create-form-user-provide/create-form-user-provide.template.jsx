@@ -28,7 +28,7 @@ export default (props) => {
     };
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        console.log('El mati Navarro lo hace');
+        props.createUser();
     };
     useEffect(() => {
         ValidatorForm.addValidationRule('isRequired', (value) => {
@@ -58,6 +58,7 @@ export default (props) => {
             }
             return true;
         });
+        
         return () => {
             ValidatorForm.removeValidationRule('isRequired');
             ValidatorForm.removeValidationRule('lengthValueDataUser');
@@ -78,6 +79,7 @@ export default (props) => {
                             id="name"
                             label="Name"
                             variant="outlined"
+                            onChange={handleChange}
                             value={props.valuesForm.name}
                             validators={datauser_validators_name}
                             errorMessages={datauser_error_message}
@@ -91,6 +93,7 @@ export default (props) => {
                             id="last_name"
                             label="Lastname"
                             variant="outlined"
+                            onChange={handleChange}
                             value={props.valuesForm.last_name}
                             validators={datauser_validators_name}
                             errorMessages={datauser_error_message}
@@ -106,6 +109,7 @@ export default (props) => {
                         id="email"
                         label="Email"
                         variant="outlined"
+                        onChange={handleChange}
                         value={props.valuesForm.email}
                         validators={['isEmail']}
                         errorMessages={['Email format incorrect']}
@@ -120,6 +124,7 @@ export default (props) => {
                         type="date"
                         fullWidth={true}
                         id="birth_date"
+                        onChange={handleChange}
                         value={props.valuesForm.birth_date}
                         variant="outlined"
                         required
@@ -134,6 +139,7 @@ export default (props) => {
                         id="phone_number"
                         label="Phone Number"
                         variant="outlined"
+                        onChange={handleChange}
                         value={props.valuesForm.phone_number}
                         validators={phone_validators_name}
                         errorMessages={phone_error_message}
@@ -149,6 +155,7 @@ export default (props) => {
                         id="dni"
                         label="DNI Number"
                         variant="outlined"
+                        onChange={handleChange}
                         value={props.valuesForm.dni}
                         validators={dni_validators_name}
                         errorMessages={dni_error_message}
@@ -164,6 +171,7 @@ export default (props) => {
                         id="address"
                         label="Address"
                         variant="outlined"
+                        onChange={handleChange}
                         value={props.valuesForm.address}
                         validators={address_validators_name}
                         errorMessages={address_error_message}
@@ -179,35 +187,12 @@ export default (props) => {
                         id="location"
                         label="Location" 
                         variant="outlined"
+                        onChange={handleChange}
                         value={props.valuesForm.location}
                         validators={datauser_validators_name}
                         errorMessages={datauser_error_message}
                         required
                     />
-                </FormControl>
-
-                <FormControl
-                    className="datauser_validators_name-min-width form-items"
-                    variant="outlined">
-                    <InputLabel id="category">Select category *</InputLabel>
-                    <Select
-                        native
-                        name="profession"
-                        label="Select category"
-                        inputProps={{
-                            id: 'category',
-                        }}
-                        required>
-                        <option aria-label="None" value="" />
-                        {Object.keys(serviceCategories).map((key, i) => {
-                            let value = serviceCategories[key];
-                            return (
-                                <option key={i} value={key}>
-                                    {value}
-                                </option>
-                            );
-                        })}
-                    </Select>
                 </FormControl>
 
                 <FormControl  className="items-min-width form-items">
@@ -217,6 +202,7 @@ export default (props) => {
                         fullWidth={true}
                         id="password"
                         label="Password"
+                        onChange={handleChange}
                         value={props.valuesForm.password}
                         type="password"
                         variant="outlined"
@@ -230,6 +216,7 @@ export default (props) => {
                         className="form-items form-second"
                         fullWidth={true}
                         id="confirm-password"
+                        onChange={handleChange}
                         label="Confirm Password"
                         type="password"
                         variant="outlined"
