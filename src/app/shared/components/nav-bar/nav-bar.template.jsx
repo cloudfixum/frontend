@@ -45,7 +45,7 @@ export default (props) => {
                             <span className="material-icons">person_add</span>Register
                         </li>
                     </Link>
-                    <Link onClick={handleStateMenu} to="/user-profile">
+                    <Link onClick={handleStateMenu} to="/user/:id">
                         <li><span className="material-icons">person</span>Profile</li>
                     </Link>
                 </div>
