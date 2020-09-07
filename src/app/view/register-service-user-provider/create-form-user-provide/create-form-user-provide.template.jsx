@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { Select, InputLabel, FormControl } from '@material-ui/core';
-import { ServiceCategories } from '../../../shared/utils/constant/service-categories';
+import { FormControl } from '@material-ui/core';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 
 import './create-form-user-provide.scss';
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+
 import {
     datauser_error_message,
     address_error_message,
@@ -18,7 +18,6 @@ import {
 } from '../validators-name/validators-name';
 
 export default (props) => {
-    const serviceCategories = new ServiceCategories().getCategoriesOrdered();
     const handleChange = (e) => {
         e.preventDefault();
         props.setValuesForm({
@@ -28,8 +27,13 @@ export default (props) => {
     };
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        console.log('El mati Navarro lo hace');
+        props.createUser();
     };
+
+    const backToMain = () => {
+        window.location='/'
+    }
+
     useEffect(() => {
         ValidatorForm.addValidationRule('isRequired', (value) => {
             if (value === '') {
@@ -53,10 +57,12 @@ export default (props) => {
         });
 
         ValidatorForm.addValidationRule('lengthValueDni', (value) => {
-            if (value.length == 8 && value > 1000000) {
+            if (value.length > 7 && value > 1000000) {
+                return true;
+            }
+            else{
                 return false;
             }
-            return true;
         });
         return () => {
             ValidatorForm.removeValidationRule('isRequired');
@@ -78,6 +84,7 @@ export default (props) => {
                             id="name"
                             label="Name"
                             variant="outlined"
+                            onChange={handleChange}
                             value={props.valuesForm.name}
                             validators={datauser_validators_name}
                             errorMessages={datauser_error_message}
@@ -89,8 +96,9 @@ export default (props) => {
                             name="last_name"
                             fullWidth={true}
                             id="last_name"
-                            label="Lastname"
+                            label="Last Name"
                             variant="outlined"
+                            onChange={handleChange}
                             value={props.valuesForm.last_name}
                             validators={datauser_validators_name}
                             errorMessages={datauser_error_message}
@@ -106,21 +114,23 @@ export default (props) => {
                         id="email"
                         label="Email"
                         variant="outlined"
+                        onChange={handleChange}
                         value={props.valuesForm.email}
                         validators={['isEmail']}
-                        errorMessages={['Email format incorrect']}
+                        errorMessages={"wrong format, need example@example.com"}
                         required
                     />
                 </FormControl>
 
                 <FormControl  className="items-min-width form-items">
                     <TextValidator
-                        name="birth_date"
+                        name="birthday"
                         className="form-items"
                         type="date"
                         fullWidth={true}
-                        id="birth_date"
-                        value={props.valuesForm.birth_date}
+                        id="birthday"
+                        onChange={handleChange}
+                        value={props.valuesForm.birthday}
                         variant="outlined"
                         required
                     />
@@ -134,6 +144,7 @@ export default (props) => {
                         id="phone_number"
                         label="Phone Number"
                         variant="outlined"
+                        onChange={handleChange}
                         value={props.valuesForm.phone_number}
                         validators={phone_validators_name}
                         errorMessages={phone_error_message}
@@ -149,6 +160,7 @@ export default (props) => {
                         id="dni"
                         label="DNI Number"
                         variant="outlined"
+                        onChange={handleChange}
                         value={props.valuesForm.dni}
                         validators={dni_validators_name}
                         errorMessages={dni_error_message}
@@ -164,6 +176,7 @@ export default (props) => {
                         id="address"
                         label="Address"
                         variant="outlined"
+                        onChange={handleChange}
                         value={props.valuesForm.address}
                         validators={address_validators_name}
                         errorMessages={address_error_message}
@@ -177,8 +190,9 @@ export default (props) => {
                         className="form-items form-second"
                         fullWidth={true}
                         id="location"
-                        label="Location" 
+                        label="Location"
                         variant="outlined"
+                        onChange={handleChange}
                         value={props.valuesForm.location}
                         validators={datauser_validators_name}
                         errorMessages={datauser_error_message}
@@ -186,60 +200,9 @@ export default (props) => {
                     />
                 </FormControl>
 
-                <FormControl
-                    className="datauser_validators_name-min-width form-items"
-                    variant="outlined">
-                    <InputLabel id="category">Select category *</InputLabel>
-                    <Select
-                        native
-                        name="profession"
-                        label="Select category"
-                        inputProps={{
-                            id: 'category',
-                        }}
-                        required>
-                        <option aria-label="None" value="" />
-                        {Object.keys(serviceCategories).map((key, i) => {
-                            let value = serviceCategories[key];
-                            return (
-                                <option key={i} value={key}>
-                                    {value}
-                                </option>
-                            );
-                        })}
-                    </Select>
-                </FormControl>
-
-                <FormControl  className="items-min-width form-items">
-                    <TextValidator
-                        name="password"
-                        className="form-items"
-                        fullWidth={true}
-                        id="password"
-                        label="Password"
-                        value={props.valuesForm.password}
-                        type="password"
-                        variant="outlined"
-                        required
-                    />
-                </FormControl>
-
-                <FormControl  className="items-min-width form-items">
-                    <TextValidator
-                        name="confirm-password"
-                        className="form-items form-second"
-                        fullWidth={true}
-                        id="confirm-password"
-                        label="Confirm Password"
-                        type="password"
-                        variant="outlined"
-                        required
-                    />
-                </FormControl>
-
                 <div className="items-min-width flex-row-flexend-center buttons-create-service">
-                    <button className="button-accent">Cancel</button>
-                    <button className="button-primary">Create Service</button>
+                    <button className="button-accent" onClick={backToMain}>Cancel</button>
+                    <button className="button-primary">Register</button>
                 </div>
             </ValidatorForm>
         </div>

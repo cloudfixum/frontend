@@ -10,7 +10,7 @@ export const address_error_message = [
 ];
 export const dni_error_message = [
     'this field is required',
-    'the number must have 8 digits',
+    'the number must have 8 digits, incorrect dni',
     'wrong format just enter numbers',
 ];
 export const phone_error_message = [

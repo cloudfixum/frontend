@@ -40,6 +40,11 @@ export default (props) => {
                             Service
                         </li>
                     </Link>
+                    <Link onCick={handleStateMenu} to="/singup">
+                        <li>
+                            <span className="material-icons">person_add</span>Register
+                        </li>
+                    </Link>
                 </div>
             </nav>
         </div>
