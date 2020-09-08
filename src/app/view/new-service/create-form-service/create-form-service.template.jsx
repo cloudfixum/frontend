@@ -63,7 +63,7 @@ export default (props) => {
 
     return (
         <div className="container-form-create-service">
-            <h1>Create new service</h1>
+            <h1>Create New Service</h1>
             <ValidatorForm
                 className="flex-column-center-center"
                 onSubmit={handleSubmit}
