@@ -4,6 +4,7 @@ import HomePage from './app/view/home-page/home-page';
 import NewService from './app/view/new-service/new-service';
 import NewUserProvider from './app/view/register-service-user-provider/register-service-user-provides';
 import NavBar from './app/shared/components/nav-bar/nav-bar';
+import Footer from './app/shared/components/footer/footer'
 
 import '../src/assets/styles/style.scss';
 import './App.scss';
@@ -20,6 +21,7 @@ export default (props) => {
                     <Route excat path="/signup" component={NewUserProvider} />
                     <Route path="/*" component={NotFound} />
                 </Switch>
+                <Footer />
             </BrowserRouter>
         </div>
     );
