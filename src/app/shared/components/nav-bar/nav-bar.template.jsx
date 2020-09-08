@@ -46,6 +46,12 @@ export default (props) => {
                             Register
                         </li>
                     </Link>
+                    <Link onClick={handleStateMenu} to="/user/:id">
+                        <li>
+                            <span className="material-icons">person</span>
+                            Profile
+                        </li>
+                    </Link>
                 </div>
             </nav>
         </div>
