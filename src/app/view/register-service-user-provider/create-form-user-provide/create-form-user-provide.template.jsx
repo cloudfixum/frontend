@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { FormControl } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { Link } from "react-router-dom";
 
 import './create-form-user-provide.scss';
 
@@ -30,10 +31,6 @@ export default (props) => {
         props.createUser();
     };
 
-    const backToMain = () => {
-        window.location='/'
-    }
-
     useEffect(() => {
         ValidatorForm.addValidationRule('isRequired', (value) => {
             if (value === '') {
@@ -50,7 +47,7 @@ export default (props) => {
         });
 
         ValidatorForm.addValidationRule('lengthValueAddress', (value) => {
-            if (value.length < 4 || value.length > 15) {
+            if (value.length < 6 || value.length > 40) {
                 return false;
             }
             return true;
@@ -73,7 +70,7 @@ export default (props) => {
     }, []);
 
     return (
-        <div className="container-form-user-provide">
+        <div className="container-form-user-provider">
             <h1>Register User Provider</h1>
             <ValidatorForm onSubmit={handleOnSubmit}>
                 <div className="flex-row-center-center form-items" > 
@@ -125,7 +122,6 @@ export default (props) => {
                 <FormControl  className="items-min-width form-items">
                     <TextValidator
                         name="birthday"
-                        className="form-items"
                         type="date"
                         fullWidth={true}
                         id="birthday"
@@ -155,7 +151,6 @@ export default (props) => {
                 <FormControl  className="items-min-width form-items">
                     <TextValidator
                         name="dni"
-                        className="form-items"
                         fullWidth={true}
                         id="dni"
                         label="DNI Number"
@@ -171,7 +166,6 @@ export default (props) => {
                 <FormControl  className="items-min-width form-items">
                     <TextValidator
                         name="address"
-                        className="form-items"
                         fullWidth={true}
                         id="address"
                         label="Address"
@@ -201,7 +195,7 @@ export default (props) => {
                 </FormControl>
 
                 <div className="items-min-width flex-row-flexend-center buttons-create-service">
-                    <button className="button-accent" onClick={backToMain}>Cancel</button>
+                    <button className="button-accent" type="button" ><Link to='/'>Cancel</Link></button>
                     <button className="button-primary">Register</button>
                 </div>
             </ValidatorForm>

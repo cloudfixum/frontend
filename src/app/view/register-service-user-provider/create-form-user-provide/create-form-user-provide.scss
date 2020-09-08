@@ -1,4 +1,4 @@
-.container-form-user-provide {
+.container-form-user-provider {
     position: relative;
     width: 90%;
     margin: 40px;
@@ -19,6 +19,8 @@
     }
     h1 {
         font-size: 30px;
+        text-align: center;
+        margin-bottom: 30px;
     }
 }
 
@@ -26,7 +28,7 @@
     margin-bottom: 20px !important;
 }
 
-.container-form-user-provide .container-form-double {
+.container-form-user-provider .container-form-double {
     min-width: 49%;
     box-sizing: border-box;
     &:nth-child(1){
