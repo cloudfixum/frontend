@@ -14,7 +14,7 @@ class ServicesApi {
             headers: {
                 'Content-Type': 'application/json',
             },
-        })
+        });
         const data = query.data;
         return data;
     }
@@ -24,13 +24,13 @@ class ServicesApi {
     }
 
     async addUserServiceProvider(user) {
-        const userJson = JSON.stringify(user)
+        const userJson = JSON.stringify(user);
         const query = await axios.post(`${BASE}user`, userJson, {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-        })
-        const data = query.data
+        });
+        const data = query.data;
         return data;
     }
 

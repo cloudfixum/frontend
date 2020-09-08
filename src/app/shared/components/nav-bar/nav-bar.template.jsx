@@ -42,7 +42,8 @@ export default (props) => {
                     </Link>
                     <Link to="/singup">
                         <li onClick={handleStateMenu}>
-                            <span className="material-icons">person_add</span>Register
+                            <span className="material-icons">person_add</span>
+                            Register
                         </li>
                     </Link>
                 </div>
