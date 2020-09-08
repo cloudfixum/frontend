@@ -1,7 +1,7 @@
 @import '../../../assets/styles/style';
 
 .provider-profile{
-  display: flex;
+  //display: flex;
   flex: 1;
   flex-direction: column;
   justify-content: center;
@@ -11,14 +11,16 @@
 
 .title-background{
   margin-top: 0px;
-  background-color: $color-primary;
+  background-color: rgba(59, 186, 245, 0.93);
   padding: 4px;
+  display: flex;
+  margin-bottom: 7px;
+
 }
 
 .profile-title{
   display: flex;
   justify-content: center;
-  color: #ffffff;
   margin: 1px;
   font-size: 30px;
   font-family: 'Anton', sans-serif;
@@ -27,14 +29,32 @@
   animation: animation-background-user 1.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.table-profile{
-  margin-left: 70px;
-  margin-right: 70px;
-  margin-top: 16px;
+.profile-card{
+  position: relative;
+  //vertical-align: center;
+  width: max-content;
+  margin: auto;
+  //size: auto;
+  background-color: white;
+  box-sizing: border-box;
+  padding: 25px;
+}
+
+//no funca
+.td-aling{
+  text-align: right;
+  justify-content: right;
 }
 
 .button-edit{
   color: $color-primary;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 24px;
+  justify-self: center;
+  font-family: 'Anton', sans-serif;
+  font-size: large;
 }
 
 @keyframes animation-background-user {
