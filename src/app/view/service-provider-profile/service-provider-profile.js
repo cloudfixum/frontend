@@ -1,26 +1,23 @@
 import template from './service-provider-profile.template';
+import {useState, useEffect} from 'react'
 
-import ServicesApi from "../../../shared/services/services-api";
+import ServicesApi from '../../shared/services/services-api'
 
 export default function ServiceProviderProfile() {
-    const values = {
-        id: 1,
-    };
 
-    const getUser = (e) => {
-        new ServicesApi()
-            .getUserById(values.id)
+    const servicesApi = new ServicesApi();
+
+    const [user, setUser] = useState({})
+
+    useEffect( () => {
+            servicesApi.getUserById(1)
             .then( r => {
-                console.log("Success")
+                setUser(r)
             })
             .catch( e => {
                 console.log(e)
             });
-    }
+    }, [])
 
-    const props = {
-        getUser
-    }
-
-    return template(props);
+    return template(user);
 }

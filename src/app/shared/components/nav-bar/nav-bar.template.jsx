@@ -28,21 +28,22 @@ export default (props) => {
                     <span className="material-icons">dehaze</span>
                 </div>
                 <div className="container-items-nav-bar">
-                    <Link onClick={handleStateMenu} to="/">
-                        <li>
+                    <Link to="/">
+                        <li onClick={handleStateMenu}>
                             <span className="material-icons">house</span>Home
                         </li>
                     </Link>
                     <div className="divider-items"></div>
-                    <Link onClick={handleStateMenu} to="/new-service">
-                        <li>
+                    <Link to="/new-service">
+                        <li onClick={handleStateMenu}>
                             <span className="material-icons">add</span>New
                             Service
                         </li>
                     </Link>
-                    <Link onCick={handleStateMenu} to="/singup">
-                        <li>
-                            <span className="material-icons">person_add</span>Register
+                    <Link to="/singup">
+                        <li onClick={handleStateMenu}>
+                            <span className="material-icons">person_add</span>
+                            Register
                         </li>
                     </Link>
                     <Link onClick={handleStateMenu} to="/user/:id">

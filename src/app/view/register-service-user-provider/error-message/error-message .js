@@ -5,7 +5,7 @@ export const datauser_error_message = [
 ];
 export const address_error_message = [
     'this field is required',
-    'address must be between 4 and 15 characters long',
+    'address must be between 6 and 40 characters long',
     'wrong format just enter letters and numbers',
 ];
 export const dni_error_message = [

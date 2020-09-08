@@ -1,37 +1,37 @@
 import template from './create-form-user-provide.template';
-import ServicesApi from "../../../shared/services/services-api";
-import {useState} from "react";
+import ServicesApi from '../../../shared/services/services-api';
+import { useState } from 'react';
 
 export default function CreateFormUserProvider() {
     const values = {
         name: '',
         last_name: '',
         address: '',
-        birthday : '',
+        birthday: '',
         email: '',
         dni: '',
         phone_number: '',
-        location: ''
+        location: '',
     };
 
-    const [valuesForm , setValuesForm ] = useState(values);
+    const [valuesForm, setValuesForm] = useState(values);
 
     const createUser = (e) => {
         new ServicesApi()
             .addUserServiceProvider(valuesForm)
-            .then(r => {
-                console.log("Success!")
+            .then((r) => {
+                console.log('Success!');
             })
-            .catch(e => {
-                console.log(e)
+            .catch((e) => {
+                console.log(e);
             });
-    }
+    };
 
     const props = {
         valuesForm,
         setValuesForm,
-        createUser
-    }
+        createUser,
+    };
 
     return template(props);
 }
