@@ -21,7 +21,11 @@ export default (props) => {
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route exact path="/new-service" component={NewService} />
-                    <Route exact path="/user/:id" component={ServiceProviderProfile} />
+                    <Route
+                        exact
+                        path="/user/:id"
+                        component={ServiceProviderProfile}
+                    />
                     <Route excat path="/singup" component={NewUserProvider} />
                     <Route path="/*" component={NotFound} />
                 </Switch>

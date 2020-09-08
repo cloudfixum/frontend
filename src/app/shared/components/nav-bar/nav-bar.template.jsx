@@ -47,7 +47,10 @@ export default (props) => {
                         </li>
                     </Link>
                     <Link onClick={handleStateMenu} to="/user/:id">
-                        <li><span className="material-icons">person</span>Profile</li>
+                        <li>
+                            <span className="material-icons">person</span>
+                            Profile
+                        </li>
                     </Link>
                 </div>
             </nav>
