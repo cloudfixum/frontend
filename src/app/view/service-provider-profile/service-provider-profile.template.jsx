@@ -3,9 +3,7 @@ import Grid from "@material-ui/core/Grid";
 
 import '../home-page/card-services/card-services.scss'
 import './service-provider-profile.scss';
-
-//me funciona en Chrome, pero no en Firefox... pasas que cosan
-//es responsive
+import {Preloader} from "../../shared/components/preloader/preloader";
 
 const values = [
     'Id',
@@ -33,16 +31,22 @@ export default (user) => {
                 <Grid item xs={12} sm={6} md={4} lg={4} xl={3}
                       className='container-user-values profile-card card-container flex-column-center-start'>
                     {
+                        Object.keys(user) === undefined ? (
+                                    <div className="flex-column-center-start container-preloader">
+                                        <Preloader />
+                                    </div>
+                                ):(
                         Object.keys(user).map( (key, i) => {
                             return(
                                 <tr className="card-header-container">
                                     <td> <h3>{values[i]}</h3> </td>
                                     <td> <h3>:</h3> </td>
                                     <td style={{opacity: 0}}> ___ </td>
-                                    <td className='td-aling'> <p>{user[key]}</p> </td>
+                                    <td className='td-align'> <p>{user[key]}</p> </td>
                                 </tr>
                             )
                         })
+                            )
                     }
                     <button id='edit' name='edit' className='button-primary button-edit'>Edit Profile</button>
                 </Grid>
