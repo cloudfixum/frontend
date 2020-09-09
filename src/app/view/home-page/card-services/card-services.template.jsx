@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { ServiceCategories } from '../../../shared/utils/constant/service-categories';
 
 import './card-services.scss';
@@ -23,6 +22,9 @@ export default (props) => {
                 <p>
                     <span>Base Price:</span> ${props.base_price}
                 </p>
+                <div>
+                    <button className="button button-primary">More Details</button>
+                </div>
             </div>
         </div>
     );
