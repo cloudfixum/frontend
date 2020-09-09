@@ -40,7 +40,7 @@ export default (props) => {
         });
 
         ValidatorForm.addValidationRule('lengthValueDataUser', (value) => {
-            if (value.length < 3 || value.length > 12) {
+            if (value.length < 3 || value.length > 40) {
                 return false;
             }
             return true;
@@ -60,6 +60,7 @@ export default (props) => {
                 return false;
             }
         });
+
         return () => {
             ValidatorForm.removeValidationRule('isRequired');
             ValidatorForm.removeValidationRule('lengthValueDataUser');
