@@ -45,8 +45,11 @@ export default (user) => {
                         </div>
                     ) : (
                         Object.keys(user).map((key, i) => {
+                            if(i === 0) {
+                                return null;
+                            }
                             return (
-                                <tr className="card-header-container">
+                                <tr key={i} className="card-header-container">
                                     <td>
                                         {' '}
                                         <h3>{values[i]}</h3>{' '}
@@ -67,7 +70,9 @@ export default (user) => {
                     <button
                         id="edit"
                         name="edit"
-                        className="button-primary button-edit">
+                        className="button-primary button-edit"
+                        onClick={ () => { window.location = '/user/profile/edit'
+                        }}>
                         Edit Profile
                     </button>
                 </Grid>

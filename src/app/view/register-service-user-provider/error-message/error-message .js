@@ -1,6 +1,6 @@
 export const datauser_error_message = [
     'this field is required',
-    'title must be between 3 and 12 characters long',
+    'title must be between 3 and 40 characters long',
     'wrong format just enter letters',
 ];
 export const address_error_message = [
