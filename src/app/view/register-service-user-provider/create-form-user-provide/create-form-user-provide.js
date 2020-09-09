@@ -20,8 +20,8 @@ export default function CreateFormUserProvider() {
         new ServicesApi()
             .addUserServiceProvider(valuesForm)
             .then((r) => {
-                localStorage.setItem('token', JSON.stringify(r))
-                window.location='/user/profile'
+                localStorage.setItem('token', JSON.stringify(r));
+                window.location = '/user/profile';
             })
             .catch((e) => {
                 console.log(e);

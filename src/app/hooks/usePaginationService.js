@@ -5,13 +5,13 @@ export default function usePaginationService(fetch) {
     const [error, setError] = useState([]);
 
     useEffect(() => {
-            fetch(0)
-                .then((res) => {
-                    setData(res);
-                })
-                .catch((error) => {
-                    setError(error);
-                });
+        fetch(0)
+            .then((res) => {
+                setData(res);
+            })
+            .catch((error) => {
+                setError(error);
+            });
     }, [fetch]);
 
     const newPage = (e, value) => {

@@ -45,7 +45,7 @@ export default (user) => {
                         </div>
                     ) : (
                         Object.keys(user).map((key, i) => {
-                            if(i === 0) {
+                            if (i === 0) {
                                 return null;
                             }
                             return (
@@ -71,7 +71,8 @@ export default (user) => {
                         id="edit"
                         name="edit"
                         className="button-primary button-edit"
-                        onClick={ () => { window.location = '/user/profile/edit'
+                        onClick={() => {
+                            window.location = '/user/profile/edit';
                         }}>
                         Edit Profile
                     </button>

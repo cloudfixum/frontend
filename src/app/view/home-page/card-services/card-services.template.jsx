@@ -23,7 +23,9 @@ export default (props) => {
                     <span>Base Price:</span> ${props.base_price}
                 </p>
                 <div>
-                    <button className="button button-primary">More Details</button>
+                    <button className="button button-primary">
+                        More Details
+                    </button>
                 </div>
             </div>
         </div>

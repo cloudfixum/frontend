@@ -9,7 +9,7 @@ export default function CreateFormServices() {
         category: '',
         description: '',
         base_price: 0,
-        serviceProvider: JSON.parse(localStorage.getItem('token'))
+        serviceProvider: JSON.parse(localStorage.getItem('token')),
     };
 
     const [valuesForm, setValuesForm] = useState(values);

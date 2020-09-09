@@ -60,7 +60,7 @@ export default (props) => {
                 return false;
             }
         });
-        
+
         return () => {
             ValidatorForm.removeValidationRule('isRequired');
             ValidatorForm.removeValidationRule('lengthValueDataUser');

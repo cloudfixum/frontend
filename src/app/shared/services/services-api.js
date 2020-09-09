@@ -8,9 +8,9 @@ class ServicesApi {
         return data;
     }
 
-    async getServiceById(id){
+    async getServiceById(id) {
         const query = await axios.get(`${BASE}service/${id}`);
-        const data = query.data
+        const data = query.data;
         return data;
     }
 

@@ -1,10 +1,9 @@
-import React from 'react'
-import {FormControl} from "@material-ui/core";
-import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
+import React from 'react';
+import { FormControl } from '@material-ui/core';
+import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 import Alert from '@material-ui/lab/Alert';
 
 export default (props) => {
-
     const handleChange = (e) => {
         props.setDni({
             ...props.dni,
@@ -14,19 +13,20 @@ export default (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.singinUser()
+        props.singinUser();
     };
 
-    return(
+    return (
         <div className="container-form-singin">
             <h1>Sing In</h1>
-            {
-                props.isValidate === false
-                    ? <Alert variant="filled" severity="error" className="message-error-login">
+            {props.isValidate === false ? (
+                <Alert
+                    variant="filled"
+                    severity="error"
+                    className="message-error-login">
                     Incorrect DNI !
-                    </Alert>
-                    : null
-            }
+                </Alert>
+            ) : null}
             <ValidatorForm
                 onSubmit={handleSubmit}
                 onError={(errors) => console.log(errors)}>
@@ -45,5 +45,5 @@ export default (props) => {
                 <button className="button button-primary">Sing In</button>
             </ValidatorForm>
         </div>
-    )
-}
+    );
+};

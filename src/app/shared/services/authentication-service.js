@@ -1,9 +1,8 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const BASE = 'https://cloudfixum-api-dev.herokuapp.com/';
 
-export class AuthenticationService{
-
+export class AuthenticationService {
     async singin(dni) {
         const dniJson = JSON.stringify(dni);
         const query = await axios.post(`${BASE}authenticate`, dniJson, {
@@ -27,7 +26,7 @@ export class AuthenticationService{
     }
 
     async isAuthenticated() {
-        if (localStorage.getItem('token')){
+        if (localStorage.getItem('token')) {
             return true;
         }
         return false;

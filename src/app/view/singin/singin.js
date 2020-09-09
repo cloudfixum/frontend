@@ -1,4 +1,4 @@
-import template from './singin.template'
+import template from './singin.template';
 
 export default function SingIn() {
     return template();
