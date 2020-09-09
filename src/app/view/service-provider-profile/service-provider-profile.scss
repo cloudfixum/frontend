@@ -1,0 +1,54 @@
+@import '../../../assets/styles/style';
+
+.provider-profile {
+    //display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url('../../../assets/images/provider-profile.jpg');
+    background-size: cover;
+}
+
+.title-background {
+    background-color: rgba(59, 186, 245, 0.93);
+    padding: 4px;
+    display: flex;
+    margin-bottom: 7px;
+}
+
+.profile-title {
+    display: flex;
+    justify-content: center;
+    margin: 1px;
+    font-size: 30px;
+    font-family: 'Anton', sans-serif;
+    color: white;
+    z-index: 5;
+}
+
+.profile-card {
+    position: relative;
+    //vertical-align: center;
+    width: max-content;
+    margin: auto;
+    //size: auto;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 25px;
+}
+
+.td-align {
+    text-align: right;
+    justify-content: right;
+}
+
+.button-edit {
+    color: $color-primary;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 24px;
+    justify-self: center;
+    font-family: 'Anton', sans-serif;
+    font-size: large;
+}

@@ -35,7 +35,7 @@ class ServicesApi {
     }
 
     async getUserById(id) {
-        const query = await axios.get(`${BASE}user/{${id}`);
+        const query = await axios.get(`${BASE}user/${id}`);
         const data = query.data;
         return data;
     }
