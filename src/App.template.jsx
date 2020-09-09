@@ -8,7 +8,9 @@ import ServiceProviderProfile from './app/view/service-provider-profile/service-
 import NewUserProvider from './app/view/register-service-user-provider/register-service-user-provides';
 
 import NavBar from './app/shared/components/nav-bar/nav-bar';
+import Footer from './app/shared/components/footer/footer';
 
+import '../src/assets/styles/fonts/style.css';
 import '../src/assets/styles/style.scss';
 import './App.scss';
 import NotFound from './app/view/errors/404-not-found/404-not-found';
@@ -29,6 +31,7 @@ export default (props) => {
                     <Route excat path="/singup" component={NewUserProvider} />
                     <Route path="/*" component={NotFound} />
                 </Switch>
+                <Footer />
             </BrowserRouter>
         </div>
     );
