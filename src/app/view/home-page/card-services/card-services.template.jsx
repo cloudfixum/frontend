@@ -5,7 +5,7 @@ import './card-services.scss';
 
 export default (props) => {
     const image = 'url(' + props.image_url + ')';
-    const serviceCategories = new ServiceCategories().getCategoriesOrdered();
+    const serviceCategories = new ServiceCategories().getCategoriesByType('sub_categories');
     return (
         <div className="card-container" style={{ backgroundImage: image }}>
             <div
