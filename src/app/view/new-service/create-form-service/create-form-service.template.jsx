@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Select, InputLabel, FormControl } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import { Link } from 'react-router-dom';
 
 import { ServiceCategories } from '../../../shared/utils/constant/service-categories';
 import {
@@ -142,7 +143,7 @@ export default (props) => {
                 <p>*required field</p>
                 <div className="items-min-width flex-row-flexend-center buttons-create-service">
                     <button type="button" className="button-accent">
-                        Cancelar
+                    <Link to="/">Cancel</Link>
                     </button>
                     <button type="submit" className="button-primary">
                         Create Service
