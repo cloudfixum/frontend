@@ -1,17 +1,17 @@
 import { useState } from 'react';
 
-import template from './form-singin.template';
-import './form-singin.scss';
+import template from './form-signin.template';
+import './form-signin.scss';
 import { AuthenticationService } from '../../../shared/services/authentication-service';
 
-export default function FormSingIn() {
+export default function FormSignin() {
     let [dni, setDni] = useState({ dni: '' });
 
     let [isValidate, setIsValidate] = useState(true);
 
-    const singinUser = () => {
+    const signinUser = () => {
         new AuthenticationService()
-            .singin(dni)
+            .signin(dni)
             .then((response) => {
                 setIsValidate(true);
                 localStorage.setItem('token', JSON.stringify(response));
@@ -26,7 +26,7 @@ export default function FormSingIn() {
     const props = {
         dni,
         setDni,
-        singinUser,
+        signinUser,
         isValidate,
     };
 
