@@ -57,8 +57,8 @@ class ServicesApi {
         return data;
     }
 
-    async getServicesBySuperCategories() {
-        const query = await axios.get(`${BASE}`);
+    async getServicesBySuperCategories(super_category) {
+        const query = await axios.get(`${BASE}/filter?super_query=${super_category}`);
         const data = query.data;
         return data;
     }
