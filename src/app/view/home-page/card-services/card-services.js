@@ -10,11 +10,11 @@ export default function CardServices(props) {
 
     return (
         <div className="mat-card card-service-container" style={{ backgroundImage: image }}>
-            <div className="mat-card-header">
+            <div className="mat-card mat-card-header">
                 <h3>{props.service.title}</h3>
                 <p>{serviceCategories[props.service.category]}</p>
             </div>
-            <div className="mat-card-content">
+            <div className="mat-card mat-card-content">
                 <p>{props.service.description}</p>
                 <p>
                     <span>Base Price:</span> ${props.service.base_price}
