@@ -5,12 +5,18 @@ import LayoutCardServices from "./layout-card-services/layout-card-services";
 
 import './home-page.scss';
 import LayoutCardCategory from "./layout-card-category/layout-card-category";
+import ServicesApi from "../../shared/services/services-api";
+import useData from '../../hooks/useData'
 
 export default function HomePage() {
     let [selectedCategory, setSelectedCategory] = useState(false)
 
-    const handleChangeCategory = () => {
+    let [categoryByFilter, setCategoryByFilter] = useState('')
+
+    const handleCategoryByFilter = (category) => {
+        console.log(category)
         setSelectedCategory(true)
+            setCategoryByFilter(category)
     }
 
     return (
@@ -18,8 +24,8 @@ export default function HomePage() {
             <Header />
             {
                 selectedCategory
-                    ? <LayoutCardServices />
-                    : <LayoutCardCategory callback={handleChangeCategory}/>
+                    ? <LayoutCardServices category={categoryByFilter}/>
+                    : <LayoutCardCategory callback={handleCategoryByFilter}/>
             }
         </div>
     );

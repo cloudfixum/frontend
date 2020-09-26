@@ -12,25 +12,27 @@ const scrollUp = (e) => {
 export default (props) => {
     let total_pages;
     if (props.data.headers !== undefined) {
-        total_pages = props.data.headers['totalpages'];
+        total_pages = props.headers['totalpages'];
     }
     return (
         <div>
-            {props.data.data === undefined ? (
+            {props.data === undefined ? (
                 <div className="flex-column-center-start container-preloader">
                     <Preloader />
                 </div>
             ) : (
-                <div className="container-layout-card-services">
-                    {props.data.data.map((service, i) => (
+                <div className="wrapper col2 col3-lg col2-md col1-xs">
+                    {props.data.map((service, i) => {
+                        return(
                         <div
                             key={i}
                             className="flex-row-center-center container-layout-card">
                             <CardServices service={service} />
                         </div>
-                    ))}
+                    )})}
                 </div>
             )}
+            {/*
             <div className="container-pagination flex-column-center-center">
                 <Pagination
                     count={Number(total_pages)}
@@ -43,6 +45,7 @@ export default (props) => {
                     color="primary"
                 />
             </div>
+            */}
         </div>
     );
 };

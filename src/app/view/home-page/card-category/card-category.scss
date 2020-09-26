@@ -1,0 +1,11 @@
+.mat-card.card-category-container {
+  height: 450px;
+  cursor: pointer;
+}
+
+.mat-card-content {
+  width: 100%;
+  height: inherit !important;
+  display: grid;
+  place-items: center;
+}

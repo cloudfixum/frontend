@@ -42,11 +42,11 @@ export class ServiceCategories {
 
     getCategoriesByType(type){
         let categories = this.category_model.find((category) => category.category_type === type)
-        let categories_ordered = Object.keys(categories).sort();
+        let categories_ordered = Object.keys(categories.categories).sort();
         let serviceCategories = {};
 
-        Object.keys(categories).forEach((key, index) => {
-            serviceCategories[categories_ordered[index]] = categories[
+        Object.keys(categories.categories).forEach((key, index) => {
+            serviceCategories[categories_ordered[index]] = categories.categories[
                 categories_ordered[index]
                 ];
         });

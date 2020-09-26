@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import './colors';
 
+$column-class: 'col1' 1, 'col2' 2, 'col3' 3, 'col4' 4, 'col5' 5, 'col6' 6, 'col7' 7, 'col8' 8, 'col9' 9, 'col10' 10, 'col11' 11, 'col12' 12;
+
 * {
     margin: 0;
     padding: 0;
@@ -47,7 +49,30 @@ button {
     border: 1px solid $color-primary;
 }
 
-// Class globals
+.mat-card {
+    padding: 24px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-radius: 4px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    background-color: white;
+}
+
+.mat-card .mat-card-content {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgba(white, 0.8);
+    box-sizing: border-box;
+}
 
 @mixin flex-properties($direction, $justify, $align) {
     display: flex;
@@ -55,6 +80,75 @@ button {
     justify-content: $justify;
     align-items: $align;
 }
+
+.mat-card .mat-card-header {
+    @include flex-properties(column, center, center);
+    h1, h2, h3, h4 {
+        font-size: 30px;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    p {
+        font-size: 20px;
+        font-weight: 700;
+    }
+}
+
+.wrapper {
+    display: grid;
+    grid-gap: 16px;
+    grid-template-columns: repeat(1, 1fr);
+    padding: 16px;
+    @media (min-width: 600px) {
+        grid-gap: 24px;
+        padding: 24px;
+    }
+}
+
+@each $class in $column-class {
+    .wrapper.#{nth($class, 1)} {
+        grid-template-columns: repeat(nth($class, 2), 1fr);
+    }
+}
+
+@each $class in $column-class {
+    .wrapper.#{nth($class, 1)}-lg {
+        @media (max-width: 1280px) {
+            grid-template-columns: repeat(nth($class, 2), 1fr);
+        }
+    }
+}
+
+@each $class in $column-class {
+    .wrapper.#{nth($class, 1)}-md {
+        @media (max-width: 960px) {
+            grid-template-columns: repeat(nth($class, 2), 1fr);
+        }
+    }
+}
+
+@each $class in $column-class {
+    .wrapper.#{nth($class, 1)}-sm {
+        @media (max-width: 600px) {
+            grid-template-columns: repeat(nth($class, 2), 1fr);
+        }
+    }
+}
+
+@each $class in $column-class {
+    .wrapper.#{nth($class, 1)}-xs {
+        @media (max-width: 420px) {
+            grid-template-columns: repeat(nth($class, 2), 1fr);
+        }
+    }
+}
+
+
+// Class globals
+
+
 
 .flex-column-center-center {
     @include flex-properties(column, center, center);
