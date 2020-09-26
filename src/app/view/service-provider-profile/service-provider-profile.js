@@ -6,9 +6,7 @@ export default function ServiceProviderProfile() {
 
     let userObject = JSON.parse(localStorage.getItem('token'));
 
-    useEffect(() => {
-        setUser(userObject);
-    }, []);
+    useEffect(setUser(userObject), []);
 
     return template(user);
 }

@@ -1,5 +1,4 @@
 export class ServiceCategories {
-
     category_model = [
         {
             category_type: 'sub_categories',
@@ -32,25 +31,25 @@ export class ServiceCategories {
         {
             category_type: 'super_categories',
             categories: {
-                HEALTH : 'Health',
+                HEALTH: 'Health',
                 BEAUTY: 'Beauty',
                 VEHICLE: 'Vehicle',
-                WELLNESS: 'Wellness'
+                WELLNESS: 'Wellness',
             },
-        }
-    ]
+        },
+    ];
 
-    getCategoriesByType(type){
-        let categories = this.category_model.find((category) => category.category_type === type)
+    getCategoriesByType(type) {
+        let categories = this.category_model.find(
+            (category) => category.category_type === type
+        );
         let categories_ordered = Object.keys(categories.categories).sort();
         let serviceCategories = {};
 
         Object.keys(categories.categories).forEach((key, index) => {
-            serviceCategories[categories_ordered[index]] = categories.categories[
-                categories_ordered[index]
-                ];
+            serviceCategories[categories_ordered[index]] =
+                categories.categories[categories_ordered[index]];
         });
         return serviceCategories;
     }
-
 }
