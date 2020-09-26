@@ -57,7 +57,7 @@ class ServicesApi {
         return data;
     }
 
-    async getServicesBySuperCategories(){
+    async getServicesBySuperCategories() {
         const query = await axios.get(`${BASE}`);
         const data = query.data;
         return data;

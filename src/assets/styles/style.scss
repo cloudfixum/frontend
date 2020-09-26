@@ -2,7 +2,8 @@
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import './colors';
 
-$column-class: 'col1' 1, 'col2' 2, 'col3' 3, 'col4' 4, 'col5' 5, 'col6' 6, 'col7' 7, 'col8' 8, 'col9' 9, 'col10' 10, 'col11' 11, 'col12' 12;
+$column-class: 'col1' 1, 'col2' 2, 'col3' 3, 'col4' 4, 'col5' 5, 'col6' 6,
+    'col7' 7, 'col8' 8, 'col9' 9, 'col10' 10, 'col11' 11, 'col12' 12;
 
 * {
     margin: 0;
@@ -59,7 +60,7 @@ button {
     border-radius: 4px;
     box-sizing: border-box;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
-    0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+        0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
     overflow: hidden;
     background-color: white;
 }
@@ -82,17 +83,16 @@ button {
 }
 
 .mat-card .mat-card-header {
-    @include flex-properties(column, center, center);
-    h1, h2, h3, h4 {
+    @include flex-properties(column, center, flex-start);
+    h1,
+    h2,
+    h3,
+    h4 {
         font-size: 30px;
         width: 100%;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
     }
     p {
         font-size: 20px;
-        font-weight: 700;
     }
 }
 
@@ -145,10 +145,7 @@ button {
     }
 }
 
-
 // Class globals
-
-
 
 .flex-column-center-center {
     @include flex-properties(column, center, center);
