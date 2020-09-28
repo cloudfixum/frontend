@@ -13,12 +13,12 @@ export default (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.singinUser();
+        props.signinUser();
     };
 
     return (
-        <div className="container-form-singin">
-            <h1>Sing In</h1>
+        <div className="container-form-signin">
+            <h1>Sign In</h1>
             {props.isValidate === false ? (
                 <Alert
                     variant="filled"
@@ -42,7 +42,7 @@ export default (props) => {
                         required
                     />
                 </FormControl>
-                <button className="button button-primary">Sing In</button>
+                <button className="button button-primary">Sign In</button>
             </ValidatorForm>
         </div>
     );

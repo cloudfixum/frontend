@@ -10,7 +10,7 @@ import {
     address_error_message,
     dni_error_message,
     phone_error_message,
-} from '../error-message/error-message ';
+} from '../error-message/error-message';
 import {
     datauser_validators_name,
     address_validators_name,
@@ -196,7 +196,9 @@ export default (props) => {
 
                 <div className="items-min-width flex-row-flexend-center buttons-create-service">
                     <button className="button-accent" type="button">
-                        <Link to="/">Cancel</Link>
+                        <Link to="/">
+                            <p className="cancel-button">Cancel</p>
+                        </Link>
                     </button>
                     <button className="button-primary">Register</button>
                 </div>

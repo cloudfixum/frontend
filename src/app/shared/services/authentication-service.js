@@ -3,7 +3,7 @@ import axios from 'axios';
 const BASE = 'https://cloudfixum-api.herokuapp.com/';
 
 export class AuthenticationService {
-    async singin(dni) {
+    async signin(dni) {
         const dniJson = JSON.stringify(dni);
         const query = await axios.post(`${BASE}authenticate`, dniJson, {
             headers: {
@@ -14,7 +14,7 @@ export class AuthenticationService {
         return data;
     }
 
-    async singup(user) {
+    async signup(user) {
         const userJson = JSON.stringify(user);
         const query = await axios.post(`${BASE}authenticate`, userJson, {
             headers: {

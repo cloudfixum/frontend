@@ -1,12 +1,12 @@
 import React from 'react';
 
-import './singin.scss';
-import FormSingIn from './create-form-singin/form-singin';
+import './signin.scss';
+import FormSignin from './create-form-signin/form-signin';
 
 export default (props) => {
     return (
         <div className="container-login">
-            <FormSingIn />
+            <FormSignin />
         </div>
     );
 };
