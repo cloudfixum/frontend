@@ -9,8 +9,8 @@ export default function LayoutCardCategory(props) {
 
     const setCategory = (category, e) => {
         e.preventDefault();
-        console.log(category);
         props.callback(category);
+        console.log(category);
     };
 
     return (

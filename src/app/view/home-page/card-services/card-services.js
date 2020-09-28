@@ -2,9 +2,11 @@ import React from 'react';
 import { toUpperFirstChar } from '../../../shared/utils/to-upper-first-char';
 
 import './card-services.scss';
+import {ServiceCategories} from "../../../shared/utils/constant/service-categories";
 
 export default function CardServices(props) {
     const image = 'url(' + props.service.image_url + ')';
+    const categories = new ServiceCategories().getSubCategoriesByType(props.category);
 
     return (
         <div
@@ -14,7 +16,7 @@ export default function CardServices(props) {
                 <div className="mat-card-header">
                     <h3>{props.service.title}</h3>
                     <p>
-                        {toUpperFirstChar(props.service.category.toLowerCase())}
+                        {categories[props.service.category]}
                     </p>
                 </div>
                 <div className="mat-card-content">

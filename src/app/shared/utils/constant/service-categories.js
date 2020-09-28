@@ -1,7 +1,7 @@
 export class ServiceCategories {
     category_model = [
         {
-            category: 'health',
+            category: 'Health',
             sub_categories: {
                 NURSE: 'Nurse',
                 NUTRITIONIST: 'Nutritionist',
@@ -13,7 +13,7 @@ export class ServiceCategories {
             },
         },
         {
-            category: 'beauty',
+            category: 'Beauty',
             sub_categories: {
                 BARBER: 'Barber',
                 DRESSMAKER: 'Dressmaker',
@@ -24,7 +24,7 @@ export class ServiceCategories {
             },
         },
         {
-            category: 'vehicle',
+            category: 'Vehicle',
             sub_categories: {
                 TYREREPAIRER: 'Tyre Repairer',
                 CARALARM: 'Car Alarm',
@@ -36,7 +36,7 @@ export class ServiceCategories {
             },
         },
         {
-            category: 'wellness',
+            category: 'Wellness',
             sub_categories: {
                 PERSONAL_TRAINER: 'Personal Trainer',
                 YOGA: 'Yoga',
@@ -46,7 +46,7 @@ export class ServiceCategories {
             },
         },
         {
-            category: 'home',
+            category: 'Home',
             sub_categories: {
                 ELECT_TECH: 'Electrical Technician',
                 GAS_OPERATOR: 'Gas Operator',
@@ -64,7 +64,7 @@ export class ServiceCategories {
             },
         },
         {
-            category: 'other',
+            category: 'Other',
             sub_categories: {
                 OTHER: 'Other',
             },

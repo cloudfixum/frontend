@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE = 'https://cloudfixum-api.herokuapp.com/api/';
+const BASE = 'https://cloudfixum-api-dev.herokuapp.com/api/';
 
 class ServicesApi {
     async getServices() {
@@ -58,7 +58,7 @@ class ServicesApi {
     }
 
     async getServicesBySuperCategories(super_category) {
-        const query = await axios.get(`${BASE}/filter?super_query=${super_category}`);
+        const query = await axios.get(`${BASE}service/filter?superquery=${super_category}`);
         const data = query.data;
         return data;
     }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import ServicesApi from '../../../shared/services/services-api';
 import useData from '../../../hooks/useData';
 import CardServices from '../card-services/card-services';
@@ -17,19 +17,31 @@ export default function LayoutCardServices(props) {
     //     total_pages = props.headers['totalpages'];
     // }
 
-    const servicesApi = new ServicesApi();
-    const data = useData(servicesApi.getServices);
+    let [services, setServices] = useState([]);
 
+    useEffect( () => {
+        const fetch = () => {
+            new ServicesApi().getServicesBySuperCategories(props.category)
+                .then( (res) => {
+                    setServices(res)
+                })
+                .catch( (e) => {
+                    console.log(e)
+                })
+        }
+        fetch()
+    },[])
+    console.log(services)
     return (
         <div>
-            {data.data === undefined ? (
+            {services.length === 0 ? (
                 <div className="flex-column-center-start container-preloader">
                     <Preloader />
                 </div>
             ) : (
                 <div className="wrapper col3 col2-md col1-xs">
-                    {data.data.map((service, i) => {
-                        return <CardServices key={i} service={service} />;
+                    {services.map((service, i) => {
+                        return <CardServices key={i} service={service} category={props.category}/>;
                     })}
                 </div>
             )}
