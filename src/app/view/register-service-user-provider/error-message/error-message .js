@@ -19,7 +19,7 @@ export const phone_error_message = [
 ];
 export const password_error_message = [
     'this field is required',
-    'the number must have 8 digits, incorrect pass',
+    'Must be at least 8 characters',
 ];
 export const confirm_password_error_message = [
     'this field is required',

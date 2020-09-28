@@ -23,6 +23,7 @@ import {
     phone_validators_name,
     password_validators_name,
     confirm_password_validators_name,
+
 } from '../validators-name/validators-name';
 
 export default function CreateFormUserProvider() {
@@ -36,12 +37,12 @@ export default function CreateFormUserProvider() {
         phone_number: '',
         location: '',
         password: '',
-        confirm_password: '',
+        confirm_password:'',
     };
 
     const [valuesForm, setValuesForm] = useState(values);
-
-    let pass = '';
+    
+    let [pass,setPass] = useState({});
 
     const createUser = (e) => {
         new ServicesApi()
@@ -69,8 +70,7 @@ export default function CreateFormUserProvider() {
     };
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        console.log(props.valuesForm.password);
-        //props.createUser();
+        props.createUser();
     };
 
     useEffect(() => {
@@ -112,8 +112,7 @@ export default function CreateFormUserProvider() {
             }
         });
 
-        ValidatorForm.addValidationRule('confirmPassword', (value) => {
-            console.log(pass);
+        ValidatorForm.addValidationRule('confirmPassword', (value) => {   
             if (value !== pass) {
                 return false;
             } else {
@@ -270,6 +269,7 @@ export default function CreateFormUserProvider() {
                             errorMessages={password_error_message}
                             required
                         />
+
                     </FormControl>
                     <FormControl className="container-form-double">
                         <TextValidator
