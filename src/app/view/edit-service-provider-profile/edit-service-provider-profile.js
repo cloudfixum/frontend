@@ -1,4 +1,4 @@
-import template from '../register-service-user-provider/create-form-user-provide/create-form-user-provide.template';
+import template from '../register-service-user-provider/create-form-user-provide/create-form-user-provide';
 import ServicesApi from '../../shared/services/services-api';
 import { useEffect, useState } from 'react';
 

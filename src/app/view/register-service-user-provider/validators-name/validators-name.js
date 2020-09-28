@@ -14,3 +14,8 @@ export const dni_validators_name = [
     'matchRegexp:^[0-9]*$',
 ];
 export const phone_validators_name = ['isRequired', 'matchRegexp:^[0-9+ ]*$'];
+export const password_validators_name = ['isRequired', 'lengthValuePassword'];
+export const confirm_password_validators_name = [
+    'isRequired',
+    'confirmPassword',
+];
