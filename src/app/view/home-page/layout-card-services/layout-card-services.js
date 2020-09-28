@@ -29,9 +29,7 @@ export default function LayoutCardServices(props) {
             ) : (
                 <div className="wrapper col3 col2-md col1-xs">
                     {data.data.map((service, i) => {
-                        return (
-                                <CardServices key={i} service={service} />
-                        );
+                        return <CardServices key={i} service={service} />;
                     })}
                 </div>
             )}

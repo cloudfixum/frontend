@@ -1,55 +1,97 @@
 export class ServiceCategories {
     category_model = [
         {
-            category_type: 'sub_categories',
-            categories: {
+            category: 'health',
+            sub_categories: {
+                NURSE: 'Nurse',
+                NUTRITIONIST: 'Nutritionist',
+                PHYCHOLOGIST: 'Phychologist',
+                DERMATOLOGIST: 'Dermatologist',
+                PEDIATRIST: 'Pediatrist',
+                DENTIST: 'Dentist',
+                CAREGIVER: 'Caregiver',
+            },
+        },
+        {
+            category: 'beauty',
+            sub_categories: {
                 BARBER: 'Barber',
+                DRESSMAKER: 'Dressmaker',
+                MAKEUPARTIST: 'Make-up Artist',
+                MANICURE: 'Manicure',
+                STYLIST: 'Stylist',
+                TATTOARTIST: 'Tatto Artist',
+            },
+        },
+        {
+            category: 'vehicle',
+            sub_categories: {
+                TYREREPAIRER: 'Tyre Repairer',
+                CARALARM: 'Car Alarm',
+                CARPAINTER: 'Car Painter',
+                PLATER: 'Plater',
+                CARWASH: 'Car Wash',
+                CARELECTRICIAN: 'Car Electrician',
+                MECHANIC: 'Mechanic',
+            },
+        },
+        {
+            category: 'wellness',
+            sub_categories: {
+                PERSONAL_TRAINER: 'Personal Trainer',
+                YOGA: 'Yoga',
+                MASSAGETHERAPIST: 'Massage Therapist',
+                GYM: 'Gym',
+                AROMATHERAPY: 'Aromatherapy',
+            },
+        },
+        {
+            category: 'home',
+            sub_categories: {
                 ELECT_TECH: 'Electrical Technician',
                 GAS_OPERATOR: 'Gas Operator',
                 PLUMBER: 'Plumber',
                 METALLURGICAL: 'Metallurgical',
                 BRICKLAYER: 'Bricklayer',
-                CAREGIVER: 'Caregiver',
+                GARDENER: 'Gardener',
                 MAID: 'Maid',
                 REPAIR_TECH: 'Repair Technician',
-                MECHANIC: 'Mechanic',
-                TECH_SERVICE: 'Technician Service',
-                PRIVATE_TUTORING: 'Private Tutoring ',
-                PERSONAL_TRAINER: 'Personal Trainer',
                 CARPENTER: 'Carpenter',
                 GLAZIER: 'Glazier',
-                BLACKSMITH: 'Blacksmith',
-                COBBLER: 'Cobbler',
-                DRESSMAKER: 'Dressmaker',
                 AIRCON_TECH: 'Air Conditioning Technician',
                 PAINTER: 'Painter',
                 LOCKSMITH: 'Locksmith',
-                OTHER: 'Other',
-                GARDENER: 'Gardener',
             },
         },
         {
-            category_type: 'super_categories',
-            categories: {
-                HEALTH: 'Health',
-                BEAUTY: 'Beauty',
-                VEHICLE: 'Vehicle',
-                WELLNESS: 'Wellness',
+            category: 'other',
+            sub_categories: {
+                OTHER: 'Other',
             },
         },
     ];
 
-    getCategoriesByType(type) {
-        let categories = this.category_model.find(
-            (category) => category.category_type === type
+    getSubCategoriesByType(type) {
+        let category = this.category_model.find(
+            (category) => category.category === type
         );
-        let categories_ordered = Object.keys(categories.categories).sort();
+        let categories_ordered = Object.keys(category.sub_categories).sort();
         let serviceCategories = {};
 
-        Object.keys(categories.categories).forEach((key, index) => {
+        Object.keys(category.sub_categories).forEach((key, index) => {
             serviceCategories[categories_ordered[index]] =
-                categories.categories[categories_ordered[index]];
+                category.sub_categories[categories_ordered[index]];
         });
         return serviceCategories;
+    }
+
+    getCategories() {
+        let categories = [];
+
+        this.category_model.forEach((category) => {
+            categories.push(category.category);
+        });
+
+        return categories.sort();
     }
 }
