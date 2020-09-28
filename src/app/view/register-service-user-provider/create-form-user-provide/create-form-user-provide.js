@@ -1,6 +1,5 @@
 import ServicesApi from '../../../shared/services/services-api';
 import { useState } from 'react';
-
 import React, { useEffect } from 'react';
 import { FormControl } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
@@ -15,7 +14,7 @@ import {
     phone_error_message,
     password_error_message,
     confirm_password_error_message,
-} from '../error-message/error-message ';
+} from '../error-message/error-message';
 import {
     datauser_validators_name,
     address_validators_name,
@@ -23,7 +22,6 @@ import {
     phone_validators_name,
     password_validators_name,
     confirm_password_validators_name,
-
 } from '../validators-name/validators-name';
 
 export default function CreateFormUserProvider() {
@@ -37,12 +35,10 @@ export default function CreateFormUserProvider() {
         phone_number: '',
         location: '',
         password: '',
-        confirm_password:'',
     };
 
     const [valuesForm, setValuesForm] = useState(values);
-    
-    let [pass,setPass] = useState({});
+    const [confirmPassword, setconfirmPassword] = useState('');
 
     const createUser = (e) => {
         new ServicesApi()
@@ -56,79 +52,67 @@ export default function CreateFormUserProvider() {
             });
     };
 
-    const props = {
-        valuesForm,
-        setValuesForm,
-        createUser,
-    };
     const handleChange = (e) => {
         e.preventDefault();
-        props.setValuesForm({
-            ...props.valuesForm,
+        setValuesForm({
+            ...valuesForm,
             [e.target.name]: e.target.value,
         });
     };
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        props.createUser();
+        createUser();
     };
 
-    useEffect(() => {
-        ValidatorForm.addValidationRule('isRequired', (value) => {
-            if (value === '') {
-                return false;
-            }
+    const handleChangeConfirmPassword = (e) => {
+        e.preventDefault();
+        setconfirmPassword(e.target.value);
+    };
+
+    ValidatorForm.addValidationRule('isRequired', (value) => {
+        if (value === '') {
+            return false;
+        }
+        return true;
+    });
+
+    ValidatorForm.addValidationRule('lengthValueDataUser', (value) => {
+        if (value.length < 3 || value.length > 40) {
+            return false;
+        }
+        return true;
+    });
+
+    ValidatorForm.addValidationRule('lengthValueAddress', (value) => {
+        if (value.length < 6 || value.length > 40) {
+            return false;
+        }
+        return true;
+    });
+
+    ValidatorForm.addValidationRule('lengthValueDni', (value) => {
+        if (value.length > 7 && value > 1000000) {
             return true;
-        });
+        } else {
+            return false;
+        }
+    });
 
-        ValidatorForm.addValidationRule('lengthValueDataUser', (value) => {
-            if (value.length < 3 || value.length > 40) {
-                return false;
-            }
+    ValidatorForm.addValidationRule('lengthValuePassword', (value) => {
+        if (value.length > 7 && value.length < 45) {
             return true;
-        });
+        } else {
+            return false;
+        }
+    });
 
-        ValidatorForm.addValidationRule('lengthValueAddress', (value) => {
-            if (value.length < 6 || value.length > 40) {
-                return false;
-            }
+    ValidatorForm.addValidationRule('confirmPassword', (value) => {
+        if (value !== valuesForm.password) {
+            return false;
+        } else {
             return true;
-        });
-
-        ValidatorForm.addValidationRule('lengthValueDni', (value) => {
-            if (value.length > 7 && value > 1000000) {
-                return true;
-            } else {
-                return false;
-            }
-        });
-
-        ValidatorForm.addValidationRule('lengthValuePassword', (value) => {
-            if (value.length > 7 && value.length < 45) {
-                pass = value;
-                return true;
-            } else {
-                return false;
-            }
-        });
-
-        ValidatorForm.addValidationRule('confirmPassword', (value) => {   
-            if (value !== pass) {
-                return false;
-            } else {
-                return true;
-            }
-        });
-
-        return () => {
-            ValidatorForm.removeValidationRule('isRequired');
-            ValidatorForm.removeValidationRule('lengthValueDataUser');
-            ValidatorForm.removeValidationRule('lengthValueAddress');
-            ValidatorForm.removeValidationRule('lengthValueUserDni');
-            ValidatorForm.removeValidationRule('lengthValuePassword');
-            ValidatorForm.removeValidationRule('confirmPassword');
-        };
-    }, []);
+        }
+    });
 
     return (
         <div className="container-form-user-provider">
@@ -143,7 +127,7 @@ export default function CreateFormUserProvider() {
                             label="Name"
                             variant="outlined"
                             onChange={handleChange}
-                            value={props.valuesForm.name}
+                            value={valuesForm.name}
                             validators={datauser_validators_name}
                             errorMessages={datauser_error_message}
                             required
@@ -157,7 +141,7 @@ export default function CreateFormUserProvider() {
                             label="Last Name"
                             variant="outlined"
                             onChange={handleChange}
-                            value={props.valuesForm.last_name}
+                            value={valuesForm.last_name}
                             validators={datauser_validators_name}
                             errorMessages={datauser_error_message}
                             required
@@ -173,7 +157,7 @@ export default function CreateFormUserProvider() {
                         label="Email"
                         variant="outlined"
                         onChange={handleChange}
-                        value={props.valuesForm.email}
+                        value={valuesForm.email}
                         validators={['isEmail']}
                         errorMessages={'wrong format, need example@example.com'}
                         required
@@ -187,7 +171,7 @@ export default function CreateFormUserProvider() {
                         fullWidth={true}
                         id="birthday"
                         onChange={handleChange}
-                        value={props.valuesForm.birthday}
+                        value={valuesForm.birthday}
                         variant="outlined"
                         required
                     />
@@ -202,7 +186,7 @@ export default function CreateFormUserProvider() {
                         label="Phone Number"
                         variant="outlined"
                         onChange={handleChange}
-                        value={props.valuesForm.phone_number}
+                        value={valuesForm.phone_number}
                         validators={phone_validators_name}
                         errorMessages={phone_error_message}
                         required
@@ -217,7 +201,7 @@ export default function CreateFormUserProvider() {
                         label="DNI Number"
                         variant="outlined"
                         onChange={handleChange}
-                        value={props.valuesForm.dni}
+                        value={valuesForm.dni}
                         validators={dni_validators_name}
                         errorMessages={dni_error_message}
                         required
@@ -232,7 +216,7 @@ export default function CreateFormUserProvider() {
                         label="Address"
                         variant="outlined"
                         onChange={handleChange}
-                        value={props.valuesForm.address}
+                        value={valuesForm.address}
                         validators={address_validators_name}
                         errorMessages={address_error_message}
                         required
@@ -248,7 +232,7 @@ export default function CreateFormUserProvider() {
                         label="Location"
                         variant="outlined"
                         onChange={handleChange}
-                        value={props.valuesForm.location}
+                        value={valuesForm.location}
                         validators={datauser_validators_name}
                         errorMessages={datauser_error_message}
                         required
@@ -264,12 +248,11 @@ export default function CreateFormUserProvider() {
                             label="Password"
                             variant="outlined"
                             onChange={handleChange}
-                            value={props.valuesForm.password}
+                            value={valuesForm.password}
                             validators={password_validators_name}
                             errorMessages={password_error_message}
                             required
                         />
-
                     </FormControl>
                     <FormControl className="container-form-double">
                         <TextValidator
@@ -279,10 +262,10 @@ export default function CreateFormUserProvider() {
                             id="confirm_password"
                             label="Confirm Password"
                             variant="outlined"
-                            value={props.valuesForm.confirm_password}
+                            value={confirmPassword}
                             validators={confirm_password_validators_name}
                             errorMessages={confirm_password_error_message}
-                            onChange={handleChange}
+                            onChange={handleChangeConfirmPassword}
                             required
                         />
                     </FormControl>

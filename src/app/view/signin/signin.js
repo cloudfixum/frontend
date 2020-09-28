@@ -1,5 +1,12 @@
-import template from './signin.template';
+import React from 'react';
+
+import './signin.scss';
+import FormSignin from './create-form-signin/form-signin';
 
 export default function Signin() {
-    return template();
+    return (
+        <div className="container-login">
+            <FormSignin />
+        </div>
+    );
 }
