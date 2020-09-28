@@ -17,3 +17,11 @@ export const phone_error_message = [
     'this field is required',
     'wrong format just enter numbers',
 ];
+export const password_error_message = [
+    'this field is required',
+    'the number must have 8 digits, incorrect pass',
+];
+export const confirm_password_error_message = [
+    'this field is required',
+    'passwords do not match',
+];

@@ -1,5 +1,11 @@
-import template from './singin.template';
+import React from 'react';
+import FormSingIn from './create-form-singin/form-singin';
+import './singin.scss';
 
 export default function SingIn() {
-    return template();
+    return (
+        <div className="container-login">
+            <FormSingIn />
+        </div>
+    );
 }
