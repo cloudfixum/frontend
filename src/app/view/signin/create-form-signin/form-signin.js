@@ -5,9 +5,9 @@ import { FormControl } from '@material-ui/core';
 import { AuthenticationService } from '../../../shared/services/authentication-service';
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 
-import './form-singin.scss';
+import './form-signin.scss';
 
-export default function FormSingIn() {
+export default function FormSignIn() {
     const values = {
         email: '',
         password: '',
@@ -17,9 +17,9 @@ export default function FormSingIn() {
 
     let [isValidate, setIsValidate] = useState(true);
 
-    const singinUser = (e) => {
+    const signinUser = (e) => {
         new AuthenticationService()
-            .singin(valuesForm)
+            .signin(valuesForm)
             .then((response) => {
                 setIsValidate(true);
                 localStorage.setItem('token', JSON.stringify(response));
@@ -34,7 +34,7 @@ export default function FormSingIn() {
     const props = {
         valuesForm,
         setValuesForm,
-        singinUser,
+        signinUser,
         isValidate,
     };
 
@@ -47,12 +47,12 @@ export default function FormSingIn() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        props.singinUser();
+        props.signinUser();
     };
 
     return (
         <div className="container-form-singin">
-            <h1>Sing In</h1>
+            <h1>Sign In</h1>
             <ValidatorForm
                 onSubmit={handleSubmit}
                 onError={(errors) => console.log(errors)}>
@@ -83,7 +83,7 @@ export default function FormSingIn() {
                         required
                     />
                 </FormControl>
-                <button className="button button-primary">Sing In</button>
+                <button className="button button-primary">Sign In</button>
             </ValidatorForm>
         </div>
     );
