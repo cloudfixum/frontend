@@ -13,10 +13,10 @@ export default function ContainerServiceProviderSummary() {
         <div className="container-form-user-provider-summary">
             <h1>User Provider Summary</h1>
             <Grid container spacing={8}>
-                <Grid item xs={12} sm={12} md={6} lg={6}>
+                <Grid item xs={12} sm={12} md={12} lg={6}>
                     <div className="container-img-user-provider"/>
                 </Grid>
-                <Grid item  xs={12} sm={12} md={6} lg={6} className="flex-column-center-start form-items">
+                <Grid item  xs={12} sm={12} md={12} lg={6} className="flex-column-center-start form-items">
                     <div className="flex-row-center-center">
                         <TextField
                             id="name"
