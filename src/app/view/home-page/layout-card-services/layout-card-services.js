@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import ServicesApi from '../../../shared/services/services-api';
-import useData from '../../../hooks/useData';
 import CardServices from '../card-services/card-services';
 import { Preloader } from '../../../shared/components/preloader/preloader';
 // import Pagination from '@material-ui/lab/Pagination';
@@ -19,19 +18,20 @@ export default function LayoutCardServices(props) {
 
     let [services, setServices] = useState([]);
 
-    useEffect( () => {
+    useEffect(() => {
         const fetch = () => {
-            new ServicesApi().getServicesBySuperCategories(props.category)
-                .then( (res) => {
-                    setServices(res)
+            new ServicesApi()
+                .getServicesBySuperCategories(props.category)
+                .then((res) => {
+                    setServices(res);
                 })
-                .catch( (e) => {
-                    console.log(e)
-                })
-        }
-        fetch()
-    },[])
-    console.log(services)
+                .catch((e) => {
+                    console.log(e);
+                });
+        };
+        fetch();
+    }, []);
+
     return (
         <div>
             {services.length === 0 ? (
@@ -41,7 +41,13 @@ export default function LayoutCardServices(props) {
             ) : (
                 <div className="wrapper col3 col2-md col1-xs">
                     {services.map((service, i) => {
-                        return <CardServices key={i} service={service} category={props.category}/>;
+                        return (
+                            <CardServices
+                                key={i}
+                                service={service}
+                                category={props.category}
+                            />
+                        );
                     })}
                 </div>
             )}
