@@ -122,7 +122,7 @@ export default function CreateFormUserProvider() {
         } else {
             return false;
         }
-    })
+    });
 
     return (
         <div className="container-form-user-provider">
