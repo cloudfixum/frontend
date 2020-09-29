@@ -3,7 +3,8 @@ import React from 'react';
 import './card-category.scss';
 
 export default function CardCategory(props) {
-    const image = 'url(' + props.image_url + ')';
+    console.log(props)
+    const image = 'url(' + props.image + ')';
     return (
         <div
             className="mat-card card-category-container"
