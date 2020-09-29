@@ -7,6 +7,7 @@ export default function NewUserProvider() {
     return (
         <div className="container-new-user-provider">
             <CreateFormUserProvider />
+            
         </div>
     );
 }

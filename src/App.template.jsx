@@ -16,6 +16,7 @@ import '../src/assets/styles/fonts/style.css';
 import '../src/assets/styles/style.scss';
 import './App.scss';
 import EditServiceProviderProfile from './app/view/edit-service-provider-profile/edit-service-provider-profile';
+import ServiceProviderSummary from './app/view/service-provider-summary/service-provider-summary';
 
 export default (props) => {
     const items_navbar_nolog = [
@@ -130,7 +131,11 @@ export default (props) => {
                             )
                         }
                     />
+                    <Route path="/user/summary" component={ServiceProviderSummary} />
                     <Route path="/*" component={NotFound} />
+
+                    
+
                 </Switch>
                 <Footer />
             </BrowserRouter>
