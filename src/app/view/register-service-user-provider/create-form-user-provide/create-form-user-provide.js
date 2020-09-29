@@ -272,10 +272,12 @@ export default function CreateFormUserProvider() {
                 </div>
 
                 <div className="items-min-width flex-row-flexend-center buttons-create-service">
-                    <button className="button-accent" type="button">
-                        <Link to="/">Cancel</Link>
-                    </button>
-                    <button className="button-primary">Register</button>
+                    <Link to="/">
+                        <button className="button-accent">Cancel</button>
+                    </Link>
+                    <a>
+                        <button className="button-primary">Register</button>
+                    </a>
                 </div>
             </ValidatorForm>
         </div>
