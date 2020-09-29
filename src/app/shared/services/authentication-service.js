@@ -3,9 +3,9 @@ import axios from 'axios';
 const BASE = 'https://cloudfixum-api.herokuapp.com/';
 
 export class AuthenticationService {
-    async signin(dni) {
-        const dniJson = JSON.stringify(dni);
-        const query = await axios.post(`${BASE}authenticate`, dniJson, {
+    async signin(userDataLog) {
+        const userDataLogJson = JSON.stringify(userDataLog);
+        const query = await axios.post(`${BASE}authenticate`, userDataLogJson, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -23,12 +23,5 @@ export class AuthenticationService {
         });
         const data = query.data;
         return data;
-    }
-
-    async isAuthenticated() {
-        if (localStorage.getItem('token')) {
-            return true;
-        }
-        return false;
     }
 }
