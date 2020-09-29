@@ -14,14 +14,10 @@ export default function EditServiceProviderProfile() {
         phone_number: '',
         location: '',
     };
-
     const [user, setUser] = useState(values);
-
     let userObject = JSON.parse(localStorage.getItem('token'));
 
-    useEffect(() => {
-        setUser(userObject);
-    }, []);
+    useEffect(setUser(userObject), []);
 
     const editUser = (e) => {
         new ServicesApi()
