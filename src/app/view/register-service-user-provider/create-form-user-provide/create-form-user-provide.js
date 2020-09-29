@@ -13,7 +13,8 @@ import {
     dni_error_message,
     phone_error_message,
     password_error_message,
-    confirm_password_error_message, date_error_message,
+    confirm_password_error_message,
+    date_error_message,
 } from '../error-message/error-message';
 import {
     datauser_validators_name,
@@ -21,7 +22,8 @@ import {
     dni_validators_name,
     phone_validators_name,
     password_validators_name,
-    confirm_password_validators_name, date_validators_name,
+    confirm_password_validators_name,
+    date_validators_name,
 } from '../validators-name/validators-name';
 
 export default function CreateFormUserProvider() {
@@ -115,7 +117,7 @@ export default function CreateFormUserProvider() {
     });
 
     ValidatorForm.addValidationRule('minimumYearDate', (value) => {
-        if (value > "1980-01-1" && value < "2007-12-31") {
+        if (value > "1962-01-1" && value < "2007-12-31") {
             return true;
         } else {
             return false;
@@ -285,9 +287,9 @@ export default function CreateFormUserProvider() {
                     <Link to="/">
                         <button className="button-accent">Cancel</button>
                     </Link>
-                    <a>
+                    <span>
                         <button className="button-primary">Register</button>
-                    </a>
+                    </span>
                 </div>
             </ValidatorForm>
         </div>
