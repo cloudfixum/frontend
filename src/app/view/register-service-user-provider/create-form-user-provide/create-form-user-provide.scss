@@ -53,10 +53,17 @@ h1 {
     margin-left: 10px;
 }
 
+.cancel-button {
+    color: $color-primary;
+}
+
 .items-min-width {
     min-width: 100% !important;
 }
 
 a {
     color: $color-primary;
+}
+.item-password {
+    margin-top: -16px;
 }

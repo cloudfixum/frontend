@@ -10,7 +10,7 @@ import NewUserProvider from './app/view/register-service-user-provider/register-
 import NavBar from './app/shared/components/nav-bar/nav-bar';
 import Footer from './app/shared/components/footer/footer';
 import NotFound from './app/view/errors/404-not-found/404-not-found';
-import SingIn from './app/view/singin/singin';
+import Signin from './app/view/signin/signin';
 
 import '../src/assets/styles/fonts/style.css';
 import '../src/assets/styles/style.scss';
@@ -25,13 +25,13 @@ export default (props) => {
             icon: 'house',
         },
         {
-            path: '/singup',
-            name: 'Sing Up',
+            path: '/signup',
+            name: 'Sign Up',
             icon: 'person_add',
         },
         {
-            path: '/singin',
-            name: 'Sing In',
+            path: '/signin',
+            name: 'Sign In',
             icon: 'login',
         },
     ];
@@ -82,7 +82,7 @@ export default (props) => {
                             localStorage.getItem('token') !== null ? (
                                 <NewService />
                             ) : (
-                                <Redirect to="/singin" />
+                                <Redirect to="/signin" />
                             )
                         }
                     />
@@ -93,13 +93,13 @@ export default (props) => {
                             localStorage.getItem('token') !== null ? (
                                 <ServiceProviderProfile />
                             ) : (
-                                <Redirect to="/singin" />
+                                <Redirect to="/signin" />
                             )
                         }
                     />
                     <Route
                         exact
-                        path="/singup"
+                        path="/signup"
                         render={() =>
                             localStorage.getItem('token') === null ? (
                                 <NewUserProvider />
@@ -110,10 +110,10 @@ export default (props) => {
                     />
                     <Route
                         exact
-                        path="/singin"
+                        path="/signin"
                         render={() =>
                             localStorage.getItem('token') === null ? (
-                                <SingIn />
+                                <Signin />
                             ) : (
                                 <Redirect to="/user/profile" />
                             )
@@ -126,7 +126,7 @@ export default (props) => {
                             localStorage.getItem('token') !== null ? (
                                 <EditServiceProviderProfile />
                             ) : (
-                                <Redirect to="/singin" />
+                                <Redirect to="/signin" />
                             )
                         }
                     />
