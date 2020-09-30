@@ -7,7 +7,7 @@ export const title_validators_name = [
 export const description_validators_name = [
     'isRequired',
     'maxLengthDescription',
-    'matchRegexp:^[a-zA-Z.,?!¿; ]*$',
+    'matchRegexp:^[a-zA-Z0-9:.,?!¿; ]*$',
 ];
 
 export const price_validators_name = ['isRequired', 'minNumber:100'];

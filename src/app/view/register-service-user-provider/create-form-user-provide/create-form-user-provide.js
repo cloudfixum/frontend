@@ -10,6 +10,7 @@ import {
     phone_error_message,
     password_error_message,
     confirm_password_error_message,
+    date_error_message,
 } from '../error-message/error-message';
 import {
     datauser_validators_name,
@@ -18,12 +19,13 @@ import {
     phone_validators_name,
     password_validators_name,
     confirm_password_validators_name,
+    date_validators_name,
 } from '../validators-name/validators-name';
 
 import './create-form-user-provide.scss';
 
-
 const parseDate = (date, separator) => {
+
     let inputDate = date.split(separator)
     let day = inputDate[2];
     let month = inputDate[1];
@@ -43,7 +45,7 @@ export default function CreateFormUserProvider() {
         location: '',
         password: '',
     };
-    const minimumYearsInMilliseconds = 5.676e+11;
+    const minimumYearsInMilliseconds = 5.676e11;
 
     const [valuesForm, setValuesForm] = useState(values);
     const [confirmPassword, setconfirmPassword] = useState('');
@@ -71,7 +73,7 @@ export default function CreateFormUserProvider() {
         e.preventDefault();
         let date = parseDate(valuesForm.birthday, '-');
         valuesForm.birthday = date.day + '-' + date.month + '-' + date.year;
-        setValuesForm(valuesForm)
+        setValuesForm(valuesForm);
         createUser();
     };
 
@@ -126,8 +128,12 @@ export default function CreateFormUserProvider() {
     });
 
     ValidatorForm.addValidationRule('date', (value) => {
-        let date = parseDate(value, '-')
-        if (new Date().getTime() - new Date(date.year, date.month, date.day).getTime() < minimumYearsInMilliseconds) {
+        let date = parseDate(value, '-');
+        if (
+            new Date().getTime() -
+                new Date(date.year, date.month, date.day).getTime() <
+            minimumYearsInMilliseconds
+        ) {
             return false;
         } else {
             return true;
@@ -294,10 +300,12 @@ export default function CreateFormUserProvider() {
                 </div>
 
                 <div className="items-min-width flex-row-flexend-center buttons-create-service">
-                    <button className="button-accent" type="button">
-                        <Link to="/">Cancel</Link>
-                    </button>
-                    <button className="button-primary">Register</button>
+                    <Link to="/">
+                        <button className="button-accent">Cancel</button>
+                    </Link>
+                    <span>
+                        <button className="button-primary">Register</button>
+                    </span>
                 </div>
             </ValidatorForm>
         </div>
