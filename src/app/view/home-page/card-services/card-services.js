@@ -1,8 +1,7 @@
 import React from 'react';
-import { toUpperFirstChar } from '../../../shared/utils/to-upper-first-char';
+import { ServiceCategories } from '../../../shared/utils/constant/service-categories';
 
 import './card-services.scss';
-import { ServiceCategories } from '../../../shared/utils/constant/service-categories';
 
 export default function CardServices(props) {
     const image = 'url(' + props.service.image_url + ')';

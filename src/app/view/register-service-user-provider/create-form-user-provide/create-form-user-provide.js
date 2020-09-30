@@ -1,12 +1,8 @@
-import ServicesApi from '../../../shared/services/services-api';
-import { useState } from 'react';
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { FormControl } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Link } from 'react-router-dom';
-
-import './create-form-user-provide.scss';
-
+import ServicesApi from '../../../shared/services/services-api';
 import {
     datauser_error_message,
     address_error_message,
@@ -26,6 +22,18 @@ import {
     date_validators_name,
 } from '../validators-name/validators-name';
 
+import './create-form-user-provide.scss';
+
+
+const parseDate = (date, separator) => {
+    let inputDate = date.split(separator)
+    let day = parseInt(inputDate[2]);
+    let month = parseInt(inputDate[1]);
+    let year = parseInt(inputDate[0]);
+
+    return {day, month, year}
+}
+
 export default function CreateFormUserProvider() {
     const values = {
         name: '',
@@ -38,6 +46,7 @@ export default function CreateFormUserProvider() {
         location: '',
         password: '',
     };
+    const minimumYearsInMilliseconds = 5.676e+11;
 
     const [valuesForm, setValuesForm] = useState(values);
     const [confirmPassword, setconfirmPassword] = useState('');
@@ -63,6 +72,9 @@ export default function CreateFormUserProvider() {
     };
     const handleOnSubmit = (e) => {
         e.preventDefault();
+        let date = parseDate(valuesForm.birthday, '-');
+        valuesForm.birthday = date.day + '-' + date.month + '-' + date.year;
+        setValuesForm(valuesForm)
         createUser();
     };
 
@@ -116,11 +128,12 @@ export default function CreateFormUserProvider() {
         }
     });
 
-    ValidatorForm.addValidationRule('minimumYearDate', (value) => {
-        if (value > "1962-01-1" && value < "2007-12-31") {
-            return true;
-        } else {
+    ValidatorForm.addValidationRule('date', (value) => {
+        let date = parseDate(value, '-')
+        if (new Date().getTime() - new Date(date.year, date.month, date.day).getTime() < minimumYearsInMilliseconds) {
             return false;
+        } else {
+            return true;
         }
     });
 
@@ -182,8 +195,8 @@ export default function CreateFormUserProvider() {
                         id="birthday"
                         onChange={handleChange}
                         value={valuesForm.birthday}
-                        validators={date_validators_name}
-                        errorMessages={date_error_message}
+                        validators={['date']}
+                        errorMessages={['You must be of legal age']}
                         variant="outlined"
                         required
                     />
