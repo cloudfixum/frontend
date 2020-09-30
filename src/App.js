@@ -17,7 +17,7 @@ import './App.scss';
 
 function App() {
     let items =
-        localStorage.getItem('token') !== null
+        localStorage.getItem('jwt') !== null
             ? item_navbar_log
             : items_navbar_nolog;
 
@@ -30,18 +30,14 @@ function App() {
                         exact
                         path="/"
                         render={() =>
-                            localStorage.getItem('token') === null ? (
                                 <HomePage />
-                            ) : (
-                                <Redirect to="/user/profile" />
-                            )
                         }
                     />
                     <Route
                         exact
                         path="/user/new-service"
                         render={() =>
-                            localStorage.getItem('token') !== null ? (
+                            localStorage.getItem('jwt') !== null ? (
                                 <NewService />
                             ) : (
                                 <Redirect to="/signin" />
@@ -52,7 +48,7 @@ function App() {
                         exact
                         path="/user/profile"
                         render={() =>
-                            localStorage.getItem('token') !== null ? (
+                            localStorage.getItem('jwt') !== null ? (
                                 <ServiceProviderProfile />
                             ) : (
                                 <Redirect to="/signin" />
@@ -63,7 +59,7 @@ function App() {
                         exact
                         path="/signup"
                         render={() =>
-                            localStorage.getItem('token') === null ? (
+                            localStorage.getItem('jwt') === null ? (
                                 <NewUserProvider />
                             ) : (
                                 <Redirect to="/user/profile" />
@@ -74,7 +70,7 @@ function App() {
                         exact
                         path="/signin"
                         render={() =>
-                            localStorage.getItem('token') === null ? (
+                            localStorage.getItem('jwt') === null ? (
                                 <Signin />
                             ) : (
                                 <Redirect to="/user/profile" />
@@ -85,7 +81,7 @@ function App() {
                         exact
                         path="/user/profile/edit"
                         render={() =>
-                            localStorage.getItem('token') !== null ? (
+                            localStorage.getItem('jwt') !== null ? (
                                 <EditServiceProviderProfile />
                             ) : (
                                 <Redirect to="/signin" />

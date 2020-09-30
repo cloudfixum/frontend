@@ -21,7 +21,9 @@ export default function FormSignIn() {
         new AuthenticationService()
             .signin(valuesForm)
             .then((response) => {
-                console.log(response)
+                localStorage.setItem('jwt', JSON.stringify(response))
+                console.log(localStorage.getItem('jwt'))
+                window.location = '/user/profile';
                 /*
                 setIsValidate(true);
                 localStorage.setItem('token', JSON.stringify(response));

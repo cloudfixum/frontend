@@ -17,12 +17,13 @@ const values = [
     'Birthday',
 ];
 
-export default (user) => {
+export default () => {
     return (
         <div className="provider-profile">
             <nav className="flex-column-center-center title-background">
                 <h3 className="title profile-title"> My Profile </h3>
             </nav>
+            {/*
             <Grid
                 container
                 spacing={0}
@@ -78,6 +79,7 @@ export default (user) => {
                     </button>
                 </Grid>
             </Grid>
+            */}
         </div>
     );
 };
