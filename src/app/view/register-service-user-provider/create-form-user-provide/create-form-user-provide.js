@@ -25,10 +25,9 @@ import './create-form-user-provide.scss';
 
 const parseDate = (date, separator) => {
     let inputDate = date.split(separator)
-    let day = parseInt(inputDate[2]);
-    let month = parseInt(inputDate[1]);
-    let year = parseInt(inputDate[0]);
-
+    let day = inputDate[2];
+    let month = inputDate[1];
+    let year = inputDate[0];
     return {day, month, year}
 }
 
@@ -53,8 +52,9 @@ export default function CreateFormUserProvider() {
         new ServicesApi()
             .addUserServiceProvider(valuesForm)
             .then((r) => {
-                localStorage.setItem('token', JSON.stringify(r));
-                window.location = '/user/profile';
+                console.log(r)
+                //localStorage.setItem('token', JSON.stringify(r));
+                //window.location = '/user/profile';
             })
             .catch((e) => {
                 console.log(e);

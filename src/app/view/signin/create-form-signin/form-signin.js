@@ -51,7 +51,7 @@ export default function FormSignIn() {
     };
 
     return (
-        <div className="container-form-singin">
+        <div className="container-form-signin">
             <h1>Sign In</h1>
             <ValidatorForm
                 onSubmit={handleSubmit}
