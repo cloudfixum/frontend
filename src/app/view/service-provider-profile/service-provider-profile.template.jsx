@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import '../home-page/card-services/card-services.scss';
 import './service-provider-profile.scss';
 import { Preloader } from '../../shared/components/preloader/preloader';
+import CardServices from '../home-page/card-services/card-services';
 
 const values = [
     'Id',
@@ -17,56 +18,23 @@ const values = [
     'Birthday',
 ];
 
-export default (user) => {
+export default (user, services) => {
     return (
         <div className="provider-profile">
             <nav className="flex-column-center-center title-background">
                 <h3 className="title profile-title"> My Profile </h3>
             </nav>
-            <Grid
-                container
-                spacing={0}
-                style={{ padding: '24px' }}
-                direction="column"
-                alignItems="center"
-                justify="center">
-                <Grid item></Grid>
-                <Grid
-                    item
-                    xs={12}
-                    sm={6}
-                    md={4}
-                    lg={4}
-                    xl={3}
-                    className="container-user-values profile-card card-container flex-column-center-start">
-                    {Object.keys(user) === undefined ? (
-                        <div className="flex-column-center-start container-preloader">
-                            <Preloader />
-                        </div>
-                    ) : (
-                        Object.keys(user).map((key, i) => {
-                            if (i === 0) {
-                                return null;
-                            }
-                            return (
-                                <tr key={i} className="card-header-container">
-                                    <td>
-                                        {' '}
-                                        <h3>{values[i]}</h3>{' '}
-                                    </td>
-                                    <td>
-                                        {' '}
-                                        <h3>:</h3>{' '}
-                                    </td>
-                                    <td style={{ opacity: 0 }}> ___ </td>
-                                    <td className="td-align">
-                                        {' '}
-                                        <p>{user[key]}</p>{' '}
-                                    </td>
-                                </tr>
-                            );
-                        })
-                    )}
+            <div className="wrapper">
+                <div className="mat-card">
+                    <p>
+                        <b>Name:</b> {user.name}
+                    </p>
+                    <p>
+                        <b>Last Name:</b> {user.last_name}
+                    </p>
+                    <p>
+                        <b>Username:</b> {user.email}
+                    </p>
                     <button
                         id="edit"
                         name="edit"
@@ -76,8 +44,21 @@ export default (user) => {
                         }}>
                         Edit Profile
                     </button>
-                </Grid>
-            </Grid>
+                </div>
+            </div>
+            <div className="">
+                <div className="wrapper col3 col2-md col1-xs">
+                    {services.map((service, i) => {
+                        return (
+                            <CardServices
+                                key={i}
+                                service={service}
+                                category={service.category}
+                            />
+                        );
+                    })}
+                </div>
+            </div>
         </div>
     );
 };

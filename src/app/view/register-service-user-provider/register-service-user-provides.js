@@ -1,5 +1,12 @@
-import template from './register-service-user-provides.template';
+import React from 'react';
+
+import CreateFormUserProvider from './create-form-user-provide/create-form-user-provide';
+import './register-service-user-provides.scss';
 
 export default function NewUserProvider() {
-    return template();
+    return (
+        <div className="container-new-user-provider">
+            <CreateFormUserProvider />
+        </div>
+    );
 }

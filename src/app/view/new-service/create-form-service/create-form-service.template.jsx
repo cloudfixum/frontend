@@ -18,7 +18,7 @@ import {
 import './create-form-service.scss';
 
 export default (props) => {
-    const serviceCategories = new ServiceCategories().getCategoriesOrdered();
+    const serviceCategories = new ServiceCategories().getAllSubCategories();
     const handleChange = (e) => {
         props.setValuesForm({
             ...props.valuesForm,
@@ -143,7 +143,7 @@ export default (props) => {
                 <p>*required field</p>
                 <div className="items-min-width flex-row-flexend-center buttons-create-service">
                     <button type="button" className="button-accent">
-                    <Link to="/">Cancel</Link>
+                        <Link to="/">Cancel</Link>
                     </button>
                     <button type="submit" className="button-primary">
                         Create Service
