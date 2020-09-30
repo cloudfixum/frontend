@@ -22,15 +22,14 @@ import {
 
 import './create-form-user-provide.scss';
 
-
 const parseDate = (date, separator) => {
-    let inputDate = date.split(separator)
+    let inputDate = date.split(separator);
     let day = parseInt(inputDate[2]);
     let month = parseInt(inputDate[1]);
     let year = parseInt(inputDate[0]);
 
-    return {day, month, year}
-}
+    return { day, month, year };
+};
 
 export default function CreateFormUserProvider() {
     const values = {
@@ -44,7 +43,7 @@ export default function CreateFormUserProvider() {
         location: '',
         password: '',
     };
-    const minimumYearsInMilliseconds = 5.676e+11;
+    const minimumYearsInMilliseconds = 5.676e11;
 
     const [valuesForm, setValuesForm] = useState(values);
     const [confirmPassword, setconfirmPassword] = useState('');
@@ -72,7 +71,7 @@ export default function CreateFormUserProvider() {
         e.preventDefault();
         let date = parseDate(valuesForm.birthday, '-');
         valuesForm.birthday = date.day + '-' + date.month + '-' + date.year;
-        setValuesForm(valuesForm)
+        setValuesForm(valuesForm);
         createUser();
     };
 
@@ -127,8 +126,12 @@ export default function CreateFormUserProvider() {
     });
 
     ValidatorForm.addValidationRule('date', (value) => {
-        let date = parseDate(value, '-')
-        if (new Date().getTime() - new Date(date.year, date.month, date.day).getTime() < minimumYearsInMilliseconds) {
+        let date = parseDate(value, '-');
+        if (
+            new Date().getTime() -
+                new Date(date.year, date.month, date.day).getTime() <
+            minimumYearsInMilliseconds
+        ) {
             return false;
         } else {
             return true;

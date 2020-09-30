@@ -2,22 +2,19 @@ import React from 'react';
 
 import './container-service-provider-summary.scss';
 import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
-
-
 
 export default function ContainerServiceProviderSummary() {
     return (
         <div className="container-form-user-provider-summary">
             <h1>User Provider Summary</h1>
-            <Grid container spacing={8}>
-                <Grid item xs={12} sm={12} md={12} lg={6}>
-                    <div className="container-img-user-provider"/>
-                </Grid>
-                <Grid item  xs={12} sm={12} md={12} lg={6} className="flex-column-center-start form-items">
-                    <div className="flex-row-center-center">
+            <div className="flex-row-center-center">
+                <div className="container-form-double">
+                    <div className="container-img-user-provider" />
+                </div>
+                <div className="flex-column-center-start">
+                    <div className="container-form-double">
                         <TextField
                             id="name"
                             label="Name"
@@ -27,8 +24,8 @@ export default function ContainerServiceProviderSummary() {
                             }}
                         />
                         <TextField
-                            id="lastname"
-                            label="Last name"
+                            id="last_name"
+                            label="Last Name"
                             defaultValue="Perez"
                             InputProps={{
                                 readOnly: true,
@@ -44,24 +41,35 @@ export default function ContainerServiceProviderSummary() {
                         }}
                     />
                     <TextField
-                        id="base_price"
+                        id="price"
                         label="Price"
                         defaultValue="200"
                         InputProps={{
                             readOnly: true,
                         }}
-                        
                     />
-                    <div className="calification-service-provider">
-                        <Box component="fieldset" mb={1} borderColor="transparent">
-                            <Rating  name="read-only" value={3} readOnly />
+                    <div className="tittle-rating">
+                        <Box
+                            component="fieldset"
+                            mb={3}
+                            borderColor="transparent">
+                            <h6>Calification</h6>
+                            <Rating name="read-only" value={4} readOnly />
                         </Box>
                     </div>
-                </Grid>
-            </Grid>
-            <Grid container spacing={12} className="container-description">
-                    <h6>Sint incididunt dolore mollit deserunt est exercitation ullamco eu anim Lorem laboris. Id commodo exercitation tempor Lorem ex ut consequat officia velit dolore. Aute elit proident do est nulla nostrud ullamco aute duis nostrud consectetur Lorem ullamco irure. Ut quis eu exercitation culpa proident consequat ullamco commodo amet et. Id ad laboris velit id nostrud laboris proident aute ex enim irure minim. Culpa pariatur reprehenderit et aliqua nostrud nostrud adipisicing velit do est exercitation.</h6>
-            </Grid>
+                </div>
+            </div>
+            <div className="container-data-descriptions">
+                <h5>Description</h5>
+                <h6>
+                    Qui qui ea laborum commodo consequat occaecat culpa Lorem
+                    sunt incididunt nisi do. Consequat proident sint id anim
+                    excepteur sunt et. Minim id commodo eiusmod laboris amet
+                    anim adipisicing nisi occaecat voluptate quis id excepteur
+                    culpa. Ullamco anim ut nisi pariatur do minim. Dolor eu ea
+                    qui cupidatat excepteur duis id elit ad do aliquip.
+                </h6>
+            </div>
         </div>
     );
 }
