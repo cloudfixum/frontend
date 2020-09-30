@@ -1,28 +1,43 @@
 import template from './service-provider-profile.template';
 import { useState, useEffect } from 'react';
 import {UserApi} from '../../shared/services/user-api'
+import ServicesApi from "../../shared/services/services-api";
 
 export default function ServiceProviderProfile() {
     const [user, setUser] = useState({});
 
-    const [token, setToken] = useState('');
+    const [services, setServices] = useState([]);
 
     let tokenObject = JSON.parse(localStorage.getItem('jwt'));
 
+    const [token, setToken] = useState(tokenObject['jwt']);
+
     useEffect(() => {
-        setToken(tokenObject)
+        getUser()
     },[]);
 
     const getUser = (e) => {
         console.log(token)
-        new UserApi().getUserByToken('eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZkBnbWFpbC5jb20iL…g2M30.oBDJ5SGFSaUrXXP-Wo4usT2VDVkBYfRI5J9xs3uca2c')
+        new UserApi().getUserByToken(token)
             .then( (res) => {
+                setUser(res)
+                localStorage.setItem('id', res.id)
+                getJobsMyUser(res.id)
             })
             .catch((e) => {
                 console.log(e)
             })
     }
 
-    getUser()
-    return template(token);
+    const getJobsMyUser = (id) => {
+        new ServicesApi().getJobsByUserId(id)
+            .then((res) => {
+                setServices(res)
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+    }
+
+    return template(user, services);
 }

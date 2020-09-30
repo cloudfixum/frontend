@@ -5,6 +5,7 @@ import { Preloader } from '../../../shared/components/preloader/preloader';
 // import Pagination from '@material-ui/lab/Pagination';
 
 import './layout-card-services.scss';
+import {ServiceCategories} from "../../../shared/utils/constant/service-categories";
 
 // const scrollUp = (e) => {
 //     window.scroll(0, 0);
@@ -17,6 +18,10 @@ export default function LayoutCardServices(props) {
     // }
 
     let [services, setServices] = useState([]);
+
+    const categories = new ServiceCategories().getSubCategoriesByType(
+        props.category
+    );
 
     useEffect(() => {
         const fetch = () => {
@@ -45,7 +50,7 @@ export default function LayoutCardServices(props) {
                             <CardServices
                                 key={i}
                                 service={service}
-                                category={props.category}
+                                category={categories[service.category]}
                             />
                         );
                     })}

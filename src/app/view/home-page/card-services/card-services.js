@@ -5,9 +5,6 @@ import './card-services.scss';
 
 export default function CardServices(props) {
     const image = 'url(' + props.service.image_url + ')';
-    const categories = new ServiceCategories().getSubCategoriesByType(
-        props.category
-    );
 
     return (
         <div
@@ -16,7 +13,7 @@ export default function CardServices(props) {
             <div className="data-container">
                 <div className="mat-card-header">
                     <h3>{props.service.title}</h3>
-                    <p>{categories[props.service.category]}</p>
+                    <p>{props.category}</p>
                 </div>
                 <div className="mat-card-content">
                     <div className="content-description">
