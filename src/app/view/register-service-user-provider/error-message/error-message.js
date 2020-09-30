@@ -25,3 +25,7 @@ export const confirm_password_error_message = [
     'this field is required',
     'passwords do not match',
 ];
+export const date_error_message = [
+    'this field is required',
+    'you dont have a required date',
+]
