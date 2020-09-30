@@ -1,28 +1,33 @@
 import template from '../register-service-user-provider/create-form-user-provide/create-form-user-provide';
 import ServicesApi from '../../shared/services/services-api';
 import React, { useEffect, useState } from 'react';
-import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
-import {FormControl} from "@material-ui/core";
+import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
+import { FormControl } from '@material-ui/core';
 import {
-    address_validators_name, confirm_password_validators_name,
-    datauser_validators_name, dni_validators_name, password_validators_name,
-    phone_validators_name
-} from "../register-service-user-provider/validators-name/validators-name";
+    address_validators_name,
+    confirm_password_validators_name,
+    datauser_validators_name,
+    dni_validators_name,
+    password_validators_name,
+    phone_validators_name,
+} from '../register-service-user-provider/validators-name/validators-name';
 import {
-    address_error_message, confirm_password_error_message,
-    datauser_error_message, dni_error_message, password_error_message,
-    phone_error_message
-} from "../register-service-user-provider/error-message/error-message";
-import {Link} from "react-router-dom";
+    address_error_message,
+    confirm_password_error_message,
+    datauser_error_message,
+    dni_error_message,
+    password_error_message,
+    phone_error_message,
+} from '../register-service-user-provider/error-message/error-message';
+import { Link } from 'react-router-dom';
 
 const parseDate = (date, separator) => {
-    let inputDate = date.split(separator)
+    let inputDate = date.split(separator);
     let day = inputDate[2];
     let month = inputDate[1];
     let year = inputDate[0];
-    return {day, month, year}
-}
-
+    return { day, month, year };
+};
 
 export default function EditServiceProviderProfile() {
     const values = {
@@ -39,22 +44,23 @@ export default function EditServiceProviderProfile() {
     let userId = JSON.parse(localStorage.getItem('id'));
 
     const getUser = () => {
-        new ServicesApi().getUserById(userId)
-            .then( (res) => {
-                let date = parseDate(res.birthday)
+        new ServicesApi()
+            .getUserById(userId)
+            .then((res) => {
+                let date = parseDate(res.birthday);
                 res.birthday = date.year + '-' + date.month + '-' + date.day;
-                setUser(res)
+                setUser(res);
             })
             .catch((e) => {
-                console.log(e)
-            })
-    }
+                console.log(e);
+            });
+    };
     useEffect(() => {
         getUser();
-    }, [])
+    }, []);
     console.log(user);
 
-    const minimumYearsInMilliseconds = 5.676e+11;
+    const minimumYearsInMilliseconds = 5.676e11;
 
     const editUser = (e) => {
         new ServicesApi()
@@ -79,7 +85,7 @@ export default function EditServiceProviderProfile() {
         e.preventDefault();
         let date = parseDate(user.birthday, '-');
         user.birthday = date.year + '-' + date.month + '-' + date.day;
-        setUser(user)
+        setUser(user);
         editUser();
     };
 
@@ -112,10 +118,13 @@ export default function EditServiceProviderProfile() {
         }
     });
 
-
     ValidatorForm.addValidationRule('date', (value) => {
-        let date = parseDate(value, '-')
-        if (new Date().getTime() - new Date(date.year, date.month, date.day).getTime() < minimumYearsInMilliseconds) {
+        let date = parseDate(value, '-');
+        if (
+            new Date().getTime() -
+                new Date(date.year, date.month, date.day).getTime() <
+            minimumYearsInMilliseconds
+        ) {
             return false;
         } else {
             return true;

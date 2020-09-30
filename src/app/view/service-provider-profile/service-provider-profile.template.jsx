@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import '../home-page/card-services/card-services.scss';
 import './service-provider-profile.scss';
 import { Preloader } from '../../shared/components/preloader/preloader';
-import CardServices from "../home-page/card-services/card-services";
+import CardServices from '../home-page/card-services/card-services';
 
 const values = [
     'Id',
@@ -26,9 +26,15 @@ export default (user, services) => {
             </nav>
             <div className="wrapper">
                 <div className="mat-card">
-                    <p><b>Name:</b> {user.name}</p>
-                    <p><b>Last Name:</b> {user.last_name}</p>
-                    <p><b>Username:</b> {user.email}</p>
+                    <p>
+                        <b>Name:</b> {user.name}
+                    </p>
+                    <p>
+                        <b>Last Name:</b> {user.last_name}
+                    </p>
+                    <p>
+                        <b>Username:</b> {user.email}
+                    </p>
                     <button
                         id="edit"
                         name="edit"

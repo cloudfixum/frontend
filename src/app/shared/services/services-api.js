@@ -16,13 +16,13 @@ class ServicesApi {
 
     async addService(service, token) {
         const serviceJson = JSON.stringify(service);
-        const jwt = JSON.parse(localStorage.getItem('jwt'))
-        console.log(jwt['jwt'])
+        const jwt = JSON.parse(localStorage.getItem('jwt'));
+        console.log(jwt['jwt']);
 
         const query = await axios.post(`${BASE}service`, serviceJson, {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${jwt['jwt']}`
+                Authorization: `Bearer ${jwt['jwt']}`,
             },
         });
         const data = query.data;
@@ -70,7 +70,7 @@ class ServicesApi {
     }
 
     async getJobsByUserId(id) {
-        console.log(id)
+        console.log(id);
         const query = await axios.get(`${BASE}user/${id}/jobs`);
         const data = query.data;
         return data;

@@ -89,9 +89,9 @@ export class ServiceCategories {
         let categories = [];
         this.category_model.forEach((category) => {
             Object.keys(category.sub_categories).forEach((key) => {
-                categories.push(category.sub_categories[key])
-            })
-        })
+                categories.push(category.sub_categories[key]);
+            });
+        });
         return categories;
     }
 

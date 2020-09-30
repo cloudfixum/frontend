@@ -1,12 +1,12 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { ServiceCategories } from '../../../shared/utils/constant/service-categories';
 
 import './card-services.scss';
 
 export default function CardServices(props) {
     const image = 'url(' + props.service.image_url + ')';
-    const url = '/service/' + props.service.id + '/detail'
+    const url = '/service/' + props.service.id + '/detail';
 
     return (
         <div
@@ -26,8 +26,9 @@ export default function CardServices(props) {
                     </p>
                 </div>
                 <div className="flex-row-flexend-center">
-                    <Link to={url}><button className="button-primary">
-                        More Details</button> </Link>
+                    <Link to={url}>
+                        <button className="button-primary">More Details</button>{' '}
+                    </Link>
                 </div>
             </div>
         </div>

@@ -30,13 +30,7 @@ function App() {
             <BrowserRouter>
                 <NavBar items={items} />
                 <Switch>
-                    <Route
-                        exact
-                        path="/"
-                        render={() =>
-                                <HomePage />
-                        }
-                    />
+                    <Route exact path="/" render={() => <HomePage />} />
                     <Route
                         exact
                         path="/user/new-service"
