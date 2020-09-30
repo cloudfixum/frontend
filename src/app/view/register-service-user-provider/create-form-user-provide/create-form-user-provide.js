@@ -10,6 +10,7 @@ import {
     phone_error_message,
     password_error_message,
     confirm_password_error_message,
+    date_error_message,
 } from '../error-message/error-message';
 import {
     datauser_validators_name,
@@ -18,6 +19,7 @@ import {
     phone_validators_name,
     password_validators_name,
     confirm_password_validators_name,
+    date_validators_name,
 } from '../validators-name/validators-name';
 
 import './create-form-user-provide.scss';
@@ -298,10 +300,12 @@ export default function CreateFormUserProvider() {
                 </div>
 
                 <div className="items-min-width flex-row-flexend-center buttons-create-service">
-                    <button className="button-accent" type="button">
-                        <Link to="/">Cancel</Link>
-                    </button>
-                    <button className="button-primary">Register</button>
+                    <Link to="/">
+                        <button className="button-accent">Cancel</button>
+                    </Link>
+                    <span>
+                        <button className="button-primary">Register</button>
+                    </span>
                 </div>
             </ValidatorForm>
         </div>
