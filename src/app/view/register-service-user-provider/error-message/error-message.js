@@ -28,4 +28,4 @@ export const confirm_password_error_message = [
 export const date_error_message = [
     'this field is required',
     'you dont have a required date',
-]
+];

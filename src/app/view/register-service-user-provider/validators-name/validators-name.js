@@ -19,4 +19,4 @@ export const confirm_password_validators_name = [
     'isRequired',
     'confirmPassword',
 ];
-export const date_validators_name =[ 'isRequired', 'minimumYearDate'];
+export const date_validators_name = ['isRequired', 'minimumYearDate'];
