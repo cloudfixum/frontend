@@ -9,11 +9,12 @@ import {title_validators_name, description_validators_name, address_validators_n
 
 export default function NewBudgetRequestForm() {
     const [encodedImage, setEncodedImage] = useState("");
+
     const values = {
         title: '',
         description: '',
         location: '',
-        image: encodedImage,
+        image: '',
         email: '',
     };
 
@@ -28,31 +29,23 @@ export default function NewBudgetRequestForm() {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
+        console.log(valuesForm)
     };
 
     //this handles the "Select File Button" when uploading an image
-    const handleSelectedImage = async (i) => {
+    const handleSelectedImage = (e) => {
         // console.log(e.target.files);
-        const file = i.target.files[0];
-        const base64 = await encodeBase64(file);
-        // console.log(base64);
+        const file = e.target.files[0];
+        const base64 = encodeBase64(file);
+        console.log(base64);
         setEncodedImage(base64);
     };
 
     //this encodes the image to base64 with the "readAsDataURL" function
     const encodeBase64 = (file) => {
-        return new Promise((resolve, reject)=>{
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(file);
-
-            fileReader.onload = () => {
-                resolve(fileReader.result);
-            };
-
-            fileReader.onerror = (error)=>{
-                reject(error);
-            };
-        });
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        return fileReader.result;
     };
 
     //const encodedImage = new Buffer().toString('base64');
@@ -132,15 +125,20 @@ export default function NewBudgetRequestForm() {
                     />
                 </FormControl>
                 <FormControl className="items-min-width form-items" variant="outlined">
-                    <InputLabel id="image" >Upload an image of the problem</InputLabel>
+                    <label>
                     <Input type='file'
                            accept="image/*"
+                           style={{display: 'none'}}
                            id="image"
                            name="image"
                            onChange={(i) => {
                                handleSelectedImage(i);
                            }}
                     />
+                    <div>
+                        <p><span className="material-icons" style={{color:'black'}}>cloud_upload</span>Choose a file</p>
+                    </div>
+                    </label>
                 </FormControl>
                 <FormControl className="items-min-width form-items">
                     <TextValidator
