@@ -1,0 +1,48 @@
+@import '../../../../assets/styles/colors';
+
+.container-form-user-provider-summary {
+    position: relative;
+    width: 100%;
+    margin: 40px;
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    font-size: 50px;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+    @media (min-width: 400px) {
+        padding: 40px;
+    }
+    @media (min-width: 767px) {
+        width: 65%;
+    }
+    @media (min-width: 1280px) {
+        width: 45%;
+    }
+    h1 {
+        font-size: 30px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+}
+.form-items {
+    margin-bottom: 20px !important;
+}
+.container-img-user-provider {
+    width: 40vh;
+    height: 20vh;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 4px;
+    background-image: url('../../../../assets/images/img-user.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.container-data-descriptions {
+    h6 {
+        font-size: 20px;
+    }
+}
+.tittle-rating {
+    margin-bottom: 15px;
+}
