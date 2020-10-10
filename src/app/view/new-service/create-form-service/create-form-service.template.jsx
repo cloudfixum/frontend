@@ -18,9 +18,7 @@ import {
 import './create-form-service.scss';
 
 export default (props) => {
-    const serviceCategories = new ServiceCategories().getCategoriesByType(
-        'sub_categories'
-    );
+    const serviceCategories = new ServiceCategories().getAllSubCategories();
     const handleChange = (e) => {
         props.setValuesForm({
             ...props.valuesForm,

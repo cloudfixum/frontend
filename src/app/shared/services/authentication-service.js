@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE = 'https://cloudfixum-api.herokuapp.com/';
+const BASE = 'https://cloudfixum-api-dev.herokuapp.com/';
 
 export class AuthenticationService {
     async signin(userDataLog) {
@@ -16,7 +16,7 @@ export class AuthenticationService {
 
     async signup(user) {
         const userJson = JSON.stringify(user);
-        const query = await axios.post(`${BASE}authenticate`, userJson, {
+        const query = await axios.post(`${BASE}authenticated`, userJson, {
             headers: {
                 'Content-Type': 'application/json',
             },

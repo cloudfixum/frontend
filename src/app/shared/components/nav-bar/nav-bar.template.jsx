@@ -17,7 +17,7 @@ const handleStateMenu = () => {
 
 export default (props) => {
     const logout = () => {
-        localStorage.removeItem('token');
+        localStorage.removeItem('jwt');
         window.location = '/';
     };
 
