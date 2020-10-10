@@ -1,0 +1,22 @@
+@import '../../../../assets/styles/colors';
+
+.container-budget-request-form{
+  position: relative;
+  width: 80%;
+  margin: 40px;
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px;
+  font-size: 50px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+  0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.form-items {
+  margin-bottom: 20px !important;
+}
+
+.items-min-width {
+  min-width: 100% !important;
+}
