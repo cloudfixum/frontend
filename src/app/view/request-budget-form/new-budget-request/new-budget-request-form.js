@@ -7,7 +7,7 @@ import './new-budget-request-form.scss';
 import {title_error_message, description_error_message, address_error_message} from '../error-messages/error-messages';
 import {title_validators_name, description_validators_name, address_validators_name} from '../validators-names/validators-names';
 
-export default function NewBudgetRequestForm() {
+export default function NewBudgetRequestForm(props) {
     const [encodedImage, setEncodedImage] = useState("");
     const values = {
         title: '',
@@ -88,7 +88,7 @@ export default function NewBudgetRequestForm() {
     return(
         <div className='container-budget-request-form'>
             <div className='flex-row-center-center'>
-                <h3> Request a Budget </h3>
+                <h1> Request a Budget </h1>
             </div>
             <ValidatorForm
                 onSubmit={handleSubmit}
@@ -99,6 +99,7 @@ export default function NewBudgetRequestForm() {
                         name="title"
                         id="title"
                         variant="outlined"
+                        defaultValue={props.title}
                         onChange={handleChange}
                         validators={title_validators_name}
                         errorMessages={title_error_message}
@@ -132,7 +133,7 @@ export default function NewBudgetRequestForm() {
                     />
                 </FormControl>
                 <FormControl className="items-min-width form-items" variant="outlined">
-                    <InputLabel id="image" >Upload an image of the problem</InputLabel>
+                    <InputLabel id="image" variant="outlined">Image of the problem</InputLabel>
                     <Input type='file'
                            accept="image/*"
                            id="image"
@@ -142,7 +143,7 @@ export default function NewBudgetRequestForm() {
                            }}
                     />
                 </FormControl>
-                <FormControl className="items-min-width form-items">
+                <FormControl className="form-items">
                     <TextValidator
                         label="Email"
                         name="email"
@@ -155,6 +156,7 @@ export default function NewBudgetRequestForm() {
                         required
                     />
                 </FormControl>
+                <br/>
                 <button className="button button-primary">Submit request</button>
             </ValidatorForm>
         </div>

@@ -2,7 +2,7 @@
 
 .container-budget-request-form{
   position: relative;
-  width: 80%;
+  width: 50%;
   margin: 40px;
   padding: 20px;
   background-color: rgb(255, 255, 255);
@@ -11,6 +11,12 @@
   box-sizing: border-box;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
   0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+  h1 {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 10px;
+  }
 }
 
 .form-items {
@@ -19,4 +25,8 @@
 
 .items-min-width {
   min-width: 100% !important;
+}
+
+.button-primary{
+  display: grid;
 }

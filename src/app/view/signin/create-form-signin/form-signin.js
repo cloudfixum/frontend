@@ -9,7 +9,7 @@ import './form-signin.scss';
 
 export default function FormSignIn() {
     const values = {
-        email: '',
+        username: '',
         password: '',
     };
 
@@ -21,9 +21,14 @@ export default function FormSignIn() {
         new AuthenticationService()
             .signin(valuesForm)
             .then((response) => {
+                localStorage.setItem('jwt', JSON.stringify(response));
+                console.log(localStorage.getItem('jwt'));
+                window.location = '/user/profile';
+                /*
                 setIsValidate(true);
                 localStorage.setItem('token', JSON.stringify(response));
                 window.location = '/user/profile';
+                */
             })
             .catch((e) => {
                 console.log(e);
@@ -58,13 +63,13 @@ export default function FormSignIn() {
                 onError={(errors) => console.log(errors)}>
                 <FormControl className="items-min-width form-items">
                     <TextValidator
-                        name="email"
+                        name="username"
                         fullWidth={true}
-                        id="email"
+                        id="username"
                         label="Email"
                         variant="outlined"
                         onChange={handleChange}
-                        value={props.valuesForm.email}
+                        value={props.valuesForm.username}
                         validators={['isEmail']}
                         errorMessages={'wrong format, need example@example.com'}
                         required

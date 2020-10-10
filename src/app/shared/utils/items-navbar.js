@@ -18,6 +18,11 @@ export const items_navbar_nolog = [
 
 export const item_navbar_log = [
     {
+        path: '/',
+        name: 'Home',
+        icon: 'house',
+    },
+    {
         path: '/user/profile',
         name: 'Profile',
         icon: 'person',

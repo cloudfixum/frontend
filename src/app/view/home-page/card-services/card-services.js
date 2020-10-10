@@ -1,13 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ServiceCategories } from '../../../shared/utils/constant/service-categories';
 
 import './card-services.scss';
 
 export default function CardServices(props) {
     const image = 'url(' + props.service.image_url + ')';
-    const categories = new ServiceCategories().getSubCategoriesByType(
-        props.category
-    );
+    const url = '/service/' + props.service.id + '/detail';
 
     return (
         <div
@@ -16,7 +15,7 @@ export default function CardServices(props) {
             <div className="data-container">
                 <div className="mat-card-header">
                     <h3>{props.service.title}</h3>
-                    <p>{categories[props.service.category]}</p>
+                    <p>{props.category}</p>
                 </div>
                 <div className="mat-card-content">
                     <div className="content-description">
@@ -27,7 +26,9 @@ export default function CardServices(props) {
                     </p>
                 </div>
                 <div className="flex-row-flexend-center">
-                    <button className="button-primary">More Details</button>
+                    <Link to={url}>
+                        <button className="button-primary">More Details</button>{' '}
+                    </Link>
                 </div>
             </div>
         </div>
