@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { FormControl, Input, InputLabel } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import BudgetApi from '../../../shared/services/budget-api';
 // import { Link } from 'react-router-dom';
 
 import './new-budget-request-form.scss';
@@ -27,9 +28,21 @@ export default function NewBudgetRequestForm() {
             [e.target.name]: e.target.value,
         });
     };
+
+    const createBudget = () => {
+        console.log('Values:'+valuesForm)
+        new BudgetApi.createBudgetRequest(valuesForm)
+            .then((res) => {
+                console.log(res)
+            })
+            .catch((e) => {
+                console.log(e)
+            })
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(valuesForm)
+        createBudget()
     };
 
     //this handles the "Select File Button" when uploading an image

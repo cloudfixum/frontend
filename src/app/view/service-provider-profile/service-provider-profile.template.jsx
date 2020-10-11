@@ -35,6 +35,9 @@ export default (user, services) => {
                     <p>
                         <b>Username:</b> {user.email}
                     </p>
+                    <p>
+                        <b>Budget Request List:</b>
+                    </p>
                     <button
                         id="edit"
                         name="edit"
