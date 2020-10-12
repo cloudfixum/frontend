@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import './service-provider-summary.scss';
 import ServicesApi from '../../shared/services/services-api';
@@ -56,9 +57,11 @@ export default function ServiceProviderSummary(props) {
                         </div>
                     </div>
                     <div className="flex-row-flexend-center">
-                        <button className="button-primary">
-                            Request Service
-                        </button>
+                        <Link to={'/service/' + service.id + '/request'}>
+                            <button className="button-primary">
+                                Request Service
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>
