@@ -27,9 +27,9 @@ import './create-form-user-provide.scss';
 const parseDate = (date, separator) => {
 
     let inputDate = date.split(separator);
-    let day = parseInt(inputDate[2]);
-    let month = parseInt(inputDate[1]);
-    let year = parseInt(inputDate[0]);
+    let day = inputDate[2];
+    let month = inputDate[1];
+    let year = inputDate[0];
 
     return { day, month, year };
 };

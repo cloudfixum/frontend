@@ -11,6 +11,7 @@ import Signin from './app/view/signin/signin';
 import BudgetRequest from "./app/view/request-budget-form/budget-request";
 import EditServiceProviderProfile from './app/view/edit-service-provider-profile/edit-service-provider-profile';
 import ServiceProviderSummary from './app/view/service-provider-summary/service-provider-summary';
+import BudgetUserProviderList from "./app/view/budget-user-provider-list/budget-user-provider-list";
 import {
     items_navbar_nolog,
     item_navbar_log,
@@ -88,6 +89,11 @@ function App() {
                     />
                     <Route
                         exact
+                        path="/user/budgets"
+                        component={BudgetUserProviderList}
+                    />
+                    <Route
+                        exact
                         path="/user/profile/edit"
                         render={() =>
                             localStorage.getItem('jwt') !== null ? (
@@ -96,10 +102,6 @@ function App() {
                                 <Redirect to="/signin" />
                             )
                         }
-                    />
-                    <Route
-                        path="/user/summary"
-                        component={ServiceProviderSummary}
                     />
                     <Route path="/*" component={NotFound} />
                 </Switch>
