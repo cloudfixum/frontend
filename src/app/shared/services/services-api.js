@@ -75,5 +75,18 @@ class ServicesApi {
         const data = query.data;
         return data;
     }
+
+    async addBudgetRequest(requestValues){
+        /* not sure this works - not fully tested - tengo miedo que explote toda la cosa :v */
+        console.log(requestValues);
+        const requestJson = JSON.stringify(requestValues);
+        const query = await axios.post(`${BASE}budget`, requestJson, {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const data = query.data;
+        return data;
+    }
 }
 export default ServicesApi;

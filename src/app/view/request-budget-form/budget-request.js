@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import { FormControl, Input, InputLabel, Button } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import ServicesApi from '../../shared/services/services-api';
-
 // import { Link } from 'react-router-dom';
 
 import {title_error_message, description_error_message, address_error_message} from './error-messages/error-messages';
@@ -27,24 +26,42 @@ export default function BudgetRequest(props) {
 
     const [encodedImage, setEncodedImage] = useState("");
     const values = {
-        title: '',
+        title: '', /*minorJob*/
         description: '',
         location: '',
         image: encodedImage,
         email: '',
+        budgetStatus: '', /*BudgetStatus*/
+        provider_response: '', /*String*/
+        budget_price: '',
     };
 
-    const [valuesForm, setValuesForm] = useState(values);
+    const [requestValues, setRequestValues] = useState(values);
 
     const handleChange = (e) => {
         e.preventDefault();
-        setValuesForm({
-            ...valuesForm,
+        setRequestValues({
+            ...requestValues,
             [e.target.name]: e.target.value,
         });
     };
     const handleSubmit = (e) => {
         e.preventDefault();
+        requestValues.budgetStatus = "BUDGETONHOLD"; /*setea el estado inicial del request*/
+        requestValues.provider_response = ""; /*tiene que estar vacio*/
+        requestValues.budget_price = ""; /*tiene que estar vacio*/
+        setRequestValues(requestValues);
+        createRequest();
+    };
+    const createRequest = () => {
+        new ServicesApi()
+            .addBudgetRequest(requestValues)
+            .then((r) => {
+                window.location = '/'; /*redirige a HomePage*/
+            })
+            .catch((e) => {
+                console.log(e); /*¿muestra el error?*/
+            });
     };
 
     //this handles the "Select File Button" when uploading an image
@@ -71,7 +88,6 @@ export default function BudgetRequest(props) {
             };
         });
     };
-
     //const encodedImage = new Buffer().toString('base64');
 
     ValidatorForm.addValidationRule('lengthValue', (value) => {
@@ -130,7 +146,7 @@ export default function BudgetRequest(props) {
                     </FormControl>
                     <FormControl className="items-min-width form-items">
                         <TextValidator
-                            label="Description"
+                            label="Problem Description"
                             name="description"
                             id="description"
                             variant="outlined"
@@ -185,7 +201,7 @@ export default function BudgetRequest(props) {
                             variant="outlined"
                             fullWidth={true}
                             onChange={handleChange}
-                            //value={props.valuesForm.email}
+                            //value={props.requestValues.email}
                             validators={['isEmail']}
                             errorMessages={'wrong format, need example@example.com'}
                             required
