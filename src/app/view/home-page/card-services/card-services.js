@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ServiceCategories } from '../../../shared/utils/constant/service-categories';
 
 import './card-services.scss';
 

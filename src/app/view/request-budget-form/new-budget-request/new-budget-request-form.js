@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { FormControl, Input, InputLabel } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import { FormControl, Input } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import BudgetApi from '../../../shared/services/budget-api';
+import ServicesApi from '../../../shared/services/services-api';
 // import { Link } from 'react-router-dom';
 
 import './new-budget-request-form.scss';
@@ -17,17 +18,19 @@ import {
 } from '../validators-names/validators-names';
 
 export default function NewBudgetRequestForm(props) {
-    const [encodedImage, setEncodedImage] = useState('');
-
     const values = {
-        title: '',
+        budgetStatus: 'BUDGETONHOLD',
+        budget_price: 900,
+        provider_response: 'Hey caramba que onda wey',
         description: '',
         location: '',
-        image: '',
-        email: '',
+        userEmail: '',
+        image_url_encode: null,
     };
 
+    // const [encodedImage, setEncodedImage] = useState('');
     const [valuesForm, setValuesForm] = useState(values);
+    const [minorJobOfBudget, setMinorJobOfBudget] = useState({});
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -37,9 +40,24 @@ export default function NewBudgetRequestForm(props) {
         });
     };
 
+    useEffect(() => {
+        const getMinorJob = () => {
+            new ServicesApi()
+                .getServiceById(props.props.match.params.id)
+                .then((res) => {
+                    setMinorJobOfBudget(res);
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        };
+        getMinorJob();
+    }, []);
+
     const createBudget = () => {
-        console.log('Values:' + valuesForm);
-        new BudgetApi.createBudgetRequest(valuesForm)
+        let object = Object.assign(valuesForm, { minorJob: minorJobOfBudget });
+        new BudgetApi()
+            .createBudgetRequest(object)
             .then((res) => {
                 console.log(res);
             })
@@ -127,6 +145,7 @@ export default function NewBudgetRequestForm(props) {
                             name="description"
                             id="description"
                             variant="outlined"
+                            value={valuesForm.description}
                             onChange={handleChange}
                             value={valuesForm.description}
                             validators={description_validators_name}
@@ -143,6 +162,7 @@ export default function NewBudgetRequestForm(props) {
                             name="location"
                             id="location"
                             variant="outlined"
+                            value={valuesForm.location}
                             onChange={handleChange}
                             value={valuesForm.location}
                             validators={address_validators_name}
@@ -171,7 +191,7 @@ export default function NewBudgetRequestForm(props) {
                                 <p>Choose a file</p>
                             </div>
                         </label>
-                    </FormControl>
+                    </FormControl> 
                     <FormControl className="items-min-width form-items">
                         <TextValidator
                             label="Email"
@@ -189,7 +209,7 @@ export default function NewBudgetRequestForm(props) {
                         />
                     </FormControl>
                     <div className="container-button-submit">
-                        <button className="button-primary">
+                        <button type="submit" className="button-primary">
                             Submit request
                         </button>
                     </div>

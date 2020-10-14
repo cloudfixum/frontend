@@ -1,22 +1,17 @@
-import template from '../register-service-user-provider/create-form-user-provide/create-form-user-provide';
 import ServicesApi from '../../shared/services/services-api';
 import React, { useEffect, useState } from 'react';
 import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
 import { FormControl } from '@material-ui/core';
 import {
     address_validators_name,
-    confirm_password_validators_name,
     datauser_validators_name,
     dni_validators_name,
-    password_validators_name,
     phone_validators_name,
 } from '../register-service-user-provider/validators-name/validators-name';
 import {
     address_error_message,
-    confirm_password_error_message,
     datauser_error_message,
     dni_error_message,
-    password_error_message,
     phone_error_message,
 } from '../register-service-user-provider/error-message/error-message';
 import { Link } from 'react-router-dom';
@@ -55,10 +50,7 @@ export default function EditServiceProviderProfile() {
                 console.log(e);
             });
     };
-    useEffect(() => {
-        getUser();
-    }, []);
-    console.log(user);
+    useEffect(getUser(), []);
 
     const minimumYearsInMilliseconds = 5.676e11;
 

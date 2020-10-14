@@ -10,7 +10,6 @@ import {
     phone_error_message,
     password_error_message,
     confirm_password_error_message,
-    date_error_message,
 } from '../error-message/error-message';
 import {
     datauser_validators_name,
@@ -19,7 +18,6 @@ import {
     phone_validators_name,
     password_validators_name,
     confirm_password_validators_name,
-    date_validators_name,
 } from '../validators-name/validators-name';
 
 import './create-form-user-provide.scss';

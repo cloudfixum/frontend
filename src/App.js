@@ -11,8 +11,8 @@ import Signin from './app/view/signin/signin';
 import BudgetRequest from './app/view/request-budget-form/budget-request';
 import EditServiceProviderProfile from './app/view/edit-service-provider-profile/edit-service-provider-profile';
 import ServiceProviderSummary from './app/view/service-provider-summary/service-provider-summary';
-import ConfirmService from './app/view/confirm-service/confirm-service';
 import BudgetUserProviderList from './app/view/budget-user-provider-list/budget-user-provider-list';
+import BudgetAnswer from './app/view/request-budget-form/answer-budget-form/budget-answer';
 import {
     items_navbar_nolog,
     item_navbar_log,
@@ -85,13 +85,18 @@ function App() {
                     />
                     <Route
                         exact
-                        path="/service/budget"
+                        path="/service/:id/budget"
                         component={BudgetRequest}
                     />
                     <Route
                         exact
                         path="/user/budgets"
                         component={BudgetUserProviderList}
+                    />
+                    <Route
+                        exact
+                        path="/user/budgets/:id/answer"
+                        component={BudgetAnswer}
                     />
                     <Route
                         exact
