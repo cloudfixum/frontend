@@ -122,9 +122,12 @@ export default function LayoutCardServices(props) {
                     </FormControl>
                 </ValidatorForm>
             </div>
-            {services.length === 0 ? (
-                <div className="flex-column-center-start container-preloader">
+            {servicesFiltered.length === 0 ? (
+                <div className="flex-column-center-center container-preloader">
                     <Preloader />
+                    <p style={{ marginBottom: 24 }}>
+                        No hay servicios para mostar...
+                    </p>
                 </div>
             ) : (
                 <div className="wrapper col3 col2-md col1-xs">
