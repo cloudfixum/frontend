@@ -87,6 +87,19 @@ export default function NewBudgetRequestForm(props) {
     //         }
     //     })
     // }
+    ValidatorForm.addValidationRule('isRequired', (value) => {
+        if (value === '') {
+            return false;
+        }
+        return true;
+    });
+
+    ValidatorForm.addValidationRule('lengthValueAddress', (value) => {
+        if (value.length < 6 || value.length > 40) {
+            return false;
+        }
+        return true;
+    });
 
     return (
         <div className="wrapper">
@@ -106,6 +119,8 @@ export default function NewBudgetRequestForm(props) {
                             variant="outlined"
                             value={valuesForm.description}
                             onChange={handleChange}
+                            validator={['isRequired']}
+                            errorMessages={['Required field']}
                             required
                             multiline
                             rows={2}

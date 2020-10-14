@@ -41,8 +41,21 @@ export default function NewBudgetAnswerForm(props) {
         budget.budget_price = valuesForm.price;
         budget.provider_response = valuesForm.description;
         budget.budgetStatus = 'RESPONSEDBUDGET';
+        const values = {
+            description: budget.description,
+            userEmail: budget.userEmail,
+            location: budget.location,
+            budgetStatus: 'RESPONSEDBUDGET',
+            image_url_encoded:
+                '6e313fae4b113e12c469edb558ccc92e331751efd5441c031802b04441efa7a3',
+            provider_response: valuesForm.description,
+            minorJob: {
+                id: budget.minorJob.id,
+            },
+            budget_price: valuesForm.price,
+        };
         new BudgetApi()
-            .updateBudgetRequest(budget)
+            .createBudgetRequest(values)
             .then((res) => {
                 console.log(res);
             })
