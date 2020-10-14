@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import './service-provider-summary.scss';
 import ServicesApi from '../../shared/services/services-api';
 
 export default function ServiceProviderSummary(props) {
-    console.log(props.match.params.id);
+    console.log(props);
+    let routeService = '/service/' + props.match.params.id + '/budget';
 
     let [service, setService] = useState({});
 
-    useEffect(() => {
+    const getServiceById = () => {
         new ServicesApi()
             .getServiceById(props.match.params.id)
             .then((res) => {
-                console.log(res);
+                console.log(props.match.params.id);
                 setService(res);
             })
             .catch((e) => {
                 console.log(e);
             });
+    };
+
+    useEffect(() => {
+        getServiceById();
     }, []);
 
     return (
@@ -56,9 +62,11 @@ export default function ServiceProviderSummary(props) {
                         </div>
                     </div>
                     <div className="flex-row-flexend-center">
-                        <button className="button-primary">
-                            Request Service
-                        </button>
+                        <Link to={routeService}>
+                            <button className="button-primary">
+                                Request Service
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>
