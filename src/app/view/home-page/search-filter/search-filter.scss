@@ -1,0 +1,21 @@
+.filter-container{
+  position: center;
+  object-position: center;
+  background-position: center;
+  background-color: rgba(4, 158, 220, 0.05); /*para darle aesthetics*/
+}
+
+.MuiInputBase-input.MuiOutlinedInput-input{
+  padding: 9px 10px;
+  background-color: white;
+}
+
+.da-filter{
+  padding-bottom: 9px;
+  padding-top: 9px;
+}
+
+.button-primary{
+  padding-bottom: 10px;
+  padding-top: 10px;
+}

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Header from './header/header';
 import LayoutCardServices from './layout-card-services/layout-card-services';
 import LayoutCardCategory from './layout-card-category/layout-card-category';
+import SearchFilter from "./search-filter/search-filter";
 
 import './home-page.scss';
 
@@ -18,6 +19,8 @@ export default function HomePage() {
     return (
         <div>
             <Header />
+            <br/>
+            <SearchFilter />
             {selectedCategory ? (
                 <LayoutCardServices category={categoryByFilter} />
             ) : (
