@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ServicesApi from '../../../shared/services/services-api';
 import CardServices from '../card-services/card-services';
 import { Preloader } from '../../../shared/components/preloader/preloader';
+import { FormControl } from '@material-ui/core';
+import { TextValidator } from 'react-material-ui-form-validator';
 // import Pagination from '@material-ui/lab/Pagination';
 
 import './layout-card-services.scss';
@@ -18,27 +20,37 @@ export default function LayoutCardServices(props) {
     // }
 
     let [services, setServices] = useState([]);
+    let [inputSearch, setInputSearch] = useState('');
 
     const categories = new ServiceCategories().getSubCategoriesByType(
         props.category
     );
 
+    const fetch = () => {
+        new ServicesApi()
+            .getServicesBySuperCategories(props.category)
+            .then((res) => {
+                setServices(res);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    };
+
     useEffect(() => {
-        const fetch = () => {
-            new ServicesApi()
-                .getServicesBySuperCategories(props.category)
-                .then((res) => {
-                    setServices(res);
-                })
-                .catch((e) => {
-                    console.log(e);
-                });
-        };
         fetch();
-    }, [props.category]);
+    }, []);
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        console.log(e.target.value);
+    };
 
     return (
         <div>
+            <div className="container-search flex-row-center-center">
+                <input type="text" placeholder="Search" />
+            </div>
             {services.length === 0 ? (
                 <div className="flex-column-center-start container-preloader">
                     <Preloader />

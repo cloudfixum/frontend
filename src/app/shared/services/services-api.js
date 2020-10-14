@@ -14,6 +14,12 @@ class ServicesApi {
         return data;
     }
 
+    async getServiceByText(text) {
+        const query = await axios.get(`${BASE}service/${id}`);
+        const data = query.data;
+        return data;
+    }
+
     async addService(service, token) {
         const serviceJson = JSON.stringify(service);
         const jwt = JSON.parse(localStorage.getItem('jwt'));
