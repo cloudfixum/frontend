@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE = 'https://cloudfixum-api-dev.herokuapp.com/api/';
+const BASE = 'https://cloudfixum-api.herokuapp.com/api/';
 
 class BudgetApi {
     async createBudgetRequest(budgetRequest) {
