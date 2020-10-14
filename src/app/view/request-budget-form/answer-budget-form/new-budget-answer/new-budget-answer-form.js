@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
-=======
 import React, { useState, useEffect } from 'react';
->>>>>>> ffc43160ead184f277792be45375178864b6f9f3
 import { FormControl, Input, InputLabel } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import BudgetApi from '../../../../shared/services/budget-api';
@@ -26,36 +22,16 @@ export default function NewBudgetAnswerForm(props) {
         });
     };
 
-<<<<<<< HEAD
-    const createBudgetAnswer = () => {
-        console.log('Values:' + valuesForm);
-        new BudgetApi.createBudgetAnswer(valuesForm)
-            .then((res) => {
-                console.log(res);
-=======
     const getBudgetById = () => {
         new BudgetApi()
             .getBudgetById(props.props.match.params.id)
             .then((res) => {
                 setBudget(res);
->>>>>>> ffc43160ead184f277792be45375178864b6f9f3
             })
             .catch((e) => {
                 console.log(e);
             });
     };
-<<<<<<< HEAD
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        createBudgetAnswer();
-    };
-
-    return (
-        <div className="container-budget-answer-form">
-            <div className="flex-row-center-center">
-                <h3> Answer a Budget Request </h3>
-=======
 
     useEffect(() => {
         getBudgetById();
@@ -134,7 +110,6 @@ export default function NewBudgetAnswerForm(props) {
                         </div>
                     </ValidatorForm>
                 </div>
->>>>>>> ffc43160ead184f277792be45375178864b6f9f3
             </div>
         </div>
     );

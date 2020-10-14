@@ -71,23 +71,23 @@ export default function NewBudgetRequestForm(props) {
         createBudget();
     };
 
-    //this handles the "Select File Button" when uploading an image
-    const handleSelectedImage = (e) => {
-        // console.log(e.target.files);
-        const file = e.target.files[0];
-        const base64 = encodeBase64(file);
-        console.log(base64);
-        setEncodedImage(base64);
-    };
+    // //this handles the "Select File Button" when uploading an image
+    // const handleSelectedImage = (e) => {
+    //     // console.log(e.target.files);
+    //     const file = e.target.files[0];
+    //     const base64 = encodeBase64(file);
+    //     console.log(base64);
+    //     setEncodedImage(base64);
+    // };
 
-    //this encodes the image to base64 with the "readAsDataURL" function
-    const encodeBase64 = (file) => {
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-        return fileReader.result;
-    };
+    // //this encodes the image to base64 with the "readAsDataURL" function
+    // const encodeBase64 = (file) => {
+    //     const fileReader = new FileReader();
+    //     fileReader.readAsDataURL(file);
+    //     return fileReader.result;
+    // };
 
-    //const encodedImage = new Buffer().toString('base64');
+    // //const encodedImage = new Buffer().toString('base64');
 
     ValidatorForm.addValidationRule('lengthValue', (value) => {
         if (value.length < 5 || value.length > 50) {
@@ -170,7 +170,7 @@ export default function NewBudgetRequestForm(props) {
                             required
                         />
                     </FormControl>
-                    <FormControl
+                    {/* <FormControl
                         className="items-min-width form-items"
                         variant="outlined">
                         <label>
@@ -191,7 +191,7 @@ export default function NewBudgetRequestForm(props) {
                                 <p>Choose a file</p>
                             </div>
                         </label>
-                    </FormControl> 
+                    </FormControl>  */}
                     <FormControl className="items-min-width form-items">
                         <TextValidator
                             label="Email"
