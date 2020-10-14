@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 import './service-provider-summary.scss';
 import ServicesApi from '../../shared/services/services-api';
 
 export default function ServiceProviderSummary(props) {
     console.log(props.match.params.id);
-
 
     let [service, setService] = useState({});
 
@@ -34,7 +33,7 @@ export default function ServiceProviderSummary(props) {
                             <h3>{service.serviceProvider?.name}</h3>
                             <p>{service.serviceProvider?.last_name}</p>
                         </div>
-                        
+
                         <div className="mat-card-content">
                             <div className="content-description">
                                 <p>{service.serviceProvider?.email}</p>
@@ -68,8 +67,5 @@ export default function ServiceProviderSummary(props) {
                 </div>
             </div>
         </div>
-
-
-        
     );
 }

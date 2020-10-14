@@ -22,7 +22,7 @@ export default function ConfirmService(props) {
     }, []);
 
     return (
-<div className="container-confirm-service">
+        <div className="container-confirm-service">
             <div className="wrapper">
                 <div className="mat-card card-confirm">
                     <div className="confirm-service-card">

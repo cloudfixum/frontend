@@ -8,10 +8,11 @@ import NavBar from './app/shared/components/nav-bar/nav-bar';
 import Footer from './app/shared/components/footer/footer';
 import NotFound from './app/view/errors/404-not-found/404-not-found';
 import Signin from './app/view/signin/signin';
-import BudgetRequest from "./app/view/request-budget-form/budget-request";
+import BudgetRequest from './app/view/request-budget-form/budget-request';
 import EditServiceProviderProfile from './app/view/edit-service-provider-profile/edit-service-provider-profile';
 import ServiceProviderSummary from './app/view/service-provider-summary/service-provider-summary';
-import ConfirmService from './app/view/confirm-service/confirm-service'
+import ConfirmService from './app/view/confirm-service/confirm-service';
+import BudgetUserProviderList from './app/view/budget-user-provider-list/budget-user-provider-list';
 import {
     items_navbar_nolog,
     item_navbar_log,
@@ -103,7 +104,7 @@ function App() {
                             )
                         }
                     />
-                    <Route path="/confirm-service" component={ConfirmService}/>
+                    <Route path="/confirm-service" component={ConfirmService} />
                     <Route path="/*" component={NotFound} />
                 </Switch>
                 <Footer />

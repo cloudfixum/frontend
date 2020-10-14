@@ -15,4 +15,3 @@ export const address_validators_name = [
     'lengthValueAddress',
     "matchRegexp:^[a-zA-Z0-9' ]*$",
 ];
-

@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { UserApi } from '../../shared/services/user-api';
 import ServicesApi from '../../shared/services/services-api';
-import CardServices from "../home-page/card-services/card-services";
+import CardServices from '../home-page/card-services/card-services';
 
 import '../home-page/card-services/card-services.scss';
 import './service-provider-profile.scss';
@@ -73,7 +73,7 @@ export default function ServiceProviderProfile() {
                     <p>
                         <b>Username:</b> {user.email}
                     </p>
-                    <Link to='/user/budgets'>
+                    <Link to="/user/budgets">
                         <button>
                             <p>
                                 <b>Budget Request List</b>

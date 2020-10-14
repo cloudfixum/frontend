@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { FormControl, Input, InputLabel } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
-import BudgetApi from "../../../../shared/services/budget-api";
-import {title_validators_name} from "../../validators-names/validators-names";
-import {title_error_message} from "../../error-messages/error-messages";
+import BudgetApi from '../../../../shared/services/budget-api';
+import { title_validators_name } from '../../validators-names/validators-names';
+import { title_error_message } from '../../error-messages/error-messages';
 
 export default function NewBudgetAnswerForm() {
     const values = {
-        'description': '',
-        'price': '',
-    }
+        description: '',
+        price: '',
+    };
 
     const [valuesForm, setValuesForm] = useState(values);
 
@@ -22,24 +22,24 @@ export default function NewBudgetAnswerForm() {
     };
 
     const createBudgetAnswer = () => {
-        console.log('Values:'+valuesForm)
+        console.log('Values:' + valuesForm);
         new BudgetApi.createBudgetAnswer(valuesForm)
             .then((res) => {
-                console.log(res)
+                console.log(res);
             })
             .catch((e) => {
-                console.log(e)
-            })
-    }
+                console.log(e);
+            });
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        createBudgetAnswer()
+        createBudgetAnswer();
     };
 
-    return(
+    return (
         <div className="container-budget-answer-form">
-            <div className='flex-row-center-center'>
+            <div className="flex-row-center-center">
                 <h3> Answer a Budget Request </h3>
             </div>
             <ValidatorForm
@@ -67,5 +67,5 @@ export default function NewBudgetAnswerForm() {
                 </FormControl>
             </ValidatorForm>
         </div>
-    )
+    );
 }
