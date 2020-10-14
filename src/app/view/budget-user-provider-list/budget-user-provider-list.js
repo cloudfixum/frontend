@@ -10,6 +10,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import BudgetApi from '../../shared/services/budget-api';
 
+import './budget-user-provider-list.scss';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -21,51 +23,60 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function BudgetUserProviderList() {
-    const [budgets, setBudget] = useState({});
+    const [budgets, setBudgets] = useState([]);
 
     const getBudgets = () => {
         new BudgetApi()
             .getBudgetByUserId()
             .then((res) => {
                 console.log(res);
+                setBudgets(res);
             })
             .catch((e) => {
                 console.log(e);
             });
     };
 
-    useEffect(getBudgets(), []);
+    useEffect(() => {
+        getBudgets();
+    }, []);
 
     const classes = useStyles();
+
+    const redirectToAnswer = (e, id) => {
+        window.location = '/user/budgets/' + id + '/answer';
+    };
+    console.log(budgets);
     return (
         <div className="container-budget-user-list">
             <List className={classes.root}>
-                <ListItem alignItems="flex-start">
-                    <ListItemAvatar>
-                        <Avatar
-                            alt="Remy Sharp"
-                            src="/static/images/avatar/1.jpg"
-                        />
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary="Brunch this weekend?"
-                        secondary={
-                            <React.Fragment>
-                                <Typography
-                                    component="span"
-                                    variant="body2"
-                                    className={classes.inline}
-                                    color="textPrimary">
-                                    Ali Connors
-                                </Typography>
-                                {
-                                    " — I'll be in your neighborhood doing errands this…"
+                {budgets.map((budget, i) => {
+                    return (
+                        <ListItem
+                            className="list-item-container"
+                            key={i}
+                            onClick={(e) => {
+                                redirectToAnswer(e, budget.id);
+                            }}
+                            alignItems="flex-start">
+                            <ListItemAvatar>
+                                <Avatar
+                                    alt="Remy Sharp"
+                                    src="/static/images/avatar/1.jpg"
+                                />
+                            </ListItemAvatar>
+                            <ListItemText
+                                primary={budget.userEmail}
+                                secondary={
+                                    <React.Fragment>
+                                        {budget.description}
+                                    </React.Fragment>
                                 }
-                            </React.Fragment>
-                        }
-                    />
-                </ListItem>
-                <Divider variant="inset" component="li" />
+                            />
+                            <Divider variant="inset" component="li" />
+                        </ListItem>
+                    );
+                })}
             </List>
         </div>
     );

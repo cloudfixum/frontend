@@ -13,17 +13,13 @@ class BudgetApi {
         return data;
     }
 
-    async createBudgetAnswer(budgetAnswer) {
+    async updateBudgetRequest(budgetAnswer) {
         const budgetAnswerJson = JSON.stringify(budgetAnswer);
-        const query = await axios.post(
-            `${BASE}budget/answer`,
-            budgetAnswerJson,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            }
-        );
+        const query = await axios.put(`${BASE}budget`, budgetAnswerJson, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
         const data = query.data;
         return data;
     }
@@ -31,6 +27,18 @@ class BudgetApi {
     async getBudgetByUserId() {
         const jwt = JSON.parse(localStorage.getItem('jwt'));
         const query = await axios.get(`${BASE}user/budgets`, {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${jwt['jwt']}`,
+            },
+        });
+        const data = query.data;
+        return data;
+    }
+
+    async getBudgetById(id) {
+        const jwt = JSON.parse(localStorage.getItem('jwt'));
+        const query = await axios.get(`${BASE}budget/${id}`, {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${jwt['jwt']}`,

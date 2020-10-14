@@ -30,7 +30,9 @@ export default function ServiceProviderProfile() {
             });
     };
 
-    useEffect(getUser(), []);
+    useEffect(() => {
+        getUser();
+    }, []);
 
     const getJobsMyUser = (id) => {
         new ServicesApi()
