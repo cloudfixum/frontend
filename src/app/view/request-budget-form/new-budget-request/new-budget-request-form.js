@@ -92,82 +92,91 @@ export default function NewBudgetRequestForm() {
     });
 
     return(
-        <div className='container-budget-request-form'>
-            <div className='flex-row-center-center'>
-                <h3> Request a Budget </h3>
-            </div>
-            <ValidatorForm
-                onSubmit={handleSubmit}
-                onError={(errors) => console.log(errors)}>
-                <FormControl className="items-min-width form-items">
-                    <TextValidator
-                        label="Service Title"
-                        name="title"
-                        id="title"
-                        variant="outlined"
-                        onChange={handleChange}
-                        validators={title_validators_name}
-                        errorMessages={title_error_message}
-                        required
-                    />
-                </FormControl>
-                <FormControl className="items-min-width form-items">
-                    <TextValidator
-                        label="Description"
-                        name="description"
-                        id="description"
-                        variant="outlined"
-                        onChange={handleChange}
-                        validators={description_validators_name}
-                        errorMessages={description_error_message}
-                        required
-                        multiline
-                        rows={2}
-                    />
-                </FormControl>
-                <FormControl className="items-min-width form-items">
-                    <TextValidator
-                        label="Location"
-                        name="location"
-                        id="location"
-                        variant="outlined"
-                        onChange={handleChange}
-                        validators={address_validators_name}
-                        errorMessages={address_error_message}
-                        required
-                    />
-                </FormControl>
-                <FormControl className="items-min-width form-items" variant="outlined">
-                    <label>
-                    <Input type='file'
-                           accept="image/*"
-                           style={{display: 'none'}}
-                           id="image"
-                           name="image"
-                           onChange={(i) => {
-                               handleSelectedImage(i);
-                           }}
-                    />
-                    <div>
-                        <p><span className="material-icons" style={{color:'black'}}>cloud_upload</span>Choose a file</p>
+        <div className="wrapper">
+            <div className='mat-card'>
+                <div className='flex-row-center-center'>
+                    <h3 style={{paddingBottom: 24}}> Request a Budget </h3>
+                </div>
+                <ValidatorForm
+                    onSubmit={handleSubmit}
+                    onError={(errors) => console.log(errors)}>
+                    <FormControl className="items-min-width form-items">
+                        <TextValidator
+                            className="items-min-width"
+                            label="Service Title"
+                            name="title"
+                            id="title"
+                            variant="outlined"
+                            onChange={handleChange}
+                            validators={title_validators_name}
+                            errorMessages={title_error_message}
+                            required
+                        />
+                    </FormControl>
+                    <FormControl className="items-min-width form-items">
+                        <TextValidator
+                            className="items-min-width"
+                            label="Description"
+                            name="description"
+                            id="description"
+                            variant="outlined"
+                            onChange={handleChange}
+                            validators={description_validators_name}
+                            errorMessages={description_error_message}
+                            required
+                            multiline
+                            rows={2}
+                        />
+                    </FormControl>
+                    <FormControl className="items-min-width form-items">
+                        <TextValidator
+                            className="items-min-width"
+                            label="Location"
+                            name="location"
+                            id="location"
+                            variant="outlined"
+                            onChange={handleChange}
+                            validators={address_validators_name}
+                            errorMessages={address_error_message}
+                            required
+                        />
+                    </FormControl>
+                    <FormControl className="items-min-width form-items" variant="outlined">
+                        <label>
+                        <Input type='file'
+                            accept="image/*"
+                            style={{display: 'none'}}
+                            id="image"
+                            name="image"
+                            onChange={(i) => {
+                                handleSelectedImage(i);
+                            }}
+                        />
+                        <div className="input-image-container">
+                            <span className="material-icons">cloud_upload</span>
+                            <p>Choose a file</p>
+                        </div>
+                        </label>
+                    </FormControl>
+                    <FormControl className="items-min-width form-items">
+                        <TextValidator
+                            className="items-min-width"
+                            label="Email"
+                            name="email"
+                            id="email"
+                            variant="outlined"
+                            onChange={handleChange}
+                            //value={props.valuesForm.email}
+                            validators={['isEmail']}
+                            errorMessages={'wrong format, need example@example.com'}
+                            required
+                        />
+                    </FormControl>
+                    <div className="container-button-submit">
+                        <button className="button-primary">Submit request</button>
                     </div>
-                    </label>
-                </FormControl>
-                <FormControl className="items-min-width form-items">
-                    <TextValidator
-                        label="Email"
-                        name="email"
-                        id="email"
-                        variant="outlined"
-                        onChange={handleChange}
-                        //value={props.valuesForm.email}
-                        validators={['isEmail']}
-                        errorMessages={'wrong format, need example@example.com'}
-                        required
-                    />
-                </FormControl>
-                <button className="button button-primary">Submit request</button>
-            </ValidatorForm>
+                </ValidatorForm>
+            </div>
         </div>
     );
 }
