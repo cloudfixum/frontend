@@ -14,6 +14,12 @@ class ServicesApi {
         return data;
     }
 
+    async getServiceByText(text) {
+        const query = await axios.get(`${BASE}service/${text}`);
+        const data = query.data;
+        return data;
+    }
+
     async addService(service, token) {
         const serviceJson = JSON.stringify(service);
         const jwt = JSON.parse(localStorage.getItem('jwt'));
@@ -64,6 +70,18 @@ class ServicesApi {
     async getServicesBySuperCategories(super_category) {
         const query = await axios.get(
             `${BASE}service/filter?superquery=${super_category}`
+        );
+        const data = query.data;
+        return data;
+    }
+
+    async getServicesBySubCategoriesAndtext(
+        super_category,
+        sub_category,
+        text
+    ) {
+        const query = await axios.get(
+            `${BASE}service/filter?superquery=${super_category}?subquery=${sub_category}`
         );
         const data = query.data;
         return data;
