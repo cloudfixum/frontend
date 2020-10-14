@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ServicesApi from '../../../shared/services/services-api';
 import CardServices from '../card-services/card-services';
 import { Preloader } from '../../../shared/components/preloader/preloader';
-import { FormControl } from '@material-ui/core';
-import { TextValidator } from 'react-material-ui-form-validator';
+import { Select, InputLabel, FormControl } from '@material-ui/core';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 // import Pagination from '@material-ui/lab/Pagination';
 
 import './layout-card-services.scss';
@@ -19,8 +19,14 @@ export default function LayoutCardServices(props) {
     //     total_pages = props.headers['totalpages'];
     // }
 
+    const search = {
+        inputSearch: '',
+        selectSearch: '',
+    };
+
     let [services, setServices] = useState([]);
-    let [inputSearch, setInputSearch] = useState('');
+    let [searchValues, setSearchValues] = useState(search);
+    let [servicesFiltered, setServicesFiltered] = useState([]);
 
     const categories = new ServiceCategories().getSubCategoriesByType(
         props.category
@@ -31,6 +37,7 @@ export default function LayoutCardServices(props) {
             .getServicesBySuperCategories(props.category)
             .then((res) => {
                 setServices(res);
+                setServicesFiltered(res);
             })
             .catch((e) => {
                 console.log(e);
@@ -43,13 +50,77 @@ export default function LayoutCardServices(props) {
 
     const handleChange = (e) => {
         e.preventDefault();
-        console.log(e.target.value);
+        let array = [];
+        setSearchValues({ ...searchValues, [e.target.name]: e.target.value });
+        services.forEach((element) => {
+            if (
+                element.category === e.target.value ||
+                element.description.includes(e.target.value)
+            ) {
+                console.log('entre');
+                array.push(element);
+            }
+        });
+        console.log(array);
+        if (e.target.value === 'all') {
+            setServicesFiltered(services);
+        } else {
+            setServicesFiltered(array);
+        }
+        console.log(servicesFiltered);
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
     };
 
     return (
         <div>
             <div className="container-search flex-row-center-center">
-                <input type="text" placeholder="Search" />
+                <ValidatorForm
+                    className="flex-column-center-center"
+                    onSubmit={handleSubmit}
+                    onError={(errors) => console.log(errors)}>
+                    <FormControl className="items-min-width form-items">
+                        <TextValidator
+                            label="Service name"
+                            type="text"
+                            id="inputSearch"
+                            name="inputSearch"
+                            variant="outlined"
+                            fullWidth={true}
+                            onChange={handleChange}
+                            value={searchValues.inputSearch}
+                        />
+                    </FormControl>
+                    <FormControl
+                        className="items-min-width form-items"
+                        variant="outlined">
+                        <InputLabel id="selectSearch">
+                            Select category *
+                        </InputLabel>
+                        <Select
+                            native
+                            name="selectSearch"
+                            onChange={handleChange}
+                            label="Select category"
+                            inputProps={{
+                                id: 'selectSearch',
+                            }}>
+                            <option aria-label="None" value="all">
+                                All
+                            </option>
+                            {Object.keys(categories).map((key, i) => {
+                                let value = categories[key];
+                                return (
+                                    <option key={i} value={key}>
+                                        {value}
+                                    </option>
+                                );
+                            })}
+                        </Select>
+                    </FormControl>
+                </ValidatorForm>
             </div>
             {services.length === 0 ? (
                 <div className="flex-column-center-start container-preloader">
@@ -57,7 +128,7 @@ export default function LayoutCardServices(props) {
                 </div>
             ) : (
                 <div className="wrapper col3 col2-md col1-xs">
-                    {services.map((service, i) => {
+                    {servicesFiltered.map((service, i) => {
                         return (
                             <CardServices
                                 key={i}
