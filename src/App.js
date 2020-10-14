@@ -10,6 +10,7 @@ import NotFound from './app/view/errors/404-not-found/404-not-found';
 import Signin from './app/view/signin/signin';
 import EditServiceProviderProfile from './app/view/edit-service-provider-profile/edit-service-provider-profile';
 import ServiceProviderSummary from './app/view/service-provider-summary/service-provider-summary';
+import ConfirmService from './app/view/confirm-service/confirm-service'
 import {
     items_navbar_nolog,
     item_navbar_log,
@@ -95,6 +96,7 @@ function App() {
                         path="/user/summary"
                         component={ServiceProviderSummary}
                     />
+                    <Route path="/confirm-service" component={ConfirmService}/>
                     <Route path="/*" component={NotFound} />
                 </Switch>
                 <Footer />

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
-import './service-provider-summary.scss';
+import './confirm-service.scss';
+
 import ServicesApi from '../../shared/services/services-api';
 
-export default function ServiceProviderSummary(props) {
+export default function ConfirmService(props) {
     console.log(props.match.params.id);
 
     let [service, setService] = useState({});
@@ -21,30 +22,19 @@ export default function ServiceProviderSummary(props) {
     }, []);
 
     return (
-        <div className="container-service-provider-summary">
-            <h2 style={{ textAlign: 'center', marginTop: '24px' }}>
-                SERVICE SUMMARY
-            </h2>
+<div className="container-confirm-service">
             <div className="wrapper">
-                <div className="mat-card">
-                    <div className="service-provider-container">
+                <div className="mat-card card-confirm">
+                    <div className="confirm-service-card">
                         <div className="mat-card-header">
                             <h3>{service.serviceProvider?.name}</h3>
                             <p>{service.serviceProvider?.last_name}</p>
                         </div>
-                        
                         <div className="mat-card-content">
                             <div className="content-description">
                                 <p>{service.serviceProvider?.email}</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="wrapper">
-                <div className="mat-card">
-                    <div className="service-container">
                         <div className="mat-card-header">
                             <h3>{service.title}</h3>
                         </div>
@@ -55,17 +45,10 @@ export default function ServiceProviderSummary(props) {
                                 <p>{service.base_price}</p>
                             </div>
                         </div>
-                    </div>
-                    <div className="flex-row-flexend-center">
-                        <button className="button-primary">
-                            Request Service
-                        </button>
+                        <h1>Service confirm!</h1>
                     </div>
                 </div>
             </div>
         </div>
-
-
-        
     );
 }
