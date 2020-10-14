@@ -1,36 +1,20 @@
-import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { UserApi } from '../../shared/services/user-api';
 import ServicesApi from '../../shared/services/services-api';
-import CardServices from "../home-page/card-services/card-services";
+import CardServices from '../home-page/card-services/card-services';
 
 import '../home-page/card-services/card-services.scss';
 import './service-provider-profile.scss';
 
 export default function ServiceProviderProfile() {
-    const values = [
-        'Id',
-        'Dni',
-        'Name',
-        'Last Name',
-        'Email',
-        'Phone Number',
-        'Address',
-        'Location',
-        'Birthday',
-    ];
-
     const [user, setUser] = useState({});
 
     const [services, setServices] = useState([]);
 
     let tokenObject = JSON.parse(localStorage.getItem('jwt'));
 
-    const [token, setToken] = useState(tokenObject['jwt']);
-
-    useEffect(() => {
-        getUser();
-    }, []);
+    const [token] = useState(tokenObject['jwt']);
 
     const getUser = (e) => {
         console.log(token);
@@ -45,6 +29,8 @@ export default function ServiceProviderProfile() {
                 console.log(e);
             });
     };
+
+    useEffect(getUser(), []);
 
     const getJobsMyUser = (id) => {
         new ServicesApi()
@@ -73,7 +59,7 @@ export default function ServiceProviderProfile() {
                     <p>
                         <b>Username:</b> {user.email}
                     </p>
-                    <Link to='/user/budgets'>
+                    <Link to="/user/budgets">
                         <button>
                             <p>
                                 <b>Budget Request List</b>
