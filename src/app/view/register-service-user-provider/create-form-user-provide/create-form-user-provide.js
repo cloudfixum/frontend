@@ -25,12 +25,15 @@ import {
 import './create-form-user-provide.scss';
 
 const parseDate = (date, separator) => {
+
     let inputDate = date.split(separator);
     let day = inputDate[2];
     let month = inputDate[1];
     let year = inputDate[0];
+
     return { day, month, year };
 };
+
 
 export default function CreateFormUserProvider() {
     const values = {

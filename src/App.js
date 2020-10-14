@@ -8,6 +8,7 @@ import NavBar from './app/shared/components/nav-bar/nav-bar';
 import Footer from './app/shared/components/footer/footer';
 import NotFound from './app/view/errors/404-not-found/404-not-found';
 import Signin from './app/view/signin/signin';
+import BudgetRequest from "./app/view/request-budget-form/budget-request";
 import EditServiceProviderProfile from './app/view/edit-service-provider-profile/edit-service-provider-profile';
 import ServiceProviderSummary from './app/view/service-provider-summary/service-provider-summary';
 import ConfirmService from './app/view/confirm-service/confirm-service'
@@ -83,6 +84,16 @@ function App() {
                     />
                     <Route
                         exact
+                        path="/service/budget"
+                        component={BudgetRequest}
+                    />
+                    <Route
+                        exact
+                        path="/user/budgets"
+                        component={BudgetUserProviderList}
+                    />
+                    <Route
+                        exact
                         path="/user/profile/edit"
                         render={() =>
                             localStorage.getItem('jwt') !== null ? (
@@ -91,10 +102,6 @@ function App() {
                                 <Redirect to="/signin" />
                             )
                         }
-                    />
-                    <Route
-                        path="/user/summary"
-                        component={ServiceProviderSummary}
                     />
                     <Route path="/confirm-service" component={ConfirmService}/>
                     <Route path="/*" component={NotFound} />
