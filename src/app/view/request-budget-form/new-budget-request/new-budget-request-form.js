@@ -19,13 +19,12 @@ import {
 
 export default function NewBudgetRequestForm(props) {
     const values = {
-        budgetStatus: 'BUDGETONHOLD',
-        budget_price: 900,
-        provider_response: 'Hey caramba que onda wey',
         description: '',
-        location: '',
         userEmail: '',
-        image_url_encode: null,
+        location: '',
+        budgetStatus: 'BUDGETONHOLD',
+        image_url_encoded:
+            '6e313fae4b113e12c469edb558ccc92e331751efd5441c031802b04441efa7a3',
     };
 
     // const [encodedImage, setEncodedImage] = useState('');
@@ -55,7 +54,9 @@ export default function NewBudgetRequestForm(props) {
     }, []);
 
     const createBudget = () => {
-        let object = Object.assign(valuesForm, { minorJob: minorJobOfBudget });
+        let object = Object.assign(valuesForm, {
+            minorJob: { id: minorJobOfBudget.id },
+        });
         new BudgetApi()
             .createBudgetRequest(object)
             .then((res) => {

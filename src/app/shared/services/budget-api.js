@@ -4,11 +4,15 @@ const BASE = 'https://cloudfixum-api-dev.herokuapp.com/api/';
 class BudgetApi {
     async createBudgetRequest(budgetRequest) {
         const budgetRequestJson = JSON.stringify(budgetRequest);
-        const query = await axios.post(`${BASE}budget`, budgetRequestJson, {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+        const query = await axios.post(
+            `${BASE}budget/manage`,
+            budgetRequestJson,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
         const data = query.data;
         return data;
     }

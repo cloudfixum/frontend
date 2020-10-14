@@ -50,7 +50,9 @@ export default function EditServiceProviderProfile() {
                 console.log(e);
             });
     };
-    useEffect(getUser(), []);
+    useEffect(() => {
+        getUser();
+    }, []);
 
     const minimumYearsInMilliseconds = 5.676e11;
 
