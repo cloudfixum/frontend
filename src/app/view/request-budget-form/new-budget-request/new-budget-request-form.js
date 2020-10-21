@@ -22,8 +22,8 @@ export default function NewBudgetRequestForm(props) {
         description: '',
         userEmail: '',
         location: '',
-        budgetStatus: 'BUDGETONHOLD',
-        image_url_encoded:
+        minorJobId: props.props.match.params.id,
+        imageHash:
             '6e313fae4b113e12c469edb558ccc92e331751efd5441c031802b04441efa7a3',
     };
 
@@ -39,7 +39,7 @@ export default function NewBudgetRequestForm(props) {
         });
     };
 
-    useEffect(() => {
+    /*useEffect(() => {
         const getMinorJob = () => {
             new ServicesApi()
                 .getServiceById(props.props.match.params.id)
@@ -52,13 +52,10 @@ export default function NewBudgetRequestForm(props) {
         };
         getMinorJob();
     }, []);
-
+    */
     const createBudget = () => {
-        let object = Object.assign(valuesForm, {
-            minorJob: { id: minorJobOfBudget.id },
-        });
         new BudgetApi()
-            .createBudgetRequest(object)
+            .createBudgetRequest(valuesForm)
             .then((res) => {
                 console.log(res);
             })
