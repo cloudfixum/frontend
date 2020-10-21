@@ -36,7 +36,7 @@ export default function LayoutCardCategory(props) {
                 onError={(errors) => console.log(errors)}>
                 <FormControl className="form-control-layout">
                     <TextValidator
-                        label="Ingrese email para ver sus presupuestos"
+                        label="Enter email to see your budgets"
                         type="email"
                         id="email"
                         name="email"
