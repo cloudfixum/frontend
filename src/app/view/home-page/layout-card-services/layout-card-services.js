@@ -128,7 +128,7 @@ export default function LayoutCardServices(props) {
                 <div className="flex-column-center-center container-preloader">
                     <Preloader />
                     <p style={{ marginBottom: 24 }}>
-                        No hay servicios para mostar...
+                        There are no services to show...
                     </p>
                 </div>
             ) : (

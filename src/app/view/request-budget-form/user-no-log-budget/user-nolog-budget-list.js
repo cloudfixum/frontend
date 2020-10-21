@@ -38,7 +38,15 @@ export default function UserNoLogBudgetList(props) {
     };
 
     if (budgetList.length === 0) {
-        return null;
+        return (
+            <div className="wrapper">
+                <div className="mat-card">
+                    <p>
+                        No budget requested
+                    </p>
+                </div>
+            </div>
+        );
     }
 
     return (
