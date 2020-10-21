@@ -6,7 +6,6 @@ import './card-services.scss';
 export default function CardServices(props) {
     const image = 'url(' + props.service.image_url + ')';
     const url = '/service/' + props.service.id + '/detail';
-
     return (
         <div
             style={{ backgroundImage: image }}

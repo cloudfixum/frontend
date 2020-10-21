@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ServiceCategories } from '../../shared/utils/constant/service-categories';
 
 import './service-provider-summary.scss';
 import ServicesApi from '../../shared/services/services-api';
 
 export default function ServiceProviderSummary(props) {
-    console.log(props);
     let routeService = '/service/' + props.match.params.id + '/budget';
+    const serviceCategories = new ServiceCategories().getAllSubCategories();
 
     let [service, setService] = useState({});
 
@@ -26,28 +27,33 @@ export default function ServiceProviderSummary(props) {
         getServiceById();
     }, []);
 
+    const getCategory = () => {
+        let serviceCategory = serviceCategories.find(
+            (category) => Object.keys(category)[0] === service.category
+        );
+        if (!serviceCategory) {
+            return;
+        }
+        return Object.values(serviceCategory)[0];
+    };
+
     return (
         <div className="container-service-provider-summary">
-            <h2 style={{ textAlign: 'center', marginTop: '24px' }}>
-                SERVICE SUMMARY
-            </h2>
-            <div className="wrapper">
+            <div className="responsive-wrapper col1-res">
                 <div className="mat-card">
-                    <div className="service-provider-container">
-                        <div className="mat-card-header">
-                            <h3>{service.serviceProvider?.name}</h3>
-                            <p>{service.serviceProvider?.last_name}</p>
-                        </div>
-                        <div className="mat-card-content">
-                            <div className="content-description">
-                                <p>{service.serviceProvider?.email}</p>
-                            </div>
-                        </div>
-                    </div>
+                    <h2 style={{ marginBottom: '24px' }}>SERVICE SUMMARY</h2>
+                    <p>
+                        <b>Service Provider: </b>
+                        {service.serviceProvider?.name}{' '}
+                        {service.serviceProvider?.last_name}
+                    </p>
+                    <p>
+                        <b>Email: </b>
+                        {service.serviceProvider?.email}
+                    </p>
                 </div>
             </div>
-
-            <div className="wrapper">
+            <div className="responsive-wrapper col1-res">
                 <div className="mat-card">
                     <div className="service-container">
                         <div className="mat-card-header">
@@ -55,9 +61,19 @@ export default function ServiceProviderSummary(props) {
                         </div>
                         <div className="mat-card-content">
                             <div className="content-description">
-                                <p>{service.description}</p>
-                                <p>{service.category}</p>
-                                <p>{service.base_price}</p>
+                                <p>
+                                    <b>Description: </b>
+                                    {service.description}
+                                </p>
+                                {getCategory() ? (
+                                    <p>
+                                        <b>Category: </b>
+                                        {getCategory()}
+                                    </p>
+                                ) : null}
+                                <p>
+                                    <b>Base price: </b>${service.base_price}
+                                </p>
                             </div>
                         </div>
                     </div>

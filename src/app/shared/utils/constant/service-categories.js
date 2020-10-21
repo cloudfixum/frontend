@@ -2,6 +2,7 @@ export class ServiceCategories {
     category_model = [
         {
             category: 'Health',
+            image: 'health.jpg',
             sub_categories: {
                 NURSE: 'Nurse',
                 NUTRITIONIST: 'Nutritionist',
@@ -14,6 +15,7 @@ export class ServiceCategories {
         },
         {
             category: 'Beauty',
+            image: 'beauty.jpg',
             sub_categories: {
                 BARBER: 'Barber',
                 DRESSMAKER: 'Dressmaker',
@@ -25,6 +27,7 @@ export class ServiceCategories {
         },
         {
             category: 'Vehicle',
+            image: 'vehicle.jpg',
             sub_categories: {
                 TYREREPAIRER: 'Tyre Repairer',
                 CARALARM: 'Car Alarm',
@@ -37,6 +40,7 @@ export class ServiceCategories {
         },
         {
             category: 'Wellness',
+            image: 'wellness.jpg',
             sub_categories: {
                 PERSONAL_TRAINER: 'Personal Trainer',
                 YOGA: 'Yoga',
@@ -47,6 +51,7 @@ export class ServiceCategories {
         },
         {
             category: 'Home',
+            image: 'home.jpg',
             sub_categories: {
                 ELECT_TECH: 'Electrical Technician',
                 GAS_OPERATOR: 'Gas Operator',
@@ -65,6 +70,7 @@ export class ServiceCategories {
         },
         {
             category: 'Other',
+            image: 'other.png',
             sub_categories: {
                 OTHER: 'Other',
             },
@@ -89,7 +95,7 @@ export class ServiceCategories {
         let categories = [];
         this.category_model.forEach((category) => {
             Object.keys(category.sub_categories).forEach((key) => {
-                categories.push(category.sub_categories[key]);
+                categories.push({ [key]: category.sub_categories[key] });
             });
         });
         return categories;
@@ -103,5 +109,16 @@ export class ServiceCategories {
         });
 
         return categories.sort();
+    }
+
+    getImageBycategory(categoryId) {
+        let image = '';
+        this.category_model.forEach((category) => {
+            if (category.category === categoryId) {
+                image = category.image;
+            }
+        });
+
+        return image;
     }
 }

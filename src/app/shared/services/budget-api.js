@@ -4,15 +4,11 @@ const BASE = 'https://cloudfixum-api.herokuapp.com/api/';
 class BudgetApi {
     async createBudgetRequest(budgetRequest) {
         const budgetRequestJson = JSON.stringify(budgetRequest);
-        const query = await axios.post(
-            `${BASE}budget`,
-            budgetRequestJson,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            }
-        );
+        const query = await axios.post(`${BASE}budget`, budgetRequestJson, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
         const data = query.data;
         return data;
     }
@@ -46,8 +42,8 @@ class BudgetApi {
         return data;
     }
 
-    async getBudgetByEmail() {
-        const query = await axios.get(`${BASE}user/budget/filter`, {
+    async getBudgetByEmail(email) {
+        const query = await axios.get(`${BASE}budget/filter?email=${email}`, {
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -64,6 +60,19 @@ class BudgetApi {
                 Authorization: `Bearer ${jwt['jwt']}`,
             },
         });
+        const data = query.data;
+        return data;
+    }
+
+    async wasConfirmedBudget(accepted, id) {
+        const query = await axios.get(
+            `${BASE}budget/${id}/confirm?accepted=${accepted}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
         const data = query.data;
         return data;
     }

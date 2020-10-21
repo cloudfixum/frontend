@@ -88,7 +88,6 @@ class ServicesApi {
     }
 
     async getJobsByUserId(id) {
-        console.log(id);
         const query = await axios.get(`${BASE}user/${id}/jobs`);
         const data = query.data;
         return data;

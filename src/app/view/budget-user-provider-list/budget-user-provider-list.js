@@ -7,11 +7,10 @@ import Divider from '@material-ui/core/Divider';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
 import BudgetApi from '../../shared/services/budget-api';
 
 import './budget-user-provider-list.scss';
-import {Preloader} from "../../shared/components/preloader/preloader";
+import { Preloader } from '../../shared/components/preloader/preloader';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -47,14 +46,16 @@ export default function BudgetUserProviderList() {
     const redirectToAnswer = (e, id) => {
         window.location = '/user/budgets/' + id + '/answer';
     };
-    if (budgets.length === 0){
-        return (<div className="flex-column-center-center container-preloader">
-            <Preloader />
-            <p style={{ marginBottom: 24 }}>
-                No hay presupuestos para mostrar...
-            </p>
-        </div>)
-};
+    if (budgets.length === 0) {
+        return (
+            <div className="flex-column-center-center container-preloader">
+                <Preloader />
+                <p style={{ marginBottom: 24 }}>
+                    No hay presupuestos para mostrar...
+                </p>
+            </div>
+        );
+    }
     return (
         <div className="container-budget-user-list">
             <List className={classes.root}>

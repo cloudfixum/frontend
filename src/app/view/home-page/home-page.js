@@ -15,11 +15,18 @@ export default function HomePage() {
         setCategoryByFilter(category);
     };
 
+    const handleCheckChangeView = () => {
+        setSelectedCategory(false);
+    };
+
     return (
         <div>
             <Header />
             {selectedCategory ? (
-                <LayoutCardServices category={categoryByFilter} />
+                <LayoutCardServices
+                    callback={handleCheckChangeView}
+                    category={categoryByFilter}
+                />
             ) : (
                 <LayoutCardCategory callback={handleCategoryByFilter} />
             )}

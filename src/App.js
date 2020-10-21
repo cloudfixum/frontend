@@ -21,6 +21,7 @@ import {
 import '../src/assets/styles/fonts/style.css';
 import '../src/assets/styles/style.scss';
 import './App.scss';
+import UserNoLogBudgetList from './app/view/request-budget-form/user-no-log-budget/user-nolog-budget-list';
 
 function App() {
     let items =
@@ -97,6 +98,11 @@ function App() {
                         exact
                         path="/user/budgets/:id/answer"
                         component={BudgetAnswer}
+                    />
+                    <Route
+                        exact
+                        path="/client/budgets"
+                        component={UserNoLogBudgetList}
                     />
                     <Route
                         exact

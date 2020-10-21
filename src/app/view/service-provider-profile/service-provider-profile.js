@@ -3,11 +3,14 @@ import { Link } from 'react-router-dom';
 import { UserApi } from '../../shared/services/user-api';
 import ServicesApi from '../../shared/services/services-api';
 import CardServices from '../home-page/card-services/card-services';
+import { ServiceCategories } from '../../shared/utils/constant/service-categories';
 
 import '../home-page/card-services/card-services.scss';
 import './service-provider-profile.scss';
 
 export default function ServiceProviderProfile() {
+    const serviceCategories = new ServiceCategories().getAllSubCategories();
+
     const [user, setUser] = useState({});
 
     const [services, setServices] = useState([]);
@@ -17,7 +20,6 @@ export default function ServiceProviderProfile() {
     const [token] = useState(tokenObject['jwt']);
 
     const getUser = (e) => {
-        console.log(token);
         new UserApi()
             .getUserByToken(token)
             .then((res) => {
@@ -50,7 +52,7 @@ export default function ServiceProviderProfile() {
             <nav className="flex-column-center-center title-background">
                 <h3 className="title profile-title"> My Profile </h3>
             </nav>
-            <div className="wrapper">
+            <div className="responsive-wrapper">
                 <div className="mat-card">
                     <p>
                         <b>Name:</b> {user.name}
@@ -61,32 +63,44 @@ export default function ServiceProviderProfile() {
                     <p>
                         <b>Username:</b> {user.email}
                     </p>
-                    <Link to="/user/budgets">
-                        <button>
-                            <p>
-                                <b>Budget Request List</b>
-                            </p>
+                    <div
+                        className="flex-row-flexend-center"
+                        style={{ marginTop: 16 }}>
+                        <Link to="/user/budgets">
+                            <button
+                                style={{ marginRight: 16 }}
+                                className="button-accent">
+                                Budget Request List
+                            </button>
+                        </Link>
+                        <button
+                            id="edit"
+                            name="edit"
+                            className="button-primary"
+                            onClick={() => {
+                                window.location = '/user/profile/edit';
+                            }}>
+                            Edit Profile
                         </button>
-                    </Link>
-                    <button
-                        id="edit"
-                        name="edit"
-                        className="button-primary button-edit"
-                        onClick={() => {
-                            window.location = '/user/profile/edit';
-                        }}>
-                        Edit Profile
-                    </button>
+                    </div>
                 </div>
             </div>
             <div className="">
-                <div className="wrapper col3 col2-md col1-xs">
+                <div className="responsive-wrapper col4-res">
                     {services.map((service, i) => {
+                        let serviceCategory = serviceCategories.find(
+                            (category) =>
+                                Object.keys(category)[0] === service.category
+                        );
+                        if (!serviceCategory) {
+                            return;
+                        }
+                        let category = Object.values(serviceCategory)[0];
                         return (
                             <CardServices
                                 key={i}
                                 service={service}
-                                category={service.category}
+                                category={category}
                             />
                         );
                     })}

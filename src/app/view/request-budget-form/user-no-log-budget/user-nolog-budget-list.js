@@ -1,58 +1,98 @@
-import React, {useEffect, useState} from 'react';
-import BudgetApi from '../../../../shared/services/budget-api';
-import Link from "@material-ui/core/Link";
+import React, { useEffect, useState } from 'react';
+// import BudgetApi from '../../../../shared/services/budget-api';
+import Link from '@material-ui/core/Link';
+import BudgetApi from '../../../shared/services/budget-api';
+import { budgetStatus } from '../../../shared/utils/constant/budget-status';
 
-export default function userNoLogBudgetList(props) {
+export default function UserNoLogBudgetList(props) {
+    const [budgetList, setBudgetList] = useState([]);
 
-    const [budgetList, setBudgetList] = useState({});
-
-    const getBudgetList = () => {
-        new BudgetApi
-            .getBudgetByEmail(props.props.match.params.id)
+    const getBudgetByEmail = () => {
+        let email = JSON.parse(localStorage.getItem('email'));
+        new BudgetApi()
+            .getBudgetByEmail(email)
             .then((res) => {
+                setBudgetList(res);
                 console.log(res);
-                setBudgetList(res)
             })
             .catch((e) => {
                 console.log(e);
             });
     };
 
+    useEffect(() => {
+        getBudgetByEmail();
+    }, []);
 
-    if(budget.budgetStatus === "BUDGET_RESPONSED"){
-        return (
-            <div>
-                <div className="confirm-budget">
-                    <Link to=''>
-                        <button>Confirmar</button>
-                    </Link>
-                </div>
-                <div className="reject-budget">
-                    <Link to=''>
-                        <button>Rechazar</button>
-                    </Link>
-                </div>
-            </div>
-        )
+    const acceptBudget = (e, accepted, id) => {
+        e.preventDefault();
+        new BudgetApi()
+            .wasConfirmedBudget(accepted, id)
+            .then((res) => {
+                console.log(res);
+                setBudgetList([...budgetList, res]);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    };
+
+    if (budgetList.length === 0) {
+        return null;
     }
 
-    return(
-        <div>
+    return (
+        <div className="container-budget-request">
             {budgetList.map((budget, i) => (
-                <div className="wrapper">
+                <div key={i} className="wrapper">
                     <div className="mat-card">
                         <p>
-                            <b>User:</b> {budget.userEmail}
+                            <b>Client: </b> {budget.userEmail}
                         </p>
                         <p>
-                            <b>Description:</b> {budget.description}
+                            <b>Description: </b> {budget.description}
                         </p>
                         <p>
-                            <b>Status:</b>{budget.budgetStatus}
+                            <b>User provider: </b>{' '}
+                            {budget.minorJob.serviceProvider.name}{' '}
+                            {budget.minorJob.serviceProvider.last_name}
                         </p>
+                        <p>
+                            <b>Provider response: </b>{' '}
+                            {budget.providerResponse
+                                ? budget.providerResponse
+                                : '-'}
+                        </p>
+                        <p>
+                            <b>Status: </b>
+                            {budgetStatus[budget.budgetStatus]}
+                        </p>
+                        {budget.budgetStatus === 'BUDGET_ACCEPTED' ||
+                        budget.budgetStatus === 'BUDGET_REJECTED' ||
+                        budget.budgetStatus === 'BUDGET_ON_HOLD' ? null : (
+                            <div className="flex-row-flexend-center">
+                                <button
+                                    type="button"
+                                    onClick={(e) => {
+                                        acceptBudget(e, false, budget.id);
+                                    }}
+                                    className="button-accent">
+                                    Reject
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={(e) => {
+                                        acceptBudget(e, true, budget.id);
+                                    }}
+                                    style={{ marginLeft: 24 }}
+                                    className="button-primary">
+                                    Accept
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             ))}
         </div>
-    )
+    );
 }

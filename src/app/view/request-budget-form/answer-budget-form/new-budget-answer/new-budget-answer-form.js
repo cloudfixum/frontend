@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FormControl, Input, InputLabel } from '@material-ui/core';
+import { FormControl } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import BudgetApi from '../../../../shared/services/budget-api';
 
@@ -41,6 +41,7 @@ export default function NewBudgetAnswerForm(props) {
             .createBudgetAnswer(valuesForm)
             .then((res) => {
                 console.log(res);
+                setBudget(res);
             })
             .catch((e) => {
                 console.log(e);
@@ -52,9 +53,38 @@ export default function NewBudgetAnswerForm(props) {
         createBudgetAnswer();
     };
 
+    if (budget.budgetStatus === 'RESPONSED_BUDGET') {
+        return (
+            <div className="responsive-wrapper col1-res">
+                <div className="mat-card">
+                    <p>Budget answered, awaiting confirmation.</p>
+                </div>
+            </div>
+        );
+    } else if (budget.budgetStatus === 'BUDGET_ACCEPTED') {
+        return (
+            <div className="responsive-wrapper col1-res">
+                <div className="mat-card">
+                    <p>
+                        Budget accepted you can contact the email{' '}
+                        {budget.userEmail}.
+                    </p>
+                </div>
+            </div>
+        );
+    } else if (budget.budgetStatus === 'BUDGET_REJECTED') {
+        return (
+            <div className="responsive-wrapper col1-res">
+                <div className="mat-card">
+                    <p>Budget was rejected.</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div>
-            <div className="wrapper">
+            <div className="responsive-wrapper col1-res">
                 <div className="mat-card">
                     <p>
                         <b>User:</b> {budget.userEmail}
@@ -64,36 +94,35 @@ export default function NewBudgetAnswerForm(props) {
                     </p>
                 </div>
             </div>
-            <div className="wrapper">
+            <div className="responsive-wrapper col1-res">
                 <div className="mat-card">
-                    <div
-                        className="flex-row-center-center"
-                        style={{ marginBottom: 24 }}>
+                    <div style={{ marginBottom: 24 }}>
                         <h3> Answer - Budget Request </h3>
                     </div>
                     <ValidatorForm
+                        style={{ width: '100%' }}
                         onSubmit={handleSubmit}
                         onError={(errors) => console.log(errors)}
-                        className="flex-column-center-center">
-                        <FormControl
-                            style={{ maxWidth: '100%', marginBottom: 24 }}>
+                        className="wrapper col1">
+                        <FormControl>
                             <TextValidator
                                 label="Response"
                                 name="providerResponse"
                                 id="providerResponse"
                                 variant="outlined"
+                                fullWidth={true}
                                 onChange={handleChange}
                                 multiline
                                 rows={2}
                                 required
                             />
                         </FormControl>
-                        <FormControl
-                            style={{ maxWidth: '100%', marginBottom: 24 }}>
+                        <FormControl>
                             <TextValidator
                                 label="Price"
                                 name="price"
                                 id="price"
+                                fullWidth={true}
                                 variant="outlined"
                                 onChange={handleChange}
                                 required

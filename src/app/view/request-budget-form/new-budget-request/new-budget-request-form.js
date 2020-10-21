@@ -1,21 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { FormControl, Input } from '@material-ui/core';
+import React, { useState } from 'react';
+import { FormControl } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import BudgetApi from '../../../shared/services/budget-api';
-import ServicesApi from '../../../shared/services/services-api';
 // import { Link } from 'react-router-dom';
 
 import './new-budget-request-form.scss';
-import {
-    title_error_message,
-    description_error_message,
-    address_error_message,
-} from '../error-messages/error-messages';
-import {
-    title_validators_name,
-    description_validators_name,
-    address_validators_name,
-} from '../validators-names/validators-names';
+// import {
+//     title_error_message,
+//     description_error_message,
+//     address_error_message,
+// } from '../error-messages/error-messages';
+// import {
+//     title_validators_name,
+//     description_validators_name,
+//     address_validators_name,
+// } from '../validators-names/validators-names';
 
 export default function NewBudgetRequestForm(props) {
     const values = {
@@ -29,7 +28,6 @@ export default function NewBudgetRequestForm(props) {
 
     // const [encodedImage, setEncodedImage] = useState('');
     const [valuesForm, setValuesForm] = useState(values);
-    const [minorJobOfBudget, setMinorJobOfBudget] = useState({});
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -39,25 +37,12 @@ export default function NewBudgetRequestForm(props) {
         });
     };
 
-    /*useEffect(() => {
-        const getMinorJob = () => {
-            new ServicesApi()
-                .getServiceById(props.props.match.params.id)
-                .then((res) => {
-                    setMinorJobOfBudget(res);
-                })
-                .catch((e) => {
-                    console.log(e);
-                });
-        };
-        getMinorJob();
-    }, []);
-    */
     const createBudget = () => {
         new BudgetApi()
             .createBudgetRequest(valuesForm)
             .then((res) => {
                 console.log(res);
+                window.location = '/';
             })
             .catch((e) => {
                 console.log(e);
@@ -99,7 +84,7 @@ export default function NewBudgetRequestForm(props) {
     });
 
     return (
-        <div className="wrapper">
+        <div className="responsive-wrapper col1-res">
             <div className="mat-card">
                 <div className="flex-row-center-center">
                     <h3 style={{ paddingBottom: 24 }}> Request a Budget </h3>

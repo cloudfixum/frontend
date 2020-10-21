@@ -92,8 +92,13 @@ button {
     }
 }
 
+.mat-card .wrapper {
+    padding: 0 !important;
+}
+
 .wrapper {
     max-width: 1200px;
+    margin: auto;
     display: grid;
     grid-gap: 16px;
     grid-template-columns: repeat(1, 1fr);
@@ -158,4 +163,44 @@ button {
 
 .flex-row-flexend-center {
     @include flex-properties(row, flex-end, center);
+}
+
+// Responsive column
+
+@function calculateMinSize($col) {
+    @return (75em - (($col + 1) * 1.5em)) / $col;
+}
+
+@function calculateMinSizeViewPort($col) {
+    @return calculateMinSize($col) + 3em;
+}
+
+$col-class: 'col1' 100%, 'col2' calculateMinSize(2) calculateMinSizeViewPort(2),
+    'col3' calculateMinSize(3) calculateMinSizeViewPort(3),
+    'col4' calculateMinSize(4) calculateMinSizeViewPort(4),
+    'col5' calculateMinSize(5) calculateMinSizeViewPort(5),
+    'col6' calculateMinSize(6) calculateMinSizeViewPort(6),
+    'col7' calculateMinSize(7) calculateMinSizeViewPort(7),
+    'col8' calculateMinSize(8) calculateMinSizeViewPort(8),
+    'col9' calculateMinSize(9) calculateMinSizeViewPort(9),
+    'col10' calculateMinSize(10) calculateMinSizeViewPort(10),
+    'col11' calculateMinSize(11) calculateMinSizeViewPort(11),
+    'col12' calculateMinSize(12) calculateMinSizeViewPort(12);
+
+.responsive-wrapper {
+    max-width: 1200px;
+    margin: auto;
+    box-sizing: border-box;
+    padding: 24px;
+    display: grid;
+    grid-gap: 24px;
+}
+
+@each $class-name, $min-size, $min-width in $col-class {
+    .#{$class-name}-res {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+        @media (min-width: $min-width) {
+            grid-template-columns: repeat(auto-fill, minmax($min-size, 1fr));
+        }
+    }
 }

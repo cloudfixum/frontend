@@ -99,10 +99,13 @@ export default (props) => {
                         required>
                         <option aria-label="None" value="" />
                         {Object.keys(serviceCategories).map((key, i) => {
-                            let value = serviceCategories[key];
                             return (
-                                <option key={i} value={key}>
-                                    {value}
+                                <option
+                                    key={i}
+                                    value={
+                                        Object.keys(serviceCategories[key])[0]
+                                    }>
+                                    {Object.values(serviceCategories[key])[0]}
                                 </option>
                             );
                         })}
