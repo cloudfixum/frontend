@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { FormControl, Input, InputLabel } from '@material-ui/core';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import BudgetApi from '../../../../shared/services/budget-api';
-import { title_validators_name } from '../../validators-names/validators-names';
-import { title_error_message } from '../../error-messages/error-messages';
 
 export default function NewBudgetAnswerForm(props) {
     const values = {
-        description: '',
-        price: '',
+        budgetId: props.props.match.params.id,
+        providerResponse: '',
+        price: 0,
     };
 
     const [valuesForm, setValuesForm] = useState(values);
@@ -37,25 +36,9 @@ export default function NewBudgetAnswerForm(props) {
         getBudgetById();
     }, []);
 
-    const updateBudgetRequest = () => {
-        budget.budget_price = valuesForm.price;
-        budget.provider_response = valuesForm.description;
-        budget.budgetStatus = 'RESPONSEDBUDGET';
-        const values = {
-            description: budget.description,
-            userEmail: budget.userEmail,
-            location: budget.location,
-            budgetStatus: 'RESPONSEDBUDGET',
-            image_url_encoded:
-                '6e313fae4b113e12c469edb558ccc92e331751efd5441c031802b04441efa7a3',
-            provider_response: valuesForm.description,
-            minorJob: {
-                id: budget.minorJob.id,
-            },
-            budget_price: valuesForm.price,
-        };
+    const createBudgetAnswer = () => {
         new BudgetApi()
-            .createBudgetRequest(values)
+            .createBudgetAnswer(valuesForm)
             .then((res) => {
                 console.log(res);
             })
@@ -66,7 +49,7 @@ export default function NewBudgetAnswerForm(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        updateBudgetRequest();
+        createBudgetAnswer();
     };
 
     return (
@@ -86,7 +69,7 @@ export default function NewBudgetAnswerForm(props) {
                     <div
                         className="flex-row-center-center"
                         style={{ marginBottom: 24 }}>
-                        <h3> Answer a Budget Request </h3>
+                        <h3> Answer - Budget Request </h3>
                     </div>
                     <ValidatorForm
                         onSubmit={handleSubmit}
@@ -95,9 +78,9 @@ export default function NewBudgetAnswerForm(props) {
                         <FormControl
                             style={{ maxWidth: '100%', marginBottom: 24 }}>
                             <TextValidator
-                                label="Description"
-                                name="description"
-                                id="description"
+                                label="Response"
+                                name="providerResponse"
+                                id="providerResponse"
                                 variant="outlined"
                                 onChange={handleChange}
                                 multiline

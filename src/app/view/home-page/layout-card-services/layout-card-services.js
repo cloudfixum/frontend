@@ -55,9 +55,8 @@ export default function LayoutCardServices(props) {
         services.forEach((element) => {
             if (
                 element.category === e.target.value ||
-                element.description.includes(e.target.value)
+                element.title.includes(e.target.value)
             ) {
-                console.log('entre');
                 array.push(element);
             }
         });
