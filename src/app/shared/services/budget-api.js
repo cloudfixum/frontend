@@ -5,7 +5,7 @@ class BudgetApi {
     async createBudgetRequest(budgetRequest) {
         const budgetRequestJson = JSON.stringify(budgetRequest);
         const query = await axios.post(
-            `${BASE}budget/manage`,
+            `${BASE}budget`,
             budgetRequestJson,
             {
                 headers: {

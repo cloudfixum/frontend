@@ -6,6 +6,7 @@ import ServicesApi from '../../../shared/services/services-api';
 // import { Link } from 'react-router-dom';
 
 import './new-budget-request-form.scss';
+/*
 import {
     title_error_message,
     description_error_message,
@@ -16,18 +17,17 @@ import {
     description_validators_name,
     address_validators_name,
 } from '../validators-names/validators-names';
-
+*/
 export default function NewBudgetRequestForm(props) {
     const values = {
-        description: '',
         userEmail: '',
+        imageHash: '',
+        description: '',
         location: '',
-        budgetStatus: 'BUDGETONHOLD',
-        image_url_encoded:
-            '6e313fae4b113e12c469edb558ccc92e331751efd5441c031802b04441efa7a3',
+        minorJobId: '',
     };
 
-    // const [encodedImage, setEncodedImage] = useState('');
+    const [encodedImage, setEncodedImage] = useState('');
     const [valuesForm, setValuesForm] = useState(values);
     const [minorJobOfBudget, setMinorJobOfBudget] = useState({});
 
@@ -54,39 +54,44 @@ export default function NewBudgetRequestForm(props) {
     }, []);
 
     const createBudget = () => {
-        let object = Object.assign(valuesForm, {
-            minorJob: { id: minorJobOfBudget.id },
-        });
+        let object = Object.assign(valuesForm);
+        /*borré la concatenación que tenía de jobId, para que solo use valuesForm*/
         new BudgetApi()
             .createBudgetRequest(object)
             .then((res) => {
                 console.log(res);
             })
             .catch((e) => {
-                console.log(e);
+                console.log(e); /*antes tiraba un error 400*/
             });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        /*le seteo awebo el jobId que trae desde props*/
+        valuesForm.minorJobId = props.props.match.params.id;
+        console.log(valuesForm.minorJobId);
         createBudget();
     };
 
-    // const handleSelectedImage = async (e) => {
-    //     let image = await encodeBase64(e.target.files[0])
-    //     console.log(image)
-    //     await setEncodedImage(image)
-    // };
+    const handleSelectedImage = async (e) => {
+        let image = await encodeBase64(e.target.files[0]);
+        console.log(image);
+        await setEncodedImage(image);
+        console.log(encodedImage); /*queda vacío por alguna razón*/
+        valuesForm.imageHash = image;
+        console.log(valuesForm.imageHash);
+    };
+    const encodeBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            let reader = new FileReader();
+            reader.readAsDataURL(file) /*se supone que esto codifica correctamente*/
+            reader.onload = () => {
+                resolve(reader.result);
+            };
+        });
+    };
 
-    // const encodeBase64 = (file) => {
-    //     return new Promise((resolve, reject) => {
-    //         let reader = new FileReader();
-    //         reader.readAsDataURL(file)
-    //         reader.onload = () => {
-    //             resolve(reader.result)
-    //         }
-    //     })
-    // }
     ValidatorForm.addValidationRule('isRequired', (value) => {
         if (value === '') {
             return false;
@@ -138,22 +143,22 @@ export default function NewBudgetRequestForm(props) {
                             required
                         />
                     </FormControl>
-                    {/* <FormControl className="items-min-width form-items" variant="outlined">
+                    <FormControl className="items-min-width form-items" variant="outlined">
                         <label>
-                        <Input type='file'
-                            accept="image/*"
-                            style={{display: 'none'}}
-                            id="image_url_encoded"
-                            name="image_url_encoded"
-                            value={encodedImage}
-                            onChange={(e) => {handleSelectedImage(e, setEncodedImage)}}
-                        />
-                        <div className="input-image-container">
-                            <span className="material-icons">cloud_upload</span>
-                            <p>Choose a file</p>
-                        </div>
+                            <Input type='file'
+                                   accept="image/*"
+                                   style={{display: 'none'}}
+                                   id="image_url_encoded"
+                                   name="image_url_encoded"
+                                   //value={encodedImage}
+                                   onChange={(e) => {handleSelectedImage(e, setEncodedImage)}}
+                            />
+                            <div className="input-image-container">
+                                <span className="material-icons">cloud_upload</span>
+                                <p>Choose a file</p>
+                            </div>
                         </label>
-                    </FormControl> */}
+                    </FormControl>
                     <FormControl className="items-min-width form-items">
                         <TextValidator
                             className="items-min-width"
