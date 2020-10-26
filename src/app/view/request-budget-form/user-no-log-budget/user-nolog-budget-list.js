@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 // import BudgetApi from '../../../../shared/services/budget-api';
-import Link from '@material-ui/core/Link';
 import BudgetApi from '../../../shared/services/budget-api';
 import { budgetStatus } from '../../../shared/utils/constant/budget-status';
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
+import ServicesApi from '../../../shared/services/services-api';
 
 export default function UserNoLogBudgetList(props) {
     const [budgetList, setBudgetList] = useState([]);
+
+    const [qualificationService, setQualification] = useState((''));
 
     const getBudgetByEmail = () => {
         let email = JSON.parse(localStorage.getItem('email'));
@@ -19,6 +23,17 @@ export default function UserNoLogBudgetList(props) {
                 console.log(e);
             });
     };
+
+    const setQualificationService = () =>{
+        new ServicesApi.setQualificationService()
+        .then((res) => {
+            setQualification(res);
+            console.log(res)
+        })
+        .catch((e) => {
+            console.log(e)
+        })
+    }
 
     useEffect(() => {
         getBudgetByEmail();
@@ -41,9 +56,7 @@ export default function UserNoLogBudgetList(props) {
         return (
             <div className="wrapper">
                 <div className="mat-card">
-                    <p>
-                        No budget requested
-                    </p>
+                    <p>No budget requested</p>
                 </div>
             </div>
         );
@@ -69,7 +82,7 @@ export default function UserNoLogBudgetList(props) {
                             <b>Provider response: </b>{' '}
                             {budget.providerResponse
                                 ? budget.providerResponse
-                                : '-'}
+                                : '-'}                                               
                         </p>
                         <p>
                             <b>Status: </b>
@@ -98,6 +111,24 @@ export default function UserNoLogBudgetList(props) {
                                 </button>
                             </div>
                         )}
+                        {budget.budgetStatus === 'BUDGET_ACCEPTED' ? (
+                            
+                                <p>
+                                    <b>
+                                        Qualify:
+                                        <Box
+                                            component="fieldset"
+                                            mb={3}
+                                            borderColor="transparent">
+                                            <Rating
+                                                name="simple-controlled"
+                                                onSubmit={() => (setQualificationService(qualificationService))}
+                                            />
+                                        </Box>
+                                    </b>
+                                </p>
+                            
+                        ):null}
                     </div>
                 </div>
             ))}

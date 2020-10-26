@@ -76,5 +76,18 @@ class BudgetApi {
         const data = query.data;
         return data;
     }
+
+    async setQualificationService(qualification) {
+        const qualificationService = JSON.stringify(qualification);
+        const query = await axios.post(
+            `${BASE}budget/qualification`, qualificationService, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
+        const data = query.data;
+        return data;
+    }
 }
 export default BudgetApi;

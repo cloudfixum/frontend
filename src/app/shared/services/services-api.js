@@ -92,5 +92,10 @@ class ServicesApi {
         const data = query.data;
         return data;
     }
+    async getAverageBudgetsByServiceProvider(id) {
+        const query = await axios.get(`${BASE}user/${id}/average`);
+        const data = query.data;
+        return data;
+    }
 }
 export default ServicesApi;

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ServiceCategories } from '../../shared/utils/constant/service-categories';
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
 
 import './service-provider-summary.scss';
 import ServicesApi from '../../shared/services/services-api';
@@ -10,13 +12,21 @@ export default function ServiceProviderSummary(props) {
     const serviceCategories = new ServiceCategories().getAllSubCategories();
 
     let [service, setService] = useState({});
+    let [averageBudget, setAverage] = useState((''));
+    
+    const servicesApi = new ServicesApi()
 
     const getServiceById = () => {
-        new ServicesApi()
-            .getServiceById(props.match.params.id)
+        servicesApi.getServiceById(props.match.params.id)
             .then((res) => {
-                console.log(props.match.params.id);
                 setService(res);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+        servicesApi.getAverageBudgetsByServiceProvider(props.match.params.id)
+            .then((res) => {
+                setAverage(res);
             })
             .catch((e) => {
                 console.log(e);
@@ -34,6 +44,7 @@ export default function ServiceProviderSummary(props) {
         if (!serviceCategory) {
             return;
         }
+        console.log(service.serviceProvider);
         return Object.values(serviceCategory)[0];
     };
 
@@ -50,6 +61,21 @@ export default function ServiceProviderSummary(props) {
                     <p>
                         <b>Email: </b>
                         {service.serviceProvider?.email}
+                    </p>
+                    <p>
+                        <b>
+                            Qualification:
+                            <Box
+                                component="fieldset"
+                                mb={3}
+                                borderColor="transparent">
+                                <Rating
+                                    name="read-only"
+                                    value={averageBudget}
+                                    readOnly
+                                />
+                            </Box>
+                        </b>
                     </p>
                 </div>
             </div>
