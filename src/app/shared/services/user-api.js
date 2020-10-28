@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE = 'https://cloudfixum-api.herokuapp.com/';
+const BASE = 'https://cloudfixum-api-dev.herokuapp.com/';
 
 export class UserApi {
     async getUserByToken(token) {

@@ -24,10 +24,14 @@ export default function UserNoLogBudgetList(props) {
             });
     };
 
-    const setQualificationService = () =>{
-        new ServicesApi.setQualificationService()
+    const setQualificationService = (e, id) =>{
+        e.preventDefault()
+        let rating = {
+            id : id,
+            qualification : e.target.value,
+        }
+        new ServicesApi().setQualificationService(rating)
         .then((res) => {
-            setQualification(res);
             console.log(res)
         })
         .catch((e) => {
@@ -112,7 +116,6 @@ export default function UserNoLogBudgetList(props) {
                             </div>
                         )}
                         {budget.budgetStatus === 'BUDGET_ACCEPTED' ? (
-                            
                                 <p>
                                     <b>
                                         Qualify:
@@ -122,7 +125,7 @@ export default function UserNoLogBudgetList(props) {
                                             borderColor="transparent">
                                             <Rating
                                                 name="simple-controlled"
-                                                onSubmit={() => (setQualificationService(qualificationService))}
+                                                onChange={(e) => {setQualificationService(e, budget.id)}}
                                             />
                                         </Box>
                                     </b>
