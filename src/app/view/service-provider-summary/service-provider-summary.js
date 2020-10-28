@@ -12,7 +12,7 @@ export default function ServiceProviderSummary(props) {
     const serviceCategories = new ServiceCategories().getAllSubCategories();
 
     let [service, setService] = useState({});
-    let [averageBudget, setAverage] = useState((''));
+    let [averageBudget, setAverage] = useState({average: ''});
     
     const servicesApi = new ServicesApi()
 
@@ -44,9 +44,10 @@ export default function ServiceProviderSummary(props) {
         if (!serviceCategory) {
             return;
         }
-        console.log(service.serviceProvider);
         return Object.values(serviceCategory)[0];
     };
+
+    console.log(service)
 
     return (
         <div className="container-service-provider-summary">
@@ -61,21 +62,6 @@ export default function ServiceProviderSummary(props) {
                     <p>
                         <b>Email: </b>
                         {service.serviceProvider?.email}
-                    </p>
-                    <p>
-                        <b>
-                            Qualification:
-                            <Box
-                                component="fieldset"
-                                mb={3}
-                                borderColor="transparent">
-                                <Rating
-                                    name="read-only"
-                                    value={averageBudget}
-                                    readOnly
-                                />
-                            </Box>
-                        </b>
                     </p>
                 </div>
             </div>
@@ -101,6 +87,21 @@ export default function ServiceProviderSummary(props) {
                                     <b>Base price: </b>${service.base_price}
                                 </p>
                             </div>
+                            <p>
+                                <b>
+                                    Qualification:
+                                    <Box
+                                        component="fieldset"
+                                        mb={3}
+                                        borderColor="transparent">
+                                        <Rating
+                                            name="read-only"
+                                            value={averageBudget.average}
+                                            readOnly
+                                        />
+                                    </Box>
+                                </b>
+                            </p>
                         </div>
                     </div>
                     <div className="flex-row-flexend-center">

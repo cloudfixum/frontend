@@ -27,8 +27,8 @@ export default function UserNoLogBudgetList(props) {
     const setQualificationService = (e, id) =>{
         e.preventDefault()
         let rating = {
-            id : id,
-            qualification : e.target.value,
+            budgetId : id,
+            budgetQualification : e.target.value,
         }
         new ServicesApi().setQualificationService(rating)
         .then((res) => {
