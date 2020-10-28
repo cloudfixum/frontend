@@ -9,7 +9,7 @@ import ServicesApi from '../../../shared/services/services-api';
 export default function UserNoLogBudgetList(props) {
     const [budgetList, setBudgetList] = useState([]);
 
-    const [qualificationService, setQualification] = useState((''));
+    const [qualificationService, setQualification] = useState('');
 
     const getBudgetByEmail = () => {
         let email = JSON.parse(localStorage.getItem('email'));
@@ -24,20 +24,21 @@ export default function UserNoLogBudgetList(props) {
             });
     };
 
-    const setQualificationService = (e, id) =>{
-        e.preventDefault()
+    const setQualificationService = (e, id) => {
+        e.preventDefault();
         let rating = {
-            budgetId : id,
-            budgetQualification : e.target.value,
-        }
-        new ServicesApi().setQualificationService(rating)
-        .then((res) => {
-            console.log(res)
-        })
-        .catch((e) => {
-            console.log(e)
-        })
-    }
+            budgetId: id,
+            budgetQualification: e.target.value,
+        };
+        new ServicesApi()
+            .setQualificationService(rating)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+    };
 
     useEffect(() => {
         getBudgetByEmail();
@@ -86,7 +87,7 @@ export default function UserNoLogBudgetList(props) {
                             <b>Provider response: </b>{' '}
                             {budget.providerResponse
                                 ? budget.providerResponse
-                                : '-'}                                               
+                                : '-'}
                         </p>
                         <p>
                             <b>Status: </b>
@@ -116,22 +117,26 @@ export default function UserNoLogBudgetList(props) {
                             </div>
                         )}
                         {budget.budgetStatus === 'BUDGET_ACCEPTED' ? (
-                                <p>
-                                    <b>
-                                        Qualify:
-                                        <Box
-                                            component="fieldset"
-                                            mb={3}
-                                            borderColor="transparent">
-                                            <Rating
-                                                name="simple-controlled"
-                                                onChange={(e) => {setQualificationService(e, budget.id)}}
-                                            />
-                                        </Box>
-                                    </b>
-                                </p>
-                            
-                        ):null}
+                            <p>
+                                <b>
+                                    Qualify:
+                                    <Box
+                                        component="fieldset"
+                                        mb={3}
+                                        borderColor="transparent">
+                                        <Rating
+                                            name="simple-controlled"
+                                            onChange={(e) => {
+                                                setQualificationService(
+                                                    e,
+                                                    budget.id
+                                                );
+                                            }}
+                                        />
+                                    </Box>
+                                </b>
+                            </p>
+                        ) : null}
                     </div>
                 </div>
             ))}

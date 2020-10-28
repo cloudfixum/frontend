@@ -12,19 +12,21 @@ export default function ServiceProviderSummary(props) {
     const serviceCategories = new ServiceCategories().getAllSubCategories();
 
     let [service, setService] = useState({});
-    let [averageBudget, setAverage] = useState({average: ''});
-    
-    const servicesApi = new ServicesApi()
+    let [averageBudget, setAverage] = useState({ average: '' });
+
+    const servicesApi = new ServicesApi();
 
     const getServiceById = () => {
-        servicesApi.getServiceById(props.match.params.id)
+        servicesApi
+            .getServiceById(props.match.params.id)
             .then((res) => {
                 setService(res);
             })
             .catch((e) => {
                 console.log(e);
             });
-        servicesApi.getAverageBudgetsByServiceProvider(props.match.params.id)
+        servicesApi
+            .getAverageBudgetsByServiceProvider(props.match.params.id)
             .then((res) => {
                 setAverage(res);
             })
@@ -47,7 +49,7 @@ export default function ServiceProviderSummary(props) {
         return Object.values(serviceCategory)[0];
     };
 
-    console.log(service)
+    console.log(service);
 
     return (
         <div className="container-service-provider-summary">

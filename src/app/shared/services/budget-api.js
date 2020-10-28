@@ -76,7 +76,5 @@ class BudgetApi {
         const data = query.data;
         return data;
     }
-
-
 }
 export default BudgetApi;
